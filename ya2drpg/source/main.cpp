@@ -34,8 +34,6 @@ int main(int argc, char *argv[])
 		gameloop.Run();
 	}
 
-	SDL_Delay(3000);
-
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
