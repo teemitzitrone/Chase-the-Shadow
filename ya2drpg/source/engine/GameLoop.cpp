@@ -65,7 +65,7 @@ void GameLoop::_HandleFrame()
 	
 	SDL_RenderClear(this->_renderer);
 	for (auto controller : this->_controllers) {
-		controller->Render();
+		controller->Render(this->_renderer);
 	}
 	SDL_RenderPresent(this->_renderer);
 }
