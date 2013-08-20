@@ -76,7 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\GameLoop.cpp" />
-    <ClCompile Include="source\engine\GameObject.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
