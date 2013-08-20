@@ -1,8 +1,14 @@
 #pragma once
-#include "GameObject.h"
-
-class InputComponent
+#include "Component.h"
+class InputComponent :
+	public Component
 {
 public:
-  virtual void update(GameObject& gameObject) = 0;
+	InputComponent(void) { /** **/ };
+	virtual ~InputComponent(void) { /** **/ };
+	void Input(SDL_Event *input); 
+	void Update(GameObject &go);
+	void Render(GameObject &go, SDL_Renderer *renderer);
+private:
+	SDL_Event *_event;
 };
