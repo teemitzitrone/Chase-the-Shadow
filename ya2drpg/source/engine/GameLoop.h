@@ -3,10 +3,12 @@
 #include <vector>
 #include <SDL.h>
 #include "GameObject.h"
+#include "GameObjectManager.h"
 
 class GameLoop
 {
 	SDL_Renderer* _renderer;
+	GameObjectManager _manager;
 	std::vector<GameObject*> _controllers;
 	SDL_Surface* _screen;
 	bool _done;

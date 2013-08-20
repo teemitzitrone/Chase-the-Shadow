@@ -16,11 +16,6 @@ GameLoop::~GameLoop(void)
 {
 }
 
-void GameLoop::RegisterController(GameObject* controller)
-{
-	this->_controllers.push_back(controller);
-}
-
 void GameLoop::Run()
 {
 	unsigned __int64 freq;
@@ -52,17 +47,17 @@ void GameLoop::Run()
 
 void GameLoop::_HandleFrame()
 {
-	for (auto controller : this->_controllers) {
-		controller->Input();
+	for (auto gameobject : this->_manager) {
+		gameobject->Input();
 	}
 
-	for (auto controller : this->_controllers) {
-		controller->Update();
+	for (auto gameobject : this->_manager) {
+		gameobject->Update();
 	}
 	
 	SDL_RenderClear(this->_renderer);
-	for (auto controller : this->_controllers) {
-		controller->Render(this->_renderer);
+	for (auto gameobject : this->_manager) {
+		gameobject->Render(this->_renderer);
 	}
 	SDL_RenderPresent(this->_renderer);
 }

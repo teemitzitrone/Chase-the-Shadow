@@ -33,12 +33,18 @@
     <ClInclude Include="source\engine\InputComponent.h">
       <Filter>Headerdateien\components</Filter>
     </ClInclude>
+    <ClInclude Include="source\engine\GameObjectManager.h">
+      <Filter>Headerdateien\engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="source\engine\GameLoop.cpp">
+      <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\GameObjectManager.cpp">
       <Filter>Quelldateien\engine</Filter>
     </ClCompile>
   </ItemGroup>
