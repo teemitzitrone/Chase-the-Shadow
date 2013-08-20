@@ -1,33 +1,43 @@
 #include <iostream>
 #include <SDL.h>
+#include "engine\GameLoop.h"
 
 int main(int argc, char *argv[])
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
+	SDL_Window *window = nullptr;
+	SDL_Renderer* renderer = nullptr;
+
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		return 1;
 	}
-
-	SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
-	if (win == nullptr){
+	
+	window = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+	if (window == nullptr) {
 		std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
+		SDL_Quit();
 		return 1;
+	} else {
+		renderer = SDL_CreateRenderer(
+			window, 
+			-1, 
+			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
+		);
 	}
 
-	SDL_Renderer *ren = SDL_CreateRenderer(win, -1, 
-		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if (ren == nullptr){
+	if (renderer == nullptr) {
 		std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
+		SDL_Quit();
 		return 1;
+	} else {
+		GameLoop gameloop = GameLoop(renderer);
+		gameloop.Run();
 	}
-
-	SDL_RenderClear(ren);
-	SDL_RenderPresent(ren);
 
 	SDL_Delay(3000);
 
-	SDL_DestroyRenderer(ren);
-	SDL_DestroyWindow(win);
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
 	SDL_Quit();
 
 	return 0;

@@ -6,9 +6,10 @@
 #define FRAMES_PER_SECOND 60.0
 #define MILLISECONDS_PER_FRAME 1000.0 / FRAMES_PER_SECOND
 
-GameLoop::GameLoop(void)
+GameLoop::GameLoop(SDL_Renderer* renderer) :
+	_done(false),
+	_renderer(renderer)
 {
-	this->_done = false;
 }
 
 GameLoop::~GameLoop(void)
@@ -17,10 +18,7 @@ GameLoop::~GameLoop(void)
 
 void GameLoop::RegisterController(GameObject* controller)
 {
-	std::vector<GameObject*>::iterator it = this->_controllers.begin();
-
 	this->_controllers.push_back(controller);
-	
 }
 
 #define screenwidth 800
@@ -34,18 +32,7 @@ void GameLoop::Run()
 	double timerFrequency;
 	double timeDifferenceInMilliseconds;
 	double timeToSleep;
-	
-	if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
-		exit(1);
-	}
-
-	
-	this->_screen = SDL_SetVideoMode(screenwidth, screenheight, 32, SDL_HWSURFACE);
-	if (this->_screen == nullptr) {
-		SDL_Quit();
-		//error("SDL_SetVideoMode failed with message: " + (string) SDL_GetError());
-	}
-	
+		
 	SDL_Event loopEvent;
 
 	while (!this->_done && SDL_PollEvent(&loopEvent) != -1) {
@@ -55,19 +42,32 @@ void GameLoop::Run()
 		QueryPerformanceCounter((LARGE_INTEGER *)&startTime);
 		timerFrequency = (1.0/freq);
 
-		for (auto controller : this->_controllers) {
-			controller->Update();
-		}
-		
+		this->_HandleFrame();
+
 		QueryPerformanceCounter((LARGE_INTEGER *)&endTime);
 		timeDifferenceInMilliseconds = ((endTime-startTime) * timerFrequency) * 1000;
 		timeToSleep = MILLISECONDS_PER_FRAME - timeDifferenceInMilliseconds;
 		if (timeToSleep > 0) {
 			Sleep ((DWORD)timeToSleep);
 		}
-		
-		SDL_Flip(this->_screen);
 	}
+}
+
+void GameLoop::_HandleFrame()
+{
+	for (auto controller : this->_controllers) {
+		controller->Input();
+	}
+
+	for (auto controller : this->_controllers) {
+		controller->Update();
+	}
+	
+	SDL_RenderClear(this->_renderer);
+	for (auto controller : this->_controllers) {
+		controller->Render();
+	}
+	SDL_RenderPresent(this->_renderer);
 }
 
 
