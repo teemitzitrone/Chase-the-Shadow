@@ -19,6 +19,9 @@
     <Filter Include="Quelldateien\engine">
       <UniqueIdentifier>{f3d0b7a6-cabd-48e0-804c-217eb3ff2d98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\components">
+      <UniqueIdentifier>{5088c92f-58c8-4b78-a752-d7e3f6ff7735}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\engine\GameLoop.h">
@@ -27,13 +30,13 @@
     <ClInclude Include="source\engine\GameObject.h">
       <Filter>Headerdateien\engine</Filter>
     </ClInclude>
+    <ClInclude Include="source\engine\InputComponent.h">
+      <Filter>Headerdateien\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
       <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="source\engine\GameObject.cpp">
-      <Filter>Quelldateien\engine</Filter>
     </ClCompile>
     <ClCompile Include="source\engine\GameLoop.cpp">
       <Filter>Quelldateien\engine</Filter>

@@ -21,9 +21,6 @@ void GameLoop::RegisterController(GameObject* controller)
 	this->_controllers.push_back(controller);
 }
 
-#define screenwidth 800
-#define screenheight 600
-
 void GameLoop::Run()
 {
 	unsigned __int64 freq;
