@@ -1,14 +1,34 @@
 #include <iostream>
-
 #include <SDL.h>
 
 int main(int argc, char *argv[])
 {
-	int get;
-	SDL_Rect rect = {1, 1, 1, 1};
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
+		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
+		return 1;
+	}
 
-	std::cout << "SDL_Rect w=" << rect.w << std::endl;
-	std::cin >> get;
+	SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+	if (win == nullptr){
+		std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
+		return 1;
+	}
+
+	SDL_Renderer *ren = SDL_CreateRenderer(win, -1, 
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (ren == nullptr){
+		std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
+		return 1;
+	}
+
+	SDL_RenderClear(ren);
+	SDL_RenderPresent(ren);
+
+	SDL_Delay(10000);
+
+	SDL_DestroyRenderer(ren);
+	SDL_DestroyWindow(win);
+	SDL_Quit();
 
 	return 0;
 }
