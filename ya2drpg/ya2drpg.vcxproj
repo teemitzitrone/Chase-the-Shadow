@@ -71,9 +71,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\engine\GameLoop.h" />
     <ClInclude Include="source\engine\GameObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\engine\GameLoop.cpp" />
     <ClCompile Include="source\engine\GameObject.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>

@@ -13,18 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Headerdateien\engine">
+      <UniqueIdentifier>{751759f7-c155-4ab2-ac21-7ade0f76d862}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\engine">
+      <UniqueIdentifier>{f3d0b7a6-cabd-48e0-804c-217eb3ff2d98}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\engine\GameLoop.h">
+      <Filter>Headerdateien\engine</Filter>
+    </ClInclude>
     <ClInclude Include="source\engine\GameObject.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\engine\GameObject.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="source\main.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\GameObject.cpp">
+      <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\GameLoop.cpp">
+      <Filter>Quelldateien\engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
