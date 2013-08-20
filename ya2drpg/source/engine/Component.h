@@ -1,10 +1,10 @@
 #pragma once
-#include "GameObject.h"
+class GameObject;
 
 class Component
 {
 public:
-	virtual void Input(SDL_Event *input) = 0;
-	virtual void Update(GameObject &go) = 0;
-	virtual void Render(GameObject &go, SDL_Renderer *renderer) = 0;
+	virtual void Input(SDL_Event*) = 0;
+	virtual void Update(GameObject&) = 0;
+	virtual void Render(GameObject&, SDL_Renderer*) = 0;
 };

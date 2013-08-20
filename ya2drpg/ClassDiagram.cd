@@ -3,21 +3,21 @@
   <Class Name="Component" Collapsed="true">
     <Position X="1" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>source\engine\Component.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InputComponent" Collapsed="true">
     <Position X="1" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAQAgAAAAAAAAAAAAAABAAAAEAAAAAAAABAAAAAAAAg=</HashCode>
       <FileName>source\engine\InputComponent.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameLoop" Collapsed="true">
     <Position X="3.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAEAAgBAAAAAAQEAIAAgEAAAAAAAAAAAAEAAAAo=</HashCode>
+      <HashCode>AAAAgAEAAgBAAAAAAQEAIQAgEAAAAAAAAAAAAEAAAAo=</HashCode>
       <FileName>source\engine\GameLoop.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -33,6 +33,13 @@
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAIAAAEAAAIAAAABAAAQAAABA=</HashCode>
       <FileName>source\engine\Player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjectManager" Collapsed="true">
+    <Position X="3.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAACAAAEAAAAAAAAAAAYCAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>source\engine\GameObjectManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

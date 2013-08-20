@@ -16,5 +16,4 @@ void InputComponent::Update(GameObject &gameObject)
 
 void InputComponent::Render(GameObject &gameObject, SDL_Renderer *renderer)
 {
-	std::cout << "Draw Call Player" << std::endl;
 }
