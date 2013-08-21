@@ -19,8 +19,11 @@
     <Filter Include="Quelldateien\engine">
       <UniqueIdentifier>{f3d0b7a6-cabd-48e0-804c-217eb3ff2d98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\components">
+    <Filter Include="Headerdateien\engine\components">
       <UniqueIdentifier>{5088c92f-58c8-4b78-a752-d7e3f6ff7735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\engine\component">
+      <UniqueIdentifier>{9ca58b49-d11c-4418-a9c8-f49583161dd1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -31,13 +34,19 @@
       <Filter>Headerdateien\engine</Filter>
     </ClInclude>
     <ClInclude Include="source\engine\InputComponent.h">
-      <Filter>Headerdateien\components</Filter>
+      <Filter>Headerdateien\engine\components</Filter>
     </ClInclude>
     <ClInclude Include="source\engine\GameObjectManager.h">
       <Filter>Headerdateien\engine</Filter>
     </ClInclude>
     <ClInclude Include="source\Derivata.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\Component.h">
+      <Filter>Headerdateien\engine\components</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\Player.h">
+      <Filter>Headerdateien\engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +57,12 @@
       <Filter>Quelldateien\engine</Filter>
     </ClCompile>
     <ClCompile Include="source\engine\GameObjectManager.cpp">
+      <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\InputComponent.cpp">
+      <Filter>Quelldateien\engine\component</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\Player.cpp">
       <Filter>Quelldateien\engine</Filter>
     </ClCompile>
   </ItemGroup>

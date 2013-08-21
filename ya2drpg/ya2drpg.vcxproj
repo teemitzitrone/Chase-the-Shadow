@@ -48,6 +48,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjcetDir)source\vendors\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -74,14 +75,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="source\Derivata.h" />
+    <ClInclude Include="source\engine\Component.h" />
     <ClInclude Include="source\engine\GameLoop.h" />
     <ClInclude Include="source\engine\GameObject.h" />
     <ClInclude Include="source\engine\GameObjectManager.h" />
     <ClInclude Include="source\engine\InputComponent.h" />
+    <ClInclude Include="source\engine\Player.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\GameLoop.cpp" />
     <ClCompile Include="source\engine\GameObjectManager.cpp" />
+    <ClCompile Include="source\engine\InputComponent.cpp" />
+    <ClCompile Include="source\engine\Player.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>

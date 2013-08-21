@@ -1,4 +1,6 @@
 #include "GameLoop.h"
+#include "Player.h"
+#include "InputComponent.h"
 #include <vector>
 #include <Windows.h>
 #include <time.h>
@@ -34,8 +36,12 @@ void GameLoop::Run()
 		QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
 		QueryPerformanceCounter((LARGE_INTEGER *)&startTime);
 		timerFrequency = (1.0/freq);
+		Player *g = new Player;
+		g->RegisterComponent(new InputComponent);
 
-		this->_HandleFrame();
+		this->_manager.RegisterGameobject(g);
+
+		this->_HandleFrame(loopEvent);
 
 		QueryPerformanceCounter((LARGE_INTEGER *)&endTime);
 		timeDifferenceInMilliseconds = ((endTime-startTime) * timerFrequency) * 1000;
@@ -46,10 +52,10 @@ void GameLoop::Run()
 	}
 }
 
-void GameLoop::_HandleFrame()
+void GameLoop::_HandleFrame(SDL_Event sdlEvent)
 {
 	for (auto gameobject : this->_manager->GameObjects()) {
-		gameobject->Input();
+		gameobject->Input(&sdlEvent);
 	}
 
 	for (auto gameobject : this->_manager->GameObjects()) {

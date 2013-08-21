@@ -2,9 +2,7 @@
 
 #include <vector>
 #include <SDL.h>
-#include "GameObject.h"
 #include "GameObjectManager.h"
-
 class GameLoop
 {
 	SDL_Renderer* _renderer;
@@ -15,7 +13,7 @@ private:
 	bool _HandleKeystrokes(SDL_Event);
 	bool _HandleMouseMotion(SDL_Event);
 	bool _HandleEvents(SDL_Event);
-	void _HandleFrame();
+	void _HandleFrame(SDL_Event);
 
 public:
 	GameLoop(SDL_Renderer*, GameObjectManager*);
