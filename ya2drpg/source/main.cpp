@@ -1,6 +1,8 @@
 #include <iostream>
 #include <SDL.h>
 #include "engine\GameLoop.h"
+#include "engine\Player.h"
+#include "engine\InputComponent.h"
 #include "Derivata.h"
 
 
@@ -17,6 +19,11 @@ int main(int argc, char *argv[])
 	manager->RegisterGameobject(new Derivata());
 	manager->RegisterGameobject(new Derivata());
 	manager->RegisterGameobject(new Derivata());
+	
+	Player *g = new Player;
+	g->RegisterComponent(new InputComponent);
+		
+	manager->RegisterGameobject(g);
 
 	manager->UnregisterGameobject(p);
 

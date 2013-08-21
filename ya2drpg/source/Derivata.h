@@ -1,5 +1,5 @@
 #pragma once
-#include "c:\users\mratz\documents\ya2drpg\ya2drpg\source\engine\gameobject.h"
+#include "engine/GameObject.h"
 #include <iostream>
 
 class Derivata :
@@ -15,7 +15,7 @@ public:
 	{
 	}
 	
-	void Input() { return;}
+	void Input(SDL_Event*) { return;}
 	void Update() { 
 		std::cout << "moep" << std::endl;
 		return;
@@ -23,5 +23,6 @@ public:
 	void Render(SDL_Renderer*) { return; }
 	void StartUp() { return; }
 	void ShutDown() { return; }
+	void RegisterComponent(Component*) { return; }
 };
 
