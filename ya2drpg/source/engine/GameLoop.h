@@ -8,9 +8,7 @@
 class GameLoop
 {
 	SDL_Renderer* _renderer;
-	GameObjectManager _manager;
-	std::vector<GameObject*> _controllers;
-	SDL_Surface* _screen;
+	GameObjectManager* _manager;
 	bool _done;
 
 private:
@@ -20,7 +18,7 @@ private:
 	void _HandleFrame();
 
 public:
-	GameLoop(SDL_Renderer*);
+	GameLoop(SDL_Renderer*, GameObjectManager*);
 	virtual ~GameLoop(void);
 
 	void RegisterController(GameObject*);

@@ -36,6 +36,9 @@
     <ClInclude Include="source\engine\GameObjectManager.h">
       <Filter>Headerdateien\engine</Filter>
     </ClInclude>
+    <ClInclude Include="source\Derivata.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">

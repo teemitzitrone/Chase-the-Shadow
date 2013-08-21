@@ -73,6 +73,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\Derivata.h" />
     <ClInclude Include="source\engine\GameLoop.h" />
     <ClInclude Include="source\engine\GameObject.h" />
     <ClInclude Include="source\engine\GameObjectManager.h" />

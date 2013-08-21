@@ -6,8 +6,8 @@
 class GameObject
 {
 public:
-	GameObject(void): _alive(true) { /* */ };
-	virtual ~GameObject(void);
+	GameObject(void) { /* */ };
+	virtual ~GameObject(void) {};
 	virtual void StartUp() = 0;
 	virtual void Input(INPT) = 0;
 	virtual void Update() = 0;

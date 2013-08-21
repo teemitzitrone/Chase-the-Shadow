@@ -6,9 +6,10 @@
 #define FRAMES_PER_SECOND 60.0
 #define MILLISECONDS_PER_FRAME 1000.0 / FRAMES_PER_SECOND
 
-GameLoop::GameLoop(SDL_Renderer* renderer) :
+GameLoop::GameLoop(SDL_Renderer* renderer, GameObjectManager* gameObjectManager) :
 	_done(false),
-	_renderer(renderer)
+	_renderer(renderer),
+	_manager(gameObjectManager)
 {
 }
 
@@ -47,16 +48,16 @@ void GameLoop::Run()
 
 void GameLoop::_HandleFrame()
 {
-	for (auto gameobject : this->_manager) {
+	for (auto gameobject : this->_manager->GameObjects()) {
 		gameobject->Input();
 	}
 
-	for (auto gameobject : this->_manager) {
+	for (auto gameobject : this->_manager->GameObjects()) {
 		gameobject->Update();
 	}
 	
 	SDL_RenderClear(this->_renderer);
-	for (auto gameobject : this->_manager) {
+	for (auto gameobject : this->_manager->GameObjects()) {
 		gameobject->Render(this->_renderer);
 	}
 	SDL_RenderPresent(this->_renderer);

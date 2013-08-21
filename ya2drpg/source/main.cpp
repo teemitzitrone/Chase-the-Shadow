@@ -1,11 +1,24 @@
 #include <iostream>
 #include <SDL.h>
 #include "engine\GameLoop.h"
+#include "Derivata.h"
+
 
 int main(int argc, char *argv[])
 {
 	SDL_Window *window = nullptr;
 	SDL_Renderer* renderer = nullptr;
+
+	GameObjectManager* manager = new GameObjectManager();
+	Derivata* p = new Derivata();
+	manager->RegisterGameobject(new Derivata());
+	manager->RegisterGameobject(new Derivata());
+	manager->RegisterGameobject(p);
+	manager->RegisterGameobject(new Derivata());
+	manager->RegisterGameobject(new Derivata());
+	manager->RegisterGameobject(new Derivata());
+
+	manager->UnregisterGameobject(p);
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
@@ -30,7 +43,7 @@ int main(int argc, char *argv[])
 		SDL_Quit();
 		return 1;
 	} else {
-		GameLoop gameloop = GameLoop(renderer);
+		GameLoop gameloop = GameLoop(renderer, manager);
 		gameloop.Run();
 	}
 

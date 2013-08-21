@@ -14,6 +14,7 @@ public:
 	void UnregisterGameobject(GameObject*);
 
 
+#if 0
     typedef std::vector<GameObject*>::iterator iterator;
     typedef std::vector<GameObject*>::const_iterator const_iterator;
 
@@ -22,5 +23,8 @@ public:
 
     iterator end() { return this->_gameobjects.end(); }
     const_iterator end() const { return this->_gameobjects.end(); }
+
+#endif
+	std::vector<GameObject*> GameObjects() { return this->_gameobjects; }
 };
 
