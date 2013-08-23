@@ -21,11 +21,10 @@ void GameObjectManager::UnregisterGameobject(GameObject* gameObject)
 	while (gameobjectIterator != this->_gameobjects.end()) {
 		if ((*gameobjectIterator) != gameObject) {
 			gameobjectIterator++;
-			std::cout << "nope" << std::endl;
 			continue;
 		} else {
-			std::cout << "yep" << std::endl;
 			this->_gameobjects.erase(gameobjectIterator);
+			break;
 		}
 	};
 

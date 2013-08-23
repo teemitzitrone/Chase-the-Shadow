@@ -17,7 +17,7 @@ public:
 	
 	void Input(SDL_Event*) { return;}
 	void Update() { 
-		std::cout << "moep" << std::endl;
+		//std::cout << "moep" << std::endl;
 		return;
 	}
 	void Render(SDL_Renderer*) { return; }

@@ -25,6 +25,12 @@
     <Filter Include="Quelldateien\engine\component">
       <UniqueIdentifier>{9ca58b49-d11c-4418-a9c8-f49583161dd1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\world">
+      <UniqueIdentifier>{885d188f-e503-4900-9cbf-f56f55177da2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\world">
+      <UniqueIdentifier>{e3af7a34-46e2-4e9f-9ae1-ed89d8937a11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\engine\GameLoop.h">
@@ -48,6 +54,12 @@
     <ClInclude Include="source\engine\Player.h">
       <Filter>Headerdateien\engine</Filter>
     </ClInclude>
+    <ClInclude Include="source\world\World.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="source\world\Chunk.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -64,6 +76,12 @@
     </ClCompile>
     <ClCompile Include="source\engine\Player.cpp">
       <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\world\World.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="source\world\Chunk.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
