@@ -4,7 +4,7 @@ void Player::StartUp()
 {
 }
 
-void Player::Input(SDL_Event *input)
+void Player::Input(SDL_Event* input)
 {
 	std::vector<Component*>::iterator it;
 	it = this->_components.begin();
