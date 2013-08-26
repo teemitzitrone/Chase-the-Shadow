@@ -40,24 +40,25 @@ void InputComponent::Input(SDL_Event* event)
 
 void InputComponent::Update(GameObject &gameObject)
 {
-	switch(this->_direction) {
-		case Direction::up:
-			std::cout << "Up we GO" << std::endl;
-			break;
-		case Direction::right:
-			std::cout << "We are Right" << std::endl;
-			break;
-		case Direction::down:
-			std::cout << "Nothing can bring me Down" << std::endl;
-			break;
-		case Direction::left:
-			std::cout << "Nobody is Left behind" << std::endl;
-			break;
-		case Direction::none:
-			std::cout << "Don't just stand there! Do something" << std::endl;
-			break;
-
-	}
+//	switch(this->_direction) {
+//		case Direction::up:
+//			std::cout << "Up we GO" << std::endl;
+//			break;
+//		case Direction::right:
+//			std::cout << "We are Right" << std::endl;
+//			break;
+//		case Direction::down:
+//			std::cout << "Nothing can bring me Down" << std::endl;
+//			break;
+//		case Direction::left:
+//			std::cout << "Nobody is Left behind" << std::endl;
+//			break;
+//		case Direction::none:
+//			std::cout << "Don't just stand there! Do something" << std::endl;
+//			break;
+//		default:
+//			break;
+//	}
 }
 
 void InputComponent::Render(GameObject &gameObject, SDL_Renderer *renderer)

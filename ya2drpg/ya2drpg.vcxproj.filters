@@ -54,11 +54,11 @@
     <ClInclude Include="source\engine\Player.h">
       <Filter>Headerdateien\engine</Filter>
     </ClInclude>
-    <ClInclude Include="source\world\World.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="source\world\Chunk.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\world</Filter>
+    </ClInclude>
+    <ClInclude Include="source\world\World.h">
+      <Filter>Headerdateien\world</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,11 +77,11 @@
     <ClCompile Include="source\engine\Player.cpp">
       <Filter>Quelldateien\engine</Filter>
     </ClCompile>
-    <ClCompile Include="source\world\World.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="source\world\Chunk.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\world</Filter>
+    </ClCompile>
+    <ClCompile Include="source\world\World.cpp">
+      <Filter>Quelldateien\world</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
