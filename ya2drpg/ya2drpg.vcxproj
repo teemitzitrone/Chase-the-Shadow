@@ -81,6 +81,7 @@
     <ClInclude Include="source\engine\GameObjectManager.h" />
     <ClInclude Include="source\engine\InputComponent.h" />
     <ClInclude Include="source\engine\Player.h" />
+    <ClInclude Include="source\engine\TextureComponent.h" />
     <ClInclude Include="source\world\Chunk.h" />
     <ClInclude Include="source\world\World.h" />
   </ItemGroup>
@@ -89,6 +90,7 @@
     <ClCompile Include="source\engine\GameObjectManager.cpp" />
     <ClCompile Include="source\engine\InputComponent.cpp" />
     <ClCompile Include="source\engine\Player.cpp" />
+    <ClCompile Include="source\engine\TextureComponent.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\world\Chunk.cpp" />
     <ClCompile Include="source\world\World.cpp" />

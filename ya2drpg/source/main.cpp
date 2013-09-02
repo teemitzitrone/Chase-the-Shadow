@@ -3,7 +3,7 @@
 #include "engine\GameLoop.h"
 #include "engine\Player.h"
 #include "engine\InputComponent.h"
-#include "Derivata.h"
+#include "engine\TextureComponent.h"
 
 
 int main(int argc, char *argv[])
@@ -12,20 +12,11 @@ int main(int argc, char *argv[])
 	SDL_Renderer* renderer = nullptr;
 
 	GameObjectManager* manager = new GameObjectManager();
-	Derivata* p = new Derivata();
-	manager->RegisterGameobject(new Derivata());
-	manager->RegisterGameobject(new Derivata());
-	manager->RegisterGameobject(p);
-	manager->RegisterGameobject(new Derivata());
-	manager->RegisterGameobject(new Derivata());
-	manager->RegisterGameobject(new Derivata());
 	
 	Player *g = new Player;
 	g->RegisterComponent(new InputComponent);
-		
-	manager->RegisterGameobject(g);
 
-	manager->UnregisterGameobject(p);
+	manager->RegisterGameobject(g);
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
@@ -50,6 +41,7 @@ int main(int argc, char *argv[])
 		SDL_Quit();
 		return 1;
 	} else {
+		g->RegisterComponent(TextureComponent::Factory("assets/hello.bmp", renderer));
 		GameLoop gameloop = GameLoop(renderer, manager);
 		gameloop.Run();
 	}
