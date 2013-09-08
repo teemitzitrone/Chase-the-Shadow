@@ -1,12 +1,11 @@
 #pragma once
 #include "Component.h"
-#include <string>
 class TextureComponent :
 	public Component
 {
 public:
-	TextureComponent(void): _texture(nullptr) {};
-	TextureComponent(SDL_Texture* texture): _texture(texture) {};
+	TextureComponent(void): _texture(nullptr), Component("Texture") {};
+	TextureComponent(SDL_Texture* texture): _texture(texture), Component("Texture") {};
 	virtual ~TextureComponent(void) {};
 	void Input(SDL_Event*); 
 	void Update(GameObject&);

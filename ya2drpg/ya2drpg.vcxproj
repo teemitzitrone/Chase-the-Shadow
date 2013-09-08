@@ -47,14 +47,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjcetDir)source\vendors\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjcetDir)source\vendors\SDL2\include;$(ProjcetDir)source\vendors\linqxx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(ProjcetDir)source\vendors\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjcetDir)source\vendors\SDL2\lib\x86;$(ProjcetDir)source\vendors\linqxx;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
     </Link>
@@ -82,6 +82,7 @@
     <ClInclude Include="source\engine\InputComponent.h" />
     <ClInclude Include="source\engine\Player.h" />
     <ClInclude Include="source\engine\TextureComponent.h" />
+    <ClInclude Include="source\engine\TransformComponent.h" />
     <ClInclude Include="source\world\Chunk.h" />
     <ClInclude Include="source\world\World.h" />
   </ItemGroup>
@@ -91,6 +92,7 @@
     <ClCompile Include="source\engine\InputComponent.cpp" />
     <ClCompile Include="source\engine\Player.cpp" />
     <ClCompile Include="source\engine\TextureComponent.cpp" />
+    <ClCompile Include="source\engine\TransformComponent.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\world\Chunk.cpp" />
     <ClCompile Include="source\world\World.cpp" />

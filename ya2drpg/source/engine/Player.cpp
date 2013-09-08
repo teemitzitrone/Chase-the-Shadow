@@ -39,11 +39,7 @@ void Player::Render(SDL_Renderer *renderer)
 		it++;
 	}
 }
+
 void Player::ShutDown()
 {
-}
-
-void Player::RegisterComponent(Component *component)
-{
-	this->_components.push_back(component);
 }

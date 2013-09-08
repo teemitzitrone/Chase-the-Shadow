@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <vector>
 #include "Component.h"
+
 class GameObject
 {
 public:
@@ -12,7 +13,14 @@ public:
 	virtual void Update() = 0;
 	virtual void Render(SDL_Renderer*) = 0;
 	virtual void ShutDown() = 0;
-	virtual void RegisterComponent(Component*) = 0;
+	void RegisterComponent(Component* component)
+	{
+		this->_components.push_back(component);
+	}
+
+	std::vector<Component*> Filter(std::string tag)
+	{
+	}
 
 protected:
 	bool _alive;

@@ -13,7 +13,12 @@ int main(int argc, char *argv[])
 
 	GameObjectManager* manager = new GameObjectManager();
 	
+	SDL_Rect pos;
+	pos.x = 34;
+	pos.x = 34;
+
 	Player *g = new Player;
+	g->RegisterComponent(TransformComponent::Factory(pos));
 	g->RegisterComponent(new InputComponent);
 
 	manager->RegisterGameobject(g);

@@ -63,6 +63,9 @@
     <ClInclude Include="source\engine\TextureComponent.h">
       <Filter>Headerdateien\engine\components</Filter>
     </ClInclude>
+    <ClInclude Include="source\engine\TransformComponent.h">
+      <Filter>Headerdateien\engine\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -87,6 +90,9 @@
       <Filter>Quelldateien\world</Filter>
     </ClCompile>
     <ClCompile Include="source\engine\TextureComponent.cpp">
+      <Filter>Quelldateien\engine\component</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\TransformComponent.cpp">
       <Filter>Quelldateien\engine\component</Filter>
     </ClCompile>
   </ItemGroup>

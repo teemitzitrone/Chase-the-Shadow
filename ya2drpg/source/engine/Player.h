@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+#include "TransformComponent.h"
+
 class Player :
 	public GameObject
 {
@@ -11,5 +13,12 @@ public:
 	void Update();
 	void Render(SDL_Renderer*);
 	void ShutDown();
-	void RegisterComponent(Component*);
+
+	static Player* Factory()
+	{
+		Player *player = new Player();
+		player->RegisterComponent(TransformComponent::Factory());
+
+		return player;
+	}
 };
