@@ -4,8 +4,8 @@ class AnimationComponent :
 	public TextureComponent
 {
 public:
-	AnimationComponent(void): _frames(6) {};
-	AnimationComponent(SDL_Texture* texture): TextureComponent(texture), _frames(6) {};
+	AnimationComponent(void): _frames(8) {};
+	AnimationComponent(SDL_Texture* texture): TextureComponent(texture), _frames(8) {};
 	virtual ~AnimationComponent(void) {};
 	void Update(GameObject&);
 

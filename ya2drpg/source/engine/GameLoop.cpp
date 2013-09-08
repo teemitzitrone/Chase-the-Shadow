@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include <time.h>
 
-#define FRAMES_PER_SECOND 60.0
+#define FRAMES_PER_SECOND 30.0
 #define MILLISECONDS_PER_FRAME 1000.0 / FRAMES_PER_SECOND
 
 GameLoop::GameLoop(SDL_Renderer* renderer, GameObjectManager* gameObjectManager) :

@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 
 	SDL_Rect scale;
 	scale.x = 0;
-	scale.y = 128;
+	scale.y = 0;
 	scale.w = 64;
 	scale.h = 64;
 
