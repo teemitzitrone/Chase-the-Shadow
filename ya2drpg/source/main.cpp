@@ -3,7 +3,7 @@
 #include "engine\GameLoop.h"
 #include "engine\Player.h"
 #include "engine\InputComponent.h"
-#include "engine\TextureComponent.h"
+#include "engine\AnimationComponent.h"
 
 
 int main(int argc, char *argv[])
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	scale.h = 124;
 
 	Player *g = new Player;
-	g->RegisterComponent(TransformComponent::Factory(pos, pos, scale));
+	g->RegisterComponent(TransformComponent::Factory(pos, pos, &scale));
 	g->RegisterComponent(new InputComponent);
 
 	manager->RegisterGameobject(g);
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 		SDL_Quit();
 		return 1;
 	} else {
-		g->RegisterComponent(TextureComponent::Factory("assets/hello.bmp", renderer));
+		g->RegisterComponent(AnimationComponent::Factory("assets/hello.bmp", renderer));
 		GameLoop gameloop = GameLoop(renderer, manager);
 		gameloop.Run();
 	}

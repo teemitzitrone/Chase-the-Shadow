@@ -66,6 +66,9 @@
     <ClInclude Include="source\engine\TransformComponent.h">
       <Filter>Headerdateien\engine\components</Filter>
     </ClInclude>
+    <ClInclude Include="source\engine\AnimationComponent.h">
+      <Filter>Headerdateien\engine\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -93,6 +96,9 @@
       <Filter>Quelldateien\engine\component</Filter>
     </ClCompile>
     <ClCompile Include="source\engine\TransformComponent.cpp">
+      <Filter>Quelldateien\engine\component</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\AnimationComponent.cpp">
       <Filter>Quelldateien\engine\component</Filter>
     </ClCompile>
   </ItemGroup>

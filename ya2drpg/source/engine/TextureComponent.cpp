@@ -11,12 +11,12 @@ void TextureComponent::Render(GameObject& gameObject, SDL_Renderer* renderer)
 	transform = dynamic_cast<TransformComponent*> (hits.front());
 
 	SDL_Rect position = transform->GetPosition();
-	SDL_Rect scale = transform->GetScale();
+	SDL_Rect *scale = transform->GetScale();
 
-	position.h = scale.h;
-	position.w = scale.w;
+	position.h = scale->h;
+	position.w = scale->w;
 	
-	SDL_RenderCopy(renderer, this->_texture, &scale, &position);
+	SDL_RenderCopy(renderer, this->_texture, scale, &position);
 }
 
 void TextureComponent::Input(SDL_Event*)

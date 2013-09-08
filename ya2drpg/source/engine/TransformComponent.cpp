@@ -48,7 +48,7 @@ SDL_Rect TransformComponent::GetRotation()
 	return this->_rotation;
 }
 
-SDL_Rect TransformComponent::GetScale()
+SDL_Rect* TransformComponent::GetScale()
 {
 	return this->_scale;
 }
@@ -61,7 +61,7 @@ TransformComponent* TransformComponent::Factory()
 	rect.w = 0;
 	rect.h = 0;
 
-	return new TransformComponent(rect, rect, rect);
+	return new TransformComponent(rect, rect, &rect);
 }
 
 TransformComponent* TransformComponent::Factory(SDL_Rect position)
@@ -72,7 +72,7 @@ TransformComponent* TransformComponent::Factory(SDL_Rect position)
 	rect.w = 0;
 	rect.h = 0;
 
-	return new TransformComponent(position, rect, rect);
+	return new TransformComponent(position, rect, &rect);
 }
 
 TransformComponent* TransformComponent::Factory(SDL_Rect position, SDL_Rect rotation)
@@ -83,10 +83,10 @@ TransformComponent* TransformComponent::Factory(SDL_Rect position, SDL_Rect rota
 	rect.w = 0;
 	rect.h = 0;
 
-	return new TransformComponent(position, rotation, rect);
+	return new TransformComponent(position, rotation, &rect);
 }
 
-TransformComponent* TransformComponent::Factory(SDL_Rect position, SDL_Rect rotation, SDL_Rect scale)
+TransformComponent* TransformComponent::Factory(SDL_Rect position, SDL_Rect rotation, SDL_Rect* scale)
 {
 	return new TransformComponent(position, rotation, scale);
 }
