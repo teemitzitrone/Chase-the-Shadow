@@ -15,10 +15,18 @@ int main(int argc, char *argv[])
 	
 	SDL_Rect pos;
 	pos.x = 34;
-	pos.x = 34;
+	pos.y = 34;
+	pos.w = 0;
+	pos.h = 0;
+
+	SDL_Rect scale;
+	scale.x = 0;
+	scale.y = 0;
+	scale.w = 124;
+	scale.h = 124;
 
 	Player *g = new Player;
-	g->RegisterComponent(TransformComponent::Factory(pos));
+	g->RegisterComponent(TransformComponent::Factory(pos, pos, scale));
 	g->RegisterComponent(new InputComponent);
 
 	manager->RegisterGameobject(g);

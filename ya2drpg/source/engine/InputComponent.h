@@ -19,6 +19,7 @@ public:
 	void Input(SDL_Event*); 
 	void Update(GameObject&);
 	void Render(GameObject&, SDL_Renderer*);
+	Direction GetDirection();
 private:
 	Direction _direction;
 };

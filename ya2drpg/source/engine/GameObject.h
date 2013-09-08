@@ -18,8 +18,21 @@ public:
 		this->_components.push_back(component);
 	}
 
-	std::vector<Component*> Filter(std::string tag)
+	std::vector<Component*> FilterComponent(std::string tag_)
 	{
+		std::vector<Component*> hits;
+
+		std::vector<Component*>::iterator it;
+		it = this->_components.begin();
+		while (it != this->_components.end())
+		{
+			if ((**it).tag == tag_) {
+				hits.push_back(*it);
+			}
+			it++;
+		}
+
+		return hits;
 	}
 
 protected:

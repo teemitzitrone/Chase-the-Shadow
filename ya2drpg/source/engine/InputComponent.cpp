@@ -64,3 +64,8 @@ void InputComponent::Update(GameObject &gameObject)
 void InputComponent::Render(GameObject &gameObject, SDL_Renderer *renderer)
 {
 }
+
+Direction InputComponent::GetDirection()
+{
+	return this->_direction;
+}
