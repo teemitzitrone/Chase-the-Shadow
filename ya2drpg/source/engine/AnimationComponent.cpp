@@ -20,11 +20,11 @@ void AnimationComponent::Update(GameObject& gameObject)
 	}
 }
 
-AnimationComponent* AnimationComponent::Factory(const std::string image, SDL_Renderer* renderer)
+AnimationComponent* AnimationComponent::Factory(const std::string image, SDL_Renderer* renderer, int frames = 8)
 {
 	SDL_Surface *surface = SDL_LoadBMP(image.c_str());
 	SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
 	SDL_FreeSurface(surface);
 
-	return new AnimationComponent(texture);
+	return new AnimationComponent(texture, frames);
 }
