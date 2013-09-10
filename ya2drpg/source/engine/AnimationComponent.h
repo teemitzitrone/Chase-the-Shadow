@@ -4,12 +4,12 @@ class AnimationComponent :
 	public TextureComponent
 {
 public:
-	AnimationComponent(void): _frames(8) {};
-	AnimationComponent(SDL_Texture* texture): TextureComponent(texture), _frames(8) {};
+	AnimationComponent(int frames = 8): _frames(frames) {};
+	AnimationComponent(SDL_Texture* texture, int frames = 8): TextureComponent(texture), _frames(frames) {};
 	virtual ~AnimationComponent(void) {};
 	void Update(GameObject&);
 
-	static AnimationComponent* Factory(const std::string, SDL_Renderer*);
+	static AnimationComponent* Factory(const std::string, SDL_Renderer*, int frames = 8);
 private:
 	int _frames;
 };
