@@ -1,5 +1,7 @@
 #pragma once
 #include "Component.h"
+#include <SDL_image.h>
+
 class TextureComponent :
 	public Component
 {

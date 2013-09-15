@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 		SDL_Quit();
 		return 1;
 	} else {
-		g->RegisterComponent(AnimationComponent::Factory("assets/hello.bmp", renderer));
+		g->RegisterComponent(AnimationComponent::Factory("assets/hero.png", renderer));
 		GameLoop gameloop = GameLoop(renderer, manager);
 		gameloop.Run();
 	}

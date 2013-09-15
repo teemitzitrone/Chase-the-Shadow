@@ -31,9 +31,11 @@ void TextureComponent::Update(GameObject&)
 
 TextureComponent* TextureComponent::Factory(const std::string image, SDL_Renderer* renderer)
 {
-	SDL_Surface *surface = SDL_LoadBMP(image.c_str());
-	SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
-	SDL_FreeSurface(surface);
-
+	SDL_Texture *texture = IMG_LoadTexture(renderer, image.c_str());
+	if (texture == nullptr) {	
+		std::cout << "ERROR " << image.c_str() << " " << IMG_GetError() << std::endl;
+	} else {
+		std::cout << "SUCCESS " << image.c_str() << std::endl;
+	}
 	return new TextureComponent(texture);
 }
