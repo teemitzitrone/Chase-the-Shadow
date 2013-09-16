@@ -2,40 +2,35 @@
 #include <SDL.h>
 #include <vector>
 #include "Component.h"
+#include "TransformComponent.h"
 
 class GameObject
 {
 public:
-	GameObject(void): _alive(true) { };
 	virtual ~GameObject(void) {};
-	virtual void StartUp() = 0;
-	virtual void Input(SDL_Event*) = 0;
-	virtual void Update() = 0;
-	virtual void Render(SDL_Renderer*) = 0;
-	virtual void ShutDown() = 0;
-	void RegisterComponent(Component* component)
-	{
-		this->_components.push_back(component);
-	}
+	void StartUp();
+	void Input(SDL_Event*);
+	void Update(double);
+	void Render(SDL_Renderer*);
+	void ShutDown();
+	void RegisterComponent(Component*);
+	std::vector<Component*> FilterComponent(std::string);
 
-	std::vector<Component*> FilterComponent(std::string tag_)
+	static GameObject Create(Component* component = nullptr)
 	{
-		std::vector<Component*> hits;
-
-		std::vector<Component*>::iterator it;
-		it = this->_components.begin();
-		while (it != this->_components.end())
+		GameObject g = GameObject();
+		if (component == nullptr)
 		{
-			if ((**it).tag == tag_) {
-				hits.push_back(*it);
-			}
-			it++;
+			component = TransformComponent::Factory();
 		}
+		g.RegisterComponent(component);
 
-		return hits;
+		return g;
 	}
 
-protected:
+private:
 	bool _alive;
 	std::vector<Component*> _components;
+
+	GameObject(void): _alive(true) { };
 };

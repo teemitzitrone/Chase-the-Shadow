@@ -11,7 +11,7 @@ void TransformComponent::Input(SDL_Event*)
 {
 }
 
-void TransformComponent::Update(GameObject& gameObject)
+void TransformComponent::Update(GameObject& gameObject, double)
 {
 	std::vector<Component*> hits = gameObject.FilterComponent("Input");
 	InputComponent* input;

@@ -1,5 +1,7 @@
 #pragma once
 #include "Component.h"
+#include <SDL_image.h>
+
 class TextureComponent :
 	public Component
 {
@@ -8,7 +10,7 @@ public:
 	TextureComponent(SDL_Texture* texture): _texture(texture), Component("Texture") {};
 	virtual ~TextureComponent(void) {};
 	void Input(SDL_Event*); 
-	void Update(GameObject&);
+	void Update(GameObject&, double);
 	void Render(GameObject&, SDL_Renderer*);
 	static TextureComponent* Factory(const std::string, SDL_Renderer*);
 private:

@@ -13,7 +13,7 @@ private:
 	bool _HandleKeystrokes(SDL_Event);
 	bool _HandleMouseMotion(SDL_Event);
 	bool _HandleEvents(SDL_Event);
-	void _HandleFrame(SDL_Event);
+	void _HandleFrame(SDL_Event, double);
 
 public:
 	GameLoop(SDL_Renderer*, GameObjectManager*);
