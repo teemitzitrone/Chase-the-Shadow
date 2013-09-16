@@ -68,17 +68,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\main.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="source\engine\GameLoop.cpp">
       <Filter>Quelldateien\engine</Filter>
     </ClCompile>
     <ClCompile Include="source\engine\GameObjectManager.cpp">
       <Filter>Quelldateien\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\engine\InputComponent.cpp">
-      <Filter>Quelldateien\engine\component</Filter>
     </ClCompile>
     <ClCompile Include="source\world\Chunk.cpp">
       <Filter>Quelldateien\world</Filter>
@@ -97,6 +91,12 @@
     </ClCompile>
     <ClCompile Include="source\engine\GameObject.cpp">
       <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\InputComponent.cpp">
+      <Filter>Quelldateien\engine\component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

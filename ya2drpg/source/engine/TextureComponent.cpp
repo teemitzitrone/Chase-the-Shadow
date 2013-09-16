@@ -24,7 +24,7 @@ void TextureComponent::Input(SDL_Event*)
 	/** **/
 }
 
-void TextureComponent::Update(GameObject&)
+void TextureComponent::Update(GameObject&, double)
 {
 	/** **/
 }

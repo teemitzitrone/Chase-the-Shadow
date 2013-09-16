@@ -1,9 +1,10 @@
 #include "GameLoop.h"
 #include <vector>
+#include <iostream>
 #include <Windows.h>
 #include <time.h>
 
-#define FRAMES_PER_SECOND 30.0
+#define FRAMES_PER_SECOND 60.0
 #define MILLISECONDS_PER_FRAME 1000.0 / FRAMES_PER_SECOND
 
 GameLoop::GameLoop(SDL_Renderer* renderer, GameObjectManager* gameObjectManager) :
@@ -35,25 +36,25 @@ void GameLoop::Run()
 		QueryPerformanceCounter((LARGE_INTEGER *)&startTime);
 		timerFrequency = (1.0/freq);
 		
-		this->_HandleFrame(loopEvent);
-
 		QueryPerformanceCounter((LARGE_INTEGER *)&endTime);
 		timeDifferenceInMilliseconds = ((endTime-startTime) * timerFrequency) * 1000;
 		timeToSleep = MILLISECONDS_PER_FRAME - timeDifferenceInMilliseconds;
 		if (timeToSleep > 0) {
 			Sleep ((DWORD)timeToSleep);
 		}
+
+		this->_HandleFrame(loopEvent, timeToSleep);
 	}
 }
 
-void GameLoop::_HandleFrame(SDL_Event sdlEvent)
+void GameLoop::_HandleFrame(SDL_Event sdlEvent, double delay)
 {
 	for (auto gameobject : this->_manager->GameObjects()) {
 		gameobject->Input(&sdlEvent);
 	}
 
 	for (auto gameobject : this->_manager->GameObjects()) {
-		gameobject->Update();
+		gameobject->Update(delay);
 	}
 	
 	SDL_RenderClear(this->_renderer);

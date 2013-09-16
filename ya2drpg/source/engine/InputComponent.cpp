@@ -38,7 +38,7 @@ void InputComponent::Input(SDL_Event* event)
 	}
 }
 
-void InputComponent::Update(GameObject &gameObject)
+void InputComponent::Update(GameObject &gameObject, double)
 {
 //	switch(this->_direction) {
 //		case Direction::up:

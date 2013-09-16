@@ -10,7 +10,7 @@ public:
 	virtual ~GameObject(void) {};
 	void StartUp();
 	void Input(SDL_Event*);
-	void Update();
+	void Update(double);
 	void Render(SDL_Renderer*);
 	void ShutDown();
 	void RegisterComponent(Component*);

@@ -16,14 +16,14 @@ void GameObject::Input(SDL_Event* input)
 	}
 }
 
-void GameObject::Update()
+void GameObject::Update(double delay)
 {
 	std::vector<Component*>::iterator it;
 	it = this->_components.begin();
 
 	while (it != this->_components.end())
 	{
-		(**it).Update(*this);
+		(**it).Update(*this, delay);
 		it++;
 	}
 }
