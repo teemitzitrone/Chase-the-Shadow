@@ -4,8 +4,8 @@ class AnimationComponent :
 	public TextureComponent
 {
 public:
-	AnimationComponent(int frames = 8, double speed = 1.0, double anim = 300.0): _frames(frames), _animation(anim), _speed(speed), _timeToAnimation(anim/speed) {};
-	AnimationComponent(SDL_Texture* texture, int frames = 8, double speed = 1.0, double anim = 300.0): TextureComponent(texture), _frames(frames), _animation(anim), _speed(speed), _timeToAnimation(anim/speed) {};
+	AnimationComponent(int frames = 8, double speed = 1.0, double anim = 600.0): _frames(frames), _animation(anim), _speed(speed), _timeToAnimation(anim/speed) {};
+	AnimationComponent(SDL_Texture* texture, int frames = 8, double speed = 1.0, double anim = 600.0): TextureComponent(texture), _frames(frames), _animation(anim), _speed(speed), _timeToAnimation(anim/speed) {};
 	virtual ~AnimationComponent(void) {};
 	void Update(GameObject&, double);
 
