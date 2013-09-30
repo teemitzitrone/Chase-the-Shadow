@@ -36,14 +36,13 @@ void GameLoop::Run()
 		QueryPerformanceCounter((LARGE_INTEGER *)&startTime);
 		timerFrequency = (1.0/freq);
 
-		this->_HandleFrame(loopEvent, FRAMES_PER_SECOND);
-		
 		QueryPerformanceCounter((LARGE_INTEGER *)&endTime);
 		timeDifferenceInMilliseconds = ((endTime-startTime) * timerFrequency) * 1000;
 		timeToSleep = MILLISECONDS_PER_FRAME - timeDifferenceInMilliseconds;
 		if (timeToSleep > 0) {
 			Sleep ((DWORD)timeToSleep);
 		}
+		this->_HandleFrame(loopEvent, timeToSleep);
 	}
 }
 
