@@ -1,22 +1,21 @@
 #pragma once
 #include <vector>
-#include "GameObject.h"
+#include <GameObject.h>
 
 class GameObjectManager
 {
-	std::vector<GameObject*> _gameobjects;
+	std::vector<engine::GameObject*> _gameobjects;
 
 public:
 	GameObjectManager(void);
 	virtual ~GameObjectManager(void);
 	
-	void RegisterGameobject(GameObject*);
-	void UnregisterGameobject(GameObject*);
-
+	void RegisterGameobject(engine::GameObject*);
+	void UnregisterGameobject(engine::GameObject*);
 
 #if 0
-    typedef std::vector<GameObject*>::iterator iterator;
-    typedef std::vector<GameObject*>::const_iterator const_iterator;
+    typedef std::vector<engine::GameObject*>::iterator iterator;
+    typedef std::vector<engine::GameObject*>::const_iterator const_iterator;
 
 	iterator begin() { return this->_gameobjects.begin(); }
     const_iterator begin() const { return this->_gameobjects.begin(); }
@@ -25,6 +24,5 @@ public:
     const_iterator end() const { return this->_gameobjects.end(); }
 
 #endif
-	std::vector<GameObject*> GameObjects() { return this->_gameobjects; }
+	std::vector<engine::GameObject*> GameObjects() { return this->_gameobjects; }
 };
-

@@ -9,12 +9,12 @@ GameObjectManager::~GameObjectManager(void)
 {
 }
 
-void GameObjectManager::RegisterGameobject(GameObject* gameObject)
+void GameObjectManager::RegisterGameobject(engine::GameObject* gameObject)
 {
 	this->_gameobjects.push_back(gameObject);
 }
 
-void GameObjectManager::UnregisterGameobject(GameObject* gameObject)
+void GameObjectManager::UnregisterGameobject(engine::GameObject* gameObject)
 {
 	auto gameobjectIterator = this->_gameobjects.begin();
 	

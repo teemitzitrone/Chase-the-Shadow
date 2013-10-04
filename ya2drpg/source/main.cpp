@@ -1,8 +1,8 @@
 #include <iostream>
 #include <SDL.h>
 #include "engine\GameLoop.h"
-#include "engine\InputComponent.h"
-#include "engine\AnimationComponent.h"
+#include <InputComponent.h>
+#include <AnimationComponent.h>
 
 
 int main(int argc, char *argv[])
@@ -24,8 +24,8 @@ int main(int argc, char *argv[])
 	scale.w = 64;
 	scale.h = 64;
 
-	GameObject g = GameObject::Create(TransformComponent::Factory(pos, pos, &scale));
-	g.RegisterComponent(new InputComponent);
+	engine::GameObject g = engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale));
+	g.RegisterComponent(new engine::InputComponent);
 
 	manager->RegisterGameobject(&g);
 
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 		SDL_Quit();
 		return 1;
 	} else {
-		g.RegisterComponent(AnimationComponent::Factory("assets/hero.png", renderer));
+		g.RegisterComponent(engine::AnimationComponent::Factory("assets/hero.png", renderer));
 		GameLoop gameloop = GameLoop(renderer, manager);
 		gameloop.Run();
 	}
