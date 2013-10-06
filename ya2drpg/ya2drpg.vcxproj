@@ -47,14 +47,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjcetDir)source\vendors\SDL2\include;$(ProjcetDir)source\vendors\SDL2_image\include;$(ProjcetDir)source\vendors\SDL2_mixer\include;$(ProjcetDir)source\vendors\SDL2_ttf\include;$(SolutionDir)_engine\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendors\SDL2\include;$(SolutionDir)vendors\SDL2_image\include;$(SolutionDir)vendors\SDL2_mixer\include;$(SolutionDir)vendors\SDL2_ttf\include;$(SolutionDir)_engine\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;_engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(ProjcetDir)source\vendors\SDL2\lib\x86;$(ProjcetDir)source\vendors\SDL2_image\lib\x86;$(ProjcetDir)source\vendors\SDL2_mixer\lib\x86;$(ProjcetDir)source\vendors\SDL2_ttf\lib\x86;$(SolutionDir)Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)vendors\SDL2\lib\x86;$(SolutionDir)vendors\SDL2_image\lib\x86;$(SolutionDir)vendors\SDL2_mixer\lib\x86;$(SolutionDir)vendors\SDL2_ttf\lib\x86;$(SolutionDir)Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
     </Link>
