@@ -45,6 +45,9 @@
     <ClInclude Include="source\AnimationComponent.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
+    <ClInclude Include="source\StateComponent.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Vector2D.cpp">
@@ -63,6 +66,9 @@
       <Filter>Source Files\components</Filter>
     </ClCompile>
     <ClCompile Include="source\AnimationComponent.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="source\StateComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>
