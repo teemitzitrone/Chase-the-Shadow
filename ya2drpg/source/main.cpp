@@ -3,10 +3,11 @@
 #include "engine\GameLoop.h"
 #include <InputComponent.h>
 #include <AnimationComponent.h>
-
+#include "engine\MapLoader.h"
 
 int main(int argc, char *argv[])
 {
+	testJzon();
 	SDL_Window *window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 
