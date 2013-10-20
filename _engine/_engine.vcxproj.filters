@@ -62,13 +62,13 @@
     <ClCompile Include="source\InputComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
-    <ClCompile Include="source\TextureConmponent.cpp">
-      <Filter>Source Files\components</Filter>
-    </ClCompile>
     <ClCompile Include="source\AnimationComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
     <ClCompile Include="source\StateComponent.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TextureComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>

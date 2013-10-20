@@ -25,7 +25,7 @@
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\InputComponent.cpp" />
     <ClCompile Include="source\StateComponent.cpp" />
-    <ClCompile Include="source\TextureConmponent.cpp" />
+    <ClCompile Include="source\TextureComponent.cpp" />
     <ClCompile Include="source\TransformComponent.cpp" />
     <ClCompile Include="source\Vector2D.cpp" />
   </ItemGroup>
