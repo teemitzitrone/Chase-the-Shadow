@@ -2,7 +2,7 @@
 
 namespace engine
 {
-	void InputComponent::Input(SDL_Event* event)
+	void InputComponent::Input(GameObject&, SDL_Event* event)
 	{
 		switch (event->type)
 		{

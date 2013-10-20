@@ -21,7 +21,7 @@ namespace engine
 	public:
 		InputComponent(void): _direction(Direction::none), Component("Input") { };
 		virtual ~InputComponent(void) { };
-		void Input(SDL_Event*); 
+		void Input(GameObject&, SDL_Event*); 
 		void Update(GameObject&, double);
 		void Render(GameObject&, SDL_Renderer*);
 		Direction GetDirection();
