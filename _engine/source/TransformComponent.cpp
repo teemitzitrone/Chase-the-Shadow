@@ -9,7 +9,7 @@ namespace engine
 	{
 	}
 
-	void TransformComponent::Input(SDL_Event*)
+	void TransformComponent::Input(GameObject&, SDL_Event*)
 	{
 	}
 

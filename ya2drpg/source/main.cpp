@@ -55,8 +55,8 @@ int main(int argc, char *argv[])
 	} else {
 
 		engine::AnimationComponent* animation = engine::AnimationComponent::Factory("assets/hero.png", renderer);
-		player.RegisterComponent(animation);
 		player.RegisterComponent(engine::StateComponent::Factory(animation, engine::State::PLAYABLE_UP));
+		player.RegisterComponent(animation);
 		GameLoop gameloop = GameLoop(renderer, manager);
 		gameloop.Run();
 	}
