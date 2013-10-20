@@ -4,6 +4,7 @@
 #include <InputComponent.h>
 #include <AnimationComponent.h>
 #include "engine\MapLoader.h"
+#include <StateComponent.h>
 
 int main(int argc, char *argv[])
 {
@@ -25,10 +26,10 @@ int main(int argc, char *argv[])
 	scale.w = 64;
 	scale.h = 64;
 
-	engine::GameObject g = engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale));
-	g.RegisterComponent(new engine::InputComponent);
+	engine::GameObject player = engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale));
+	player.RegisterComponent(new engine::InputComponent);
 
-	manager->RegisterGameobject(&g);
+	manager->RegisterGameobject(&player);
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
@@ -53,7 +54,10 @@ int main(int argc, char *argv[])
 		SDL_Quit();
 		return 1;
 	} else {
-		g.RegisterComponent(engine::AnimationComponent::Factory("assets/hero.png", renderer));
+
+		engine::AnimationComponent* animation = engine::AnimationComponent::Factory("assets/hero.png", renderer);
+		player.RegisterComponent(engine::StateComponent::Factory(animation, engine::State::PLAYABLE_UP));
+		player.RegisterComponent(animation);
 		GameLoop gameloop = GameLoop(renderer, manager);
 		gameloop.Run();
 	}

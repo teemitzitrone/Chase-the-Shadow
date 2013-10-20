@@ -25,7 +25,7 @@ namespace engine
 
 		while (it != this->_components.end())
 		{
-			(**it).Input(input);
+			(**it).Input(*this, input);
 			it++;
 		}
 	}
@@ -63,6 +63,13 @@ namespace engine
 		this->_components.push_back(component);
 	}
 
+	///
+	/// <summary>
+	/// Filter a GameObject's components for a specific one
+	/// </summary>
+	///
+	/// <param name="tag_" type="std::string">The tag to be filtered for</param>
+	///
 	std::vector<Component*> GameObject::FilterComponent(std::string tag_)
 	{
 		std::vector<Component*> hits;

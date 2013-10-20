@@ -21,7 +21,7 @@ namespace engine
 		SDL_RenderCopy(renderer, this->_texture, scale, &position);
 	}
 
-	void TextureComponent::Input(SDL_Event*)
+	void TextureComponent::Input(GameObject&, SDL_Event*)
 	{
 		/** **/
 	}
