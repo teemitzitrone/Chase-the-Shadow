@@ -53,10 +53,8 @@ int main(int argc, char *argv[])
 		SDL_Quit();
 		return 1;
 	} else {
-
-		engine::AnimationComponent* animation = engine::AnimationComponent::Factory("assets/hero.png", renderer);
-		player.RegisterComponent(engine::StateComponent::Factory(animation, engine::State::PLAYABLE_UP));
-		player.RegisterComponent(animation);
+		player.RegisterComponent(engine::StateComponent::Factory());
+		player.RegisterComponent(engine::AnimationComponent::Factory("assets/Sprite-Sheet-Prinzessin.png", renderer));
 		GameLoop gameloop = GameLoop(renderer, manager);
 		gameloop.Run();
 	}

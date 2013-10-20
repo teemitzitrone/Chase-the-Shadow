@@ -7,9 +7,9 @@ namespace engine
 	{
 	}
 
-	StateComponent* StateComponent::Factory(AnimationComponent* animation, State state)
+	StateComponent* StateComponent::Factory()
 	{
-		return new StateComponent(animation, state);
+		return new StateComponent();
 	}
 
 	void StateComponent::Input(GameObject& gameobject, SDL_Event* event) 
