@@ -23,18 +23,14 @@ namespace engine
 	class StateComponent :
 		public Component
 	{
-	private:
-		State _currentState;
-		AnimationComponent* _animation;
-
 	public:
-		StateComponent(AnimationComponent* animation, State state) : _animation(animation), _currentState(state), Component("State") {};
+		StateComponent() : Component("State") {};
 		virtual ~StateComponent(void);
 		void Input(GameObject&, SDL_Event*); 
 		void Update(GameObject&, double);
 		void Render(GameObject&, SDL_Renderer*);
 		
-		static StateComponent* Factory(AnimationComponent* animation, State state);
+		static StateComponent* Factory();
 	};
 }
 #endif
