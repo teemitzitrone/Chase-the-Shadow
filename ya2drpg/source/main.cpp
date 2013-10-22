@@ -55,9 +55,10 @@ int main(int argc, char *argv[])
 		return 1;
 	} else {
 		player.RegisterComponent(engine::StateComponent::Factory());
-		player.RegisterComponent(engine::AnimationComponent::Factory("assets/Sprite-Sheet-Prinzessin.png", renderer));
-		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/hero.png", renderer));
-		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/Sprite-Sheet-Antiheld.png", renderer));
+		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess.png", renderer));
+		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/hero.png", renderer));
+		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
+		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
 		GameLoop gameloop = GameLoop(renderer, manager);
 		gameloop.Run();
 	}
