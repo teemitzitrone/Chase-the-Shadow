@@ -46,3 +46,11 @@ void testJzon() {
 	} catch (Jzon::NotFoundException v) {
 	}
 }
+
+namespace Game
+{
+	void MapLoader::LoadMap(const std::string file, GameObjectManager& gameManager)
+	{
+
+	}
+}

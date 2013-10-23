@@ -31,11 +31,11 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/TileSets\/tileset_terrain.png",
+         "image":"..\/assets\/tilesets\/terrain.png",
          "imageheight":192,
          "imagewidth":128,
          "margin":0,
-         "name":"tileset_terrain",
+         "name":"terrain",
          "properties":
             {
 
@@ -46,11 +46,11 @@
         }, 
         {
          "firstgid":7,
-         "image":"..\/TileSets\/tileset_wasser.png",
+         "image":"..\/assets\/tilesets\/water.png",
          "imageheight":256,
          "imagewidth":256,
          "margin":0,
-         "name":"tileset_wasser",
+         "name":"water",
          "properties":
             {
 
@@ -61,11 +61,11 @@
         }, 
         {
          "firstgid":23,
-         "image":"..\/TileSets\/tileset_pflanzen.png",
+         "image":"..\/assets\/tilesets\/plants.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,
-         "name":"tileset_pflanzen",
+         "name":"plants",
          "properties":
             {
 
@@ -76,11 +76,11 @@
         }, 
         {
          "firstgid":27,
-         "image":"..\/TileSets\/tileset_sonstiges.png",
+         "image":"..\/assets\/tilesets\/misc.png",
          "imageheight":192,
          "imagewidth":128,
          "margin":0,
-         "name":"tileset_sonstiges",
+         "name":"misc",
          "properties":
             {
 
@@ -91,11 +91,11 @@
         }, 
         {
          "firstgid":33,
-         "image":"..\/TileSets\/tileset_gebaeude.png",
+         "image":"..\/assets\/tilesets\/building.png",
          "imageheight":128,
          "imagewidth":256,
          "margin":0,
-         "name":"tileset_gebaeude",
+         "name":"buildings",
          "properties":
             {
 
