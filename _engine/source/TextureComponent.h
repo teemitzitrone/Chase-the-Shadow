@@ -17,6 +17,8 @@ namespace engine
 		void Update(GameObject&, double);
 		void Render(GameObject&, SDL_Renderer*);
 		static TextureComponent* Factory(const std::string, SDL_Renderer*);
+	protected:
+		SDL_Rect* _scale;
 	private:
 		SDL_Texture* _texture;
 	};
