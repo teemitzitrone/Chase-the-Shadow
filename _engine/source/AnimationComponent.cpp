@@ -8,21 +8,22 @@ namespace engine
 {
 	void AnimationComponent::Update(GameObject& gameObject, double delay)
 	{
-		std::vector<Component*> hits = gameObject.FilterComponent("Transform");
-		TransformComponent* transform = dynamic_cast<TransformComponent*> (hits.front());
-
-		SDL_Rect* scale = transform->GetScale();
+		if (nullptr == this->_scale) {
+			std::vector<Component*> hits = gameObject.FilterComponent("Transform");
+			TransformComponent* transform = dynamic_cast<TransformComponent*> (hits.front());
+			this->_scale = new SDL_Rect(*transform->GetScale());
+		}
 
 		// x -> 0 to (scale.w * frames)
-		int max = scale->w * (this->_frames - 1);
+		int max = this->_scale->w * (this->_frames - 1);
 		this->_timeToAnimation -= delay;
 	
 		if ((int)this->_timeToAnimation <= 0) {
-			if (scale->x == max)
+			if (this->_scale->x == max)
 			{
-				scale->x = 0;
+				this->_scale->x = 0;
 			} else {
-				scale->x += scale->w;
+				this->_scale->x += this->_scale->w;
 			}
 
 			this->_timeToAnimation = this->_animation / this->_speed;

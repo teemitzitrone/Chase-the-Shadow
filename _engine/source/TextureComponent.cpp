@@ -9,11 +9,14 @@ namespace engine
 	void TextureComponent::Render(GameObject& gameObject, SDL_Renderer* renderer)
 	{
 		std::vector<Component*> hits = gameObject.FilterComponent("Transform");
-		TransformComponent* transform;
-		transform = dynamic_cast<TransformComponent*> (hits.front());
+		TransformComponent* transform = dynamic_cast<TransformComponent*> (hits.front());
 
 		SDL_Rect position = transform->GetPosition();
-		SDL_Rect *scale = transform->GetScale();
+		SDL_Rect* scale = transform->GetScale();
+
+		if (nullptr != this->_scale) {
+			scale->x = this->_scale->x;
+		}
 
 		position.h = scale->h;
 		position.w = scale->w;
