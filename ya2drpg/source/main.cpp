@@ -8,7 +8,6 @@
 
 int main(int argc, char *argv[])
 {
-	testJzon();
 	SDL_Window *window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 
@@ -35,7 +34,7 @@ int main(int argc, char *argv[])
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		return 1;
 	}
-	
+
 	window = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
 	if (window == nullptr) {
 		std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
@@ -59,6 +58,10 @@ int main(int argc, char *argv[])
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/hero.png", renderer));
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
+
+		Game::MapLoader loader =  Game::MapLoader();
+		loader.LoadMap("resources/dorf_map.json", (*manager));
+
 		GameLoop gameloop = GameLoop(renderer, manager);
 		gameloop.Run();
 	}
