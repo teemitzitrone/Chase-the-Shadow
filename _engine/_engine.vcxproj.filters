@@ -48,6 +48,9 @@
     <ClInclude Include="source\StateComponent.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
+    <ClInclude Include="source\AiBasicComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Vector2D.cpp">
@@ -70,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="source\TextureComponent.cpp">
       <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AiBasicComponent.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

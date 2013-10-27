@@ -5,6 +5,7 @@
 #include <AnimationComponent.h>
 #include "engine\MapLoader.h"
 #include <StateComponent.h>
+#include <AiBasicComponent.h>
 
 int main(int argc, char *argv[])
 {
@@ -25,10 +26,28 @@ int main(int argc, char *argv[])
 	scale.w = 64;
 	scale.h = 64;
 
+	SDL_Rect pos_enemy;
+	pos_enemy.x = 320;
+	pos_enemy.y = 320;
+	pos_enemy.w = 0;
+	pos_enemy.h = 0;
+
+	SDL_Rect scale_enemy;
+	scale_enemy.x = 0;
+	scale_enemy.y = 0;
+	scale_enemy.w = 64;
+	scale_enemy.h = 64;
+
 	engine::GameObject player = engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale));
 	player.RegisterComponent(new engine::InputComponent);
-
+	player.RegisterComponent(engine::StateComponent::Factory());
+	
+	engine::GameObject enemy = engine::GameObject::Create(engine::TransformComponent::Factory(pos_enemy, pos_enemy, &scale_enemy));
+	enemy.RegisterComponent(new engine::AiBasicComponent(&player));
+	enemy.RegisterComponent(engine::StateComponent::Factory());
+	
 	manager->RegisterGameobject(&player);
+	manager->RegisterGameobject(&enemy);
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
@@ -53,11 +72,10 @@ int main(int argc, char *argv[])
 		SDL_Quit();
 		return 1;
 	} else {
-		player.RegisterComponent(engine::StateComponent::Factory());
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess.png", renderer));
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/hero.png", renderer));
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
-		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
+		enemy.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
 
 		Game::MapLoader loader =  Game::MapLoader();
 		loader.LoadMap("resources/dorf_map.json", (*manager));
