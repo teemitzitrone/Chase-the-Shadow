@@ -24,16 +24,16 @@ namespace engine
 		switch (direction)
 		{
 		case Direction::up:
-			this->_position.y--;
+			this->_position.y -= (int)this->_speed;
 			break;
 		case Direction::down:
-			this->_position.y++;
+			this->_position.y += (int)this->_speed;
 			break;
 		case Direction::left:
-			this->_position.x--;
+			this->_position.x -= (int)this->_speed;
 			break;
 		case Direction::right:
-			this->_position.x++;
+			this->_position.x += (int)this->_speed;
 			break;
 		default:
 			break;
@@ -55,7 +55,7 @@ namespace engine
 		return this->_scale;
 	}
 
-	TransformComponent* TransformComponent::Factory()
+	TransformComponent* TransformComponent::Factory(UnitSpeed speed)
 	{
 		SDL_Rect rect;
 		rect.x = 0;
@@ -63,10 +63,10 @@ namespace engine
 		rect.w = 0;
 		rect.h = 0;
 
-		return new TransformComponent(rect, rect, &rect);
+		return new TransformComponent(rect, rect, &rect, speed);
 	}
 
-	TransformComponent* TransformComponent::Factory(SDL_Rect position)
+	TransformComponent* TransformComponent::Factory(SDL_Rect position, UnitSpeed speed)
 	{
 		SDL_Rect rect;
 		rect.x = 0;
@@ -74,10 +74,10 @@ namespace engine
 		rect.w = 0;
 		rect.h = 0;
 
-		return new TransformComponent(position, rect, &rect);
+		return new TransformComponent(position, rect, &rect, speed);
 	}
 
-	TransformComponent* TransformComponent::Factory(SDL_Rect position, SDL_Rect rotation)
+	TransformComponent* TransformComponent::Factory(SDL_Rect position, SDL_Rect rotation, UnitSpeed speed)
 	{
 		SDL_Rect rect;
 		rect.x = 0;
@@ -85,11 +85,11 @@ namespace engine
 		rect.w = 0;
 		rect.h = 0;
 
-		return new TransformComponent(position, rotation, &rect);
+		return new TransformComponent(position, rotation, &rect, speed);
 	}
 
-	TransformComponent* TransformComponent::Factory(SDL_Rect position, SDL_Rect rotation, SDL_Rect* scale)
+	TransformComponent* TransformComponent::Factory(SDL_Rect position, SDL_Rect rotation, SDL_Rect* scale, UnitSpeed speed)
 	{
-		return new TransformComponent(position, rotation, scale);
+		return new TransformComponent(position, rotation, scale, speed);
 	}
 }

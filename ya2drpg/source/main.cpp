@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 	player.RegisterComponent(new engine::InputComponent);
 	player.RegisterComponent(engine::StateComponent::Factory());
 	
-	engine::GameObject enemy = engine::GameObject::Create(engine::TransformComponent::Factory(pos_enemy, pos_enemy, &scale_enemy));
+	engine::GameObject enemy = engine::GameObject::Create(engine::TransformComponent::Factory(pos_enemy, pos_enemy, &scale_enemy, engine::UnitSpeed::Slow));
 	enemy.RegisterComponent(new engine::AiBasicComponent(&player));
 	enemy.RegisterComponent(engine::StateComponent::Factory());
 	
