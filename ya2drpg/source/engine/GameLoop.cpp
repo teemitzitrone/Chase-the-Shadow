@@ -18,6 +18,16 @@ GameLoop::~GameLoop(void)
 {
 }
 
+/// <summary>
+/// Run Method for GameLoop
+/// </summary>
+///
+/// <remarks>
+/// Puts up a loop to run at a defined number of frames per second. 
+/// The loop is implemented such that the framerate is always stable
+/// no matter if the methods called are handled faster than a frame
+/// </remarks>
+///
 void GameLoop::Run()
 {
 	unsigned __int64 freq;
@@ -36,17 +46,30 @@ void GameLoop::Run()
 		QueryPerformanceCounter((LARGE_INTEGER *)&startTime);
 		timerFrequency = (1.0/freq);
 
-		this->_HandleFrame(loopEvent, FRAMES_PER_SECOND);
-		
 		QueryPerformanceCounter((LARGE_INTEGER *)&endTime);
 		timeDifferenceInMilliseconds = ((endTime-startTime) * timerFrequency) * 1000;
 		timeToSleep = MILLISECONDS_PER_FRAME - timeDifferenceInMilliseconds;
 		if (timeToSleep > 0) {
 			Sleep ((DWORD)timeToSleep);
 		}
+		this->_HandleFrame(loopEvent, timeToSleep);
 	}
 }
 
+/// <summary>
+/// Routine to handle all Gameobjects
+/// </summary>
+///
+/// <remarks>
+/// Gameobject methods are called in the following order:
+/// - Input
+/// - Update
+/// - Render
+/// </remarks>
+///
+/// <param name="sdlEvent">An event to be processed</param>
+/// <param name="delay" type="double">The delay with which the update should be done</param>
+///
 void GameLoop::_HandleFrame(SDL_Event sdlEvent, double delay)
 {
 	for (auto gameobject : this->_manager->GameObjects()) {
@@ -65,6 +88,13 @@ void GameLoop::_HandleFrame(SDL_Event sdlEvent, double delay)
 }
 
 
+///
+/// <summary>
+/// Process Keyboard events
+/// </summary>
+///
+/// <param name="sdlEvent">Event to be processed</param>
+///
 bool GameLoop::_HandleKeystrokes(SDL_Event sdlEvent) 
 {
 	switch (sdlEvent.key.keysym.sym)
@@ -78,6 +108,14 @@ bool GameLoop::_HandleKeystrokes(SDL_Event sdlEvent)
 	return false;
 }
 
+
+///
+/// <summary>
+/// Process Mouse events
+/// </summary>
+///
+/// <param name="sdlEvent">Event to be processed</param>
+///
 bool GameLoop::_HandleMouseMotion(SDL_Event sdlEvent)
 {
 	return false;

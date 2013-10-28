@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="16" height="12" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="tileset_terrain" tilewidth="64" tileheight="64">
+  <image source="../TileSets/tileset_terrain.png" width="128" height="192"/>
+ </tileset>
+ <tileset firstgid="7" name="tileset_wasser" tilewidth="64" tileheight="64">
+  <image source="../TileSets/tileset_wasser.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="23" name="tileset_pflanzen" tilewidth="64" tileheight="64">
+  <image source="../TileSets/tileset_pflanzen.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="27" name="tileset_sonstiges" tilewidth="64" tileheight="64">
+  <image source="../TileSets/tileset_sonstiges.png" width="128" height="192"/>
+ </tileset>
+ <tileset firstgid="33" name="tileset_gebaeude" tilewidth="128" tileheight="128">
+  <image source="../TileSets/tileset_gebaeude.png" width="256" height="128"/>
+ </tileset>
+ <layer name="Terrain_Layer" width="16" height="12" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjZ2BgYKcACwMxI5lYBIh50cRYCGBktXxI+pHVsOLA6Obg04/uT2L0I9uFTT+yO3Dpx6YHmzsI6Uf3O7H6icGEwo8YjK6fHAzSzw/E3GRiQSAGAP0bBD0=
+  </data>
+ </layer>
+ <layer name="Object_Layer" width="16" height="12" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJytkoEKgDAIRPcXohGj/v8jK5hwvCwGdTB26OmJW2vfYeB+nhjcBvdCl7jy+6TXJjWJDk166XFotMaQi3YHY1rjcgdyi+gDWvaix/oyR7VLjfUHXmm1Z+6qelNr9azc3wzYnx78P5XmDxxAxgb6
+  </data>
+ </layer>
+</map>

@@ -11,9 +11,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\AnimationComponent.h" />
+    <ClInclude Include="source\Component.h" />
+    <ClInclude Include="source\GameObject.h" />
+    <ClInclude Include="source\InputComponent.h" />
+    <ClInclude Include="source\StateComponent.h" />
+    <ClInclude Include="source\TextureComponent.h" />
+    <ClInclude Include="source\TransformComponent.h" />
     <ClInclude Include="source\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\AnimationComponent.cpp" />
+    <ClCompile Include="source\GameObject.cpp" />
+    <ClCompile Include="source\InputComponent.cpp" />
+    <ClCompile Include="source\StateComponent.cpp" />
+    <ClCompile Include="source\TextureComponent.cpp" />
+    <ClCompile Include="source\TransformComponent.cpp" />
     <ClCompile Include="source\Vector2D.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -23,7 +36,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Utility</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -45,15 +58,22 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendors\SDL2\include;$(SolutionDir)vendors\SDL2_image\include;$(SolutionDir)vendors\SDL2_mixer\include;$(SolutionDir)vendors\SDL2_ttf\include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)vendors\SDL2\lib\x86;$(SolutionDir)vendors\SDL2_mixer\lib\x86;$(SolutionDir)vendors\SDL2_image\lib\x86;$(SolutionDir)vendors\SDL2_ttf\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

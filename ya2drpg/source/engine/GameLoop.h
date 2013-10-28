@@ -1,6 +1,5 @@
 #pragma once
 
-#include <vector>
 #include <SDL.h>
 #include "GameObjectManager.h"
 class GameLoop
@@ -19,7 +18,7 @@ public:
 	GameLoop(SDL_Renderer*, GameObjectManager*);
 	virtual ~GameLoop(void);
 
-	void RegisterController(GameObject*);
+	void RegisterController(engine::GameObject*);
 	void Run();
 };
 
