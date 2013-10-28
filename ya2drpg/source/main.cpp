@@ -25,29 +25,46 @@ int main(int argc, char *argv[])
 	scale.y = 0;
 	scale.w = 64;
 	scale.h = 64;
+	
+	SDL_Rect pos_spider;
+	pos_spider.x = 32;
+	pos_spider.y = 320;
+	pos_spider.w = 0;
+	pos_spider.h = 0;
 
-	SDL_Rect pos_enemy;
-	pos_enemy.x = 320;
-	pos_enemy.y = 320;
-	pos_enemy.w = 0;
-	pos_enemy.h = 0;
+	SDL_Rect scale_spider;
+	scale_spider.x = 0;
+	scale_spider.y = 0;
+	scale_spider.w = 64;
+	scale_spider.h = 64;
 
-	SDL_Rect scale_enemy;
-	scale_enemy.x = 0;
-	scale_enemy.y = 0;
-	scale_enemy.w = 64;
-	scale_enemy.h = 64;
+	SDL_Rect pos_monster;
+	pos_monster.x = 320;
+	pos_monster.y = 320;
+	pos_monster.w = 0;
+	pos_monster.h = 0;
+
+	SDL_Rect scale_monster;
+	scale_monster.x = 0;
+	scale_monster.y = 0;
+	scale_monster.w = 64;
+	scale_monster.h = 64;
 
 	engine::GameObject player = engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale));
 	player.RegisterComponent(new engine::InputComponent);
 	player.RegisterComponent(engine::StateComponent::Factory());
 	
-	engine::GameObject enemy = engine::GameObject::Create(engine::TransformComponent::Factory(pos_enemy, pos_enemy, &scale_enemy, engine::UnitSpeed::Slow));
-	enemy.RegisterComponent(new engine::AiBasicComponent(&player));
-	enemy.RegisterComponent(engine::StateComponent::Factory());
+	engine::GameObject spider = engine::GameObject::Create(engine::TransformComponent::Factory(pos_spider, pos_spider, &scale_spider, engine::UnitSpeed::Slow));
+	spider.RegisterComponent(new engine::AiBasicComponent(&player));
+	spider.RegisterComponent(engine::StateComponent::Factory());
+
+	engine::GameObject monster = engine::GameObject::Create(engine::TransformComponent::Factory(pos_monster, pos_monster, &scale_monster, engine::UnitSpeed::Slow));
+	monster.RegisterComponent(new engine::AiBasicComponent(nullptr));
+	monster.RegisterComponent(engine::StateComponent::Factory());
 	
 	manager->RegisterGameobject(&player);
-	manager->RegisterGameobject(&enemy);
+	manager->RegisterGameobject(&spider);
+	manager->RegisterGameobject(&monster);
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
@@ -76,8 +93,8 @@ int main(int argc, char *argv[])
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess_sparkle.png", renderer));
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/hero.png", renderer));
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
-		//enemy.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/monster.png", renderer));
-		enemy.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
+		spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
+		monster.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/monster.png", renderer));
 
 		Game::MapLoader loader =  Game::MapLoader();
 		loader.LoadMap("resources/dorf_map.json", (*manager));
