@@ -76,6 +76,7 @@ int main(int argc, char *argv[])
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess_sparkle.png", renderer));
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/hero.png", renderer));
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
+		//enemy.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/monster.png", renderer));
 		enemy.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
 
 		Game::MapLoader loader =  Game::MapLoader();
