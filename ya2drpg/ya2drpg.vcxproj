@@ -54,7 +54,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;_engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)vendors\SDL2\lib\x86;$(SolutionDir)vendors\SDL2_image\lib\x86;$(SolutionDir)vendors\SDL2_mixer\lib\x86;$(SolutionDir)vendors\SDL2_ttf\lib\x86;$(SolutionDir)Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)vendors\SDL2\lib\x86;$(SolutionDir)vendors\SDL2_image\lib\x86;$(SolutionDir)vendors\SDL2_mixer\lib\x86;$(SolutionDir)vendors\SDL2_ttf\lib\x86;$(SolutionDir)$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
     </Link>
@@ -76,13 +76,17 @@
   <ItemGroup>
     <ClInclude Include="source\engine\GameLoop.h" />
     <ClInclude Include="source\engine\GameObjectManager.h" />
+    <ClInclude Include="source\engine\MapLoader.h" />
+    <ClInclude Include="source\vendor\Jzon.h" />
     <ClInclude Include="source\world\Chunk.h" />
     <ClInclude Include="source\world\World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\GameLoop.cpp" />
     <ClCompile Include="source\engine\GameObjectManager.cpp" />
+    <ClCompile Include="source\engine\MapLoader.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\vendor\Jzon.cpp" />
     <ClCompile Include="source\world\Chunk.cpp" />
     <ClCompile Include="source\world\World.cpp" />
   </ItemGroup>

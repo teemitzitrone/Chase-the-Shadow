@@ -5,12 +5,19 @@
 #include "Component.h"
 namespace engine
 {
+	enum UnitSpeed {
+		Slow = 1,
+		Normal = 2,
+		Fast = 3,
+	};
+
+
 	class TransformComponent :
 	public Component
 	{
 	public:
 		TransformComponent(void): Component("Transform") {};
-		TransformComponent(SDL_Rect position, SDL_Rect rotation, SDL_Rect* scale): _position(position), _rotation(rotation), _scale(scale), Component("Transform") {};
+		TransformComponent(SDL_Rect position, SDL_Rect rotation, SDL_Rect* scale, UnitSpeed speed): _speed(speed), _position(position), _rotation(rotation), _scale(scale), Component("Transform") {};
 		virtual ~TransformComponent(void) {};
 		void Input(GameObject&, SDL_Event*); 
 		void Update(GameObject&, double);
@@ -18,11 +25,12 @@ namespace engine
 		SDL_Rect GetPosition();
 		SDL_Rect GetRotation();
 		SDL_Rect* GetScale();
-		static TransformComponent* Factory();
-		static TransformComponent* Factory(SDL_Rect);
-		static TransformComponent* Factory(SDL_Rect, SDL_Rect);
-		static TransformComponent* Factory(SDL_Rect, SDL_Rect, SDL_Rect*);
+		static TransformComponent* Factory(UnitSpeed = UnitSpeed::Normal);
+		static TransformComponent* Factory(SDL_Rect, UnitSpeed = UnitSpeed::Normal);
+		static TransformComponent* Factory(SDL_Rect, SDL_Rect, UnitSpeed = UnitSpeed::Normal);
+		static TransformComponent* Factory(SDL_Rect, SDL_Rect, SDL_Rect*, UnitSpeed = UnitSpeed::Normal);
 	private:
+		UnitSpeed _speed;
 		SDL_Rect _position;
 		SDL_Rect _rotation;
 		SDL_Rect* _scale;

@@ -25,7 +25,7 @@ namespace engine
 		void Update(GameObject&, double);
 		void Render(GameObject&, SDL_Renderer*);
 		Direction GetDirection();
-	private:
+	protected:
 		Direction _direction;
 	};
 }

@@ -25,6 +25,12 @@
     <Filter Include="Quelldateien\world">
       <UniqueIdentifier>{e3af7a34-46e2-4e9f-9ae1-ed89d8937a11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\vendor">
+      <UniqueIdentifier>{13eacbd1-13f1-45bd-ae8d-07c11d159406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\vendor">
+      <UniqueIdentifier>{51325d2d-6c56-4b53-9ad6-2a690042a10b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\engine\GameLoop.h">
@@ -37,6 +43,12 @@
       <Filter>Headerdateien\world</Filter>
     </ClInclude>
     <ClInclude Include="source\world\World.h">
+      <Filter>Headerdateien\world</Filter>
+    </ClInclude>
+    <ClInclude Include="source\vendor\Jzon.h">
+      <Filter>Headerdateien\vendor</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\MapLoader.h">
       <Filter>Headerdateien\world</Filter>
     </ClInclude>
   </ItemGroup>
@@ -54,6 +66,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="source\engine\GameLoop.cpp">
+      <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\vendor\Jzon.cpp">
+      <Filter>Quelldateien\vendor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\MapLoader.cpp">
       <Filter>Quelldateien\engine</Filter>
     </ClCompile>
   </ItemGroup>
