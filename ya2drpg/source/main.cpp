@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <SDL.h>
 #include "engine\GameLoop.h"
 #include <InputComponent.h>
@@ -6,6 +6,7 @@
 #include "engine\MapLoader.h"
 #include <StateComponent.h>
 #include <AiBasicComponent.h>
+#include <map>
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
 	SDL_Renderer* renderer = nullptr;
 
 	GameObjectManager* manager = new GameObjectManager();
+	std::map<std::string, engine::AnimationComponent> animations;
 	
 	SDL_Rect pos;
 	pos.x = 34;
@@ -50,7 +52,7 @@ int main(int argc, char *argv[])
 	scale_monster.w = 64;
 	scale_monster.h = 64;
 
-	engine::GameObject player = engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale));
+	engine::GameObject player = engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale, engine::UnitSpeed::Fast));
 	player.RegisterComponent(new engine::InputComponent);
 	player.RegisterComponent(engine::StateComponent::Factory());
 	
@@ -65,6 +67,8 @@ int main(int argc, char *argv[])
 	manager->RegisterGameobject(&player);
 	manager->RegisterGameobject(&spider);
 	manager->RegisterGameobject(&monster);
+
+
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
@@ -89,11 +93,12 @@ int main(int argc, char *argv[])
 		SDL_Quit();
 		return 1;
 	} else {
-		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess.png", renderer));
-		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess_sparkle.png", renderer));
+		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess.png", renderer));
+		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
+		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/sparks.png", renderer));
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/hero.png", renderer));
-		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
-		spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
+		spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
+		//spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
 		monster.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/monster.png", renderer));
 
 		Game::MapLoader loader =  Game::MapLoader();

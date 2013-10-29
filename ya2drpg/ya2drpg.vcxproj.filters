@@ -45,11 +45,11 @@
     <ClInclude Include="source\world\World.h">
       <Filter>Headerdateien\world</Filter>
     </ClInclude>
-    <ClInclude Include="source\engine\MapLoader.h">
-      <Filter>Headerdateien\engine</Filter>
-    </ClInclude>
     <ClInclude Include="source\vendor\Jzon.h">
       <Filter>Headerdateien\vendor</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\MapLoader.h">
+      <Filter>Headerdateien\world</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
