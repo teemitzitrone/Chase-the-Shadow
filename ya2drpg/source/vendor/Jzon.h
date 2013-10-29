@@ -30,23 +30,44 @@ THE SOFTWARE.
 
 namespace Jzon
 {
+	template<typename T1, typename T2>
+	struct Pair
+	{
+		Pair(T1 first, T2 second) : first(first), second(second)
+		{}
+		Pair(const Pair<T1,T2> &other) : first(other.first), second(other.second)
+		{}
+
+		Pair<T1,T2> &operator=(const Pair<T1,T2> &rhs)
+		{
+			if (this != &rhs)
+			{
+				this->first  = rhs.first;
+				this->second = rhs.second;
+			}
+			return *this;
+		}
+
+		T1 first;
+		T2 second;
+	};
+	template<typename T1, typename T2>
+	static Pair<T1,T2> MakePair(T1 first, T2 second)
+	{
+		return Pair<T1,T2>(first, second);
+	}
+
 	class Node;
 	class Value;
 	class Object;
 	class Array;
-	typedef std::pair<std::string, Node&> NamedNode;
-	typedef std::pair<std::string, Node*> NamedNodePtr;
-	
+	typedef Pair<std::string, Node&> NamedNode;
+	typedef Pair<std::string, Node*> NamedNodePtr;
+
 	class TypeException : public std::logic_error
 	{
 	public:
 		TypeException() : std::logic_error("A Node was used as the wrong type")
-		{}
-	};
-	class ValueException : public std::logic_error
-	{
-	public:
-		ValueException() : std::logic_error("A Value was used as the wrong type")
 		{}
 	};
 	class NotFoundException : public std::out_of_range
@@ -68,6 +89,7 @@ namespace Jzon
 
 	class Node
 	{
+		// These are needed for GetCopy() access
 		friend class Object;
 		friend class Array;
 
@@ -106,10 +128,10 @@ namespace Jzon
 		virtual double ToDouble() const { throw TypeException(); }
 		virtual bool ToBool() const { throw TypeException(); }
 
-		virtual bool Has(const std::string &name) const { throw TypeException(); }
+		virtual bool Has(const std::string &/*name*/) const { throw TypeException(); }
 		virtual size_t GetCount() const { return 0; }
-		virtual Node &Get(const std::string &name) const { throw TypeException(); }
-		virtual Node &Get(size_t index) const { throw TypeException(); }
+		virtual Node &Get(const std::string &/*name*/) const { throw TypeException(); }
+		virtual Node &Get(size_t /*index*/) const { throw TypeException(); }
 
 		static Type DetermineType(const std::string &json);
 
@@ -247,6 +269,7 @@ namespace Jzon
 		virtual bool Has(const std::string &name) const;
 		virtual size_t GetCount() const;
 		virtual Node &Get(const std::string &name) const;
+		using Node::Get;
 
 	protected:
 		virtual Node *GetCopy() const;
@@ -313,6 +336,7 @@ namespace Jzon
 
 		virtual size_t GetCount() const;
 		virtual Node &Get(size_t index) const;
+		using Node::Get;
 
 	protected:
 		virtual Node *GetCopy() const;
@@ -363,8 +387,9 @@ namespace Jzon
 		~Writer();
 
 		void SetFormat(const Format &format);
-		void Write();
+		const std::string &Write();
 
+		/// Return result from last call to Write()
 		const std::string &GetResult() const;
 
 	private:
@@ -379,18 +404,19 @@ namespace Jzon
 
 		const Node &root;
 
+		// Disable assignment operator
 		Writer &operator=(const Writer&);
 	};
 
 	class Parser
 	{
 	public:
-		Parser(Node &root);
-		Parser(Node &root, const std::string &json);
+		Parser();
+		Parser(const std::string &json);
 		~Parser();
 
 		void SetJson(const std::string &json);
-		bool Parse();
+		bool Parse(Node &root);
 
 		const std::string &GetError() const;
 
@@ -410,23 +436,26 @@ namespace Jzon
 		void tokenize();
 		bool assemble();
 
-		void readString();
+		char peek();
+		void jumpToNext(char c);
+		void jumpToCommentEnd();
 
+		void readString();
 		bool interpretValue(const std::string &value);
 
-		bool isNumber(char c) const;
-
 		std::string json;
+		std::size_t jsonSize;
 
 		std::queue<Token> tokens;
-		std::queue<std::pair<Value::ValueType, std::string> > data;
+		std::queue<Pair<Value::ValueType, std::string> > data;
 
-		unsigned int cursor;
+		std::size_t cursor;
 
-		Node &root;
+		Node *root;
 
 		std::string error;
 
+		// Disable assignment operator
 		Parser &operator=(const Parser&);
 	};
 }

@@ -64,18 +64,12 @@ int main(int argc, char *argv[])
 	monster.RegisterComponent(new engine::AiBasicComponent(nullptr));
 	monster.RegisterComponent(engine::StateComponent::Factory());
 	
-	manager->RegisterGameobject(&player);
-	manager->RegisterGameobject(&spider);
-	manager->RegisterGameobject(&monster);
-
-
-
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		return 1;
 	}
 
-	window = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow("Chase the Shadow!", 100, 100, 1024, 768, SDL_WINDOW_SHOWN);
 	if (window == nullptr) {
 		std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
@@ -94,15 +88,16 @@ int main(int argc, char *argv[])
 		return 1;
 	} else {
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess.png", renderer));
-		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/sparks.png", renderer));
-		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/hero.png", renderer));
 		spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
-		//spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
 		monster.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/monster.png", renderer));
 
 		Game::MapLoader loader =  Game::MapLoader();
-		loader.LoadMap("resources/dorf_map.json", (*manager));
+		loader.LoadMap("resources/dorf_map.json", (*manager), renderer);
+
+		manager->RegisterGameobject(&player);
+		manager->RegisterGameobject(&spider);
+		manager->RegisterGameobject(&monster);
 
 		GameLoop gameloop = GameLoop(renderer, manager);
 		gameloop.Run();

@@ -59,7 +59,7 @@ namespace Jzon
 				return std::string(format.indentSize * level, indentationChar);
 			}
 		}
-		
+
 		inline const std::string &GetNewline() const
 		{
 			return newline;
@@ -76,71 +76,13 @@ namespace Jzon
 		std::string spacing;
 	};
 
-	void RemoveWhitespace(const std::string &json, std::string &freshJson)
+	inline bool IsWhitespace(char c)
 	{
-		freshJson.clear();
-
-		bool comment = false;
-		int multicomment = 0;
-		bool inString = false;
-
-		for (std::string::const_iterator it = json.begin(); it != json.end(); ++it)
-		{
-			char c0 = '\0';
-			char c1 = (*it);
-			char c2 = '\0';
-			if (it != json.begin())
-				c0 = (*(it-1));
-			if (it+1 != json.end())
-				c2 = (*(it+1));
-
-			if (c0 != '\\' && c1 == '"')
-			{
-				inString = !inString;
-			}
-
-			if (!inString)
-			{
-				if (c1 == '/' && c2 == '*')
-				{
-					++multicomment;
-					if (it+1 != json.end())
-						++it;
-					continue;
-				}
-				else if (c1 == '*' && c2 == '/')
-				{
-					--multicomment;
-					if (it+1 != json.end())
-						++it;
-					continue;
-				}
-				else if (c1 == '/' && c2 == '/')
-				{
-					comment = true;
-					if (it+1 != json.end())
-						++it;
-					continue;
-				}
-				else if (c1 == '\n')
-				{
-					comment = false;
-				}
-			}
-
-			if (comment || multicomment > 0)
-				continue;
-
-			if (inString)
-			{
-				freshJson += c1;
-			}
-			else
-			{
-				if ((c1 != '\n')&&(c1 != ' ')&&(c1 != '\t')&&(c1 != '\r')&&(c1 != '\f'))
-					freshJson += c1;
-			}
-		}
+		return (c == '\n' || c == ' ' || c == '\t' || c == '\r' || c == '\f');
+	}
+	inline bool IsNumber(char c)
+	{
+		return ((c >= '0' && c <= '9') || c == '.' || c == '-');
 	}
 
 	Node::Node()
@@ -193,34 +135,34 @@ namespace Jzon
 			throw TypeException();
 	}
 
-	Node::Type Node::DetermineType(const std::string &_json)
+	Node::Type Node::DetermineType(const std::string &json)
 	{
-		std::string json;
-		RemoveWhitespace(_json, json);
+		std::string::const_iterator jsonIt = json.begin();
 
-		Node::Type type = T_VALUE;
-		if (!json.empty())
+		while (jsonIt != json.end() && IsWhitespace(*jsonIt))
+			++jsonIt;
+
+		if (jsonIt == json.end())
+			return T_VALUE;
+
+		switch (*jsonIt)
 		{
-			switch (json.at(0))
-			{
-			case '{' : type = T_OBJECT; break;
-			case '[' : type = T_ARRAY; break;
-			}
+		case '{' : return T_OBJECT;
+		case '[' : return T_ARRAY;
+		default  : return T_VALUE;
 		}
-
-		return type;
 	}
 
 
-	Value::Value()
+	Value::Value() : Node()
 	{
 		SetNull();
 	}
-	Value::Value(const Value &rhs)
+	Value::Value(const Value &rhs) : Node()
 	{
 		Set(rhs);
 	}
-	Value::Value(const Node &rhs)
+	Value::Value(const Node &rhs) : Node()
 	{
 		const Value &value = rhs.AsValue();
 		Set(value);
@@ -269,70 +211,66 @@ namespace Jzon
 	std::string Value::ToString() const
 	{
 		if (IsNull())
+		{
 			return "null";
+		}
 		else
+		{
 			return valueStr;
+		}
 	}
 	int Value::ToInt() const
 	{
-		if (IsNull())
-			return 0;
+		if (IsNumber())
+		{
+			std::stringstream sstr(valueStr);
+			int val;
+			sstr >> val;
+			return val;
+		}
 		else
 		{
-			if (IsNumber())
-			{
-				std::stringstream sstr(valueStr);
-				int val;
-				sstr >> val;
-				return val;
-			}
-			else
-				throw ValueException();
+			return 0;
 		}
 	}
 	float Value::ToFloat() const
 	{
-		if (IsNull())
-			return 0.0;
+		if (IsNumber())
+		{
+			std::stringstream sstr(valueStr);
+			float val;
+			sstr >> val;
+			return val;
+		}
 		else
 		{
-			if (IsNumber())
-			{
-				std::stringstream sstr(valueStr);
-				float val;
-				sstr >> val;
-				return val;
-			}
-			else
-				throw ValueException();
+			return 0.f;
 		}
 	}
 	double Value::ToDouble() const
 	{
-		if (IsNull())
-			return 0.0;
+		if (IsNumber())
+		{
+			std::stringstream sstr(valueStr);
+			double val;
+			sstr >> val;
+			return val;
+		}
 		else
 		{
-			if (IsNumber())
-			{
-				std::stringstream sstr(valueStr);
-				double val;
-				sstr >> val;
-				return val;
-			}
-			else
-				throw ValueException();
+			return 0.0;
 		}
 	}
 	bool Value::ToBool() const
 	{
-		if (IsNull())
-			return false;
+		if (IsBool())
+		{
+			return (valueStr == "true");
+		}
 		else
-			if (IsBool())
-				return (valueStr == "true");
-			else
-				throw ValueException();
+		{
+			return false;
+		}
 	}
 
 	void Value::SetNull()
@@ -535,20 +473,20 @@ namespace Jzon
 	}
 
 
-	Object::Object()
+	Object::Object() : Node()
 	{
 	}
-	Object::Object(const Object &other)
+	Object::Object(const Object &other) : Node()
 	{
 		for (ChildList::const_iterator it = other.children.begin(); it != other.children.end(); ++it)
 		{
 			const std::string &name = (*it).first;
 			Node &value = *(*it).second;
 
-			children.push_back(std::make_pair(name, value.GetCopy()));
+			children.push_back(NamedNodePtr(name, value.GetCopy()));
 		}
 	}
-	Object::Object(const Node &other)
+	Object::Object(const Node &other) : Node()
 	{
 		const Object &object = other.AsObject();
 
@@ -557,7 +495,7 @@ namespace Jzon
 			const std::string &name = (*it).first;
 			Node &value = *(*it).second;
 
-			children.push_back(std::make_pair(name, value.GetCopy()));
+			children.push_back(NamedNodePtr(name, value.GetCopy()));
 		}
 	}
 	Object::~Object()
@@ -572,11 +510,11 @@ namespace Jzon
 
 	void Object::Add(const std::string &name, Node &node)
 	{
-		children.push_back(std::make_pair(name, node.GetCopy()));
+		children.push_back(NamedNodePtr(name, node.GetCopy()));
 	}
 	void Object::Add(const std::string &name, Value node)
 	{
-		children.push_back(std::make_pair(name, new Value(node)));
+		children.push_back(NamedNodePtr(name, new Value(node)));
 	}
 	void Object::Remove(const std::string &name)
 	{
@@ -653,7 +591,7 @@ namespace Jzon
 				return *(*it).second;
 			}
 		}
-		
+
 		throw NotFoundException();
 	}
 
@@ -663,10 +601,10 @@ namespace Jzon
 	}
 
 
-	Array::Array()
+	Array::Array() : Node()
 	{
 	}
-	Array::Array(const Array &other)
+	Array::Array(const Array &other) : Node()
 	{
 		for (ChildList::const_iterator it = other.children.begin(); it != other.children.end(); ++it)
 		{
@@ -675,7 +613,7 @@ namespace Jzon
 			children.push_back(value.GetCopy());
 		}
 	}
-	Array::Array(const Node &other)
+	Array::Array(const Node &other) : Node()
 	{
 		const Array &array = other.AsArray();
 
@@ -818,8 +756,8 @@ namespace Jzon
 		if (!error.empty())
 			return false;
 
-		Parser parser(node, json);
-		if (!parser.Parse())
+		Parser parser(json);
+		if (!parser.Parse(node))
 		{
 			error = parser.GetError();
 			return false;
@@ -874,10 +812,11 @@ namespace Jzon
 	{
 		fi->SetFormat(format);
 	}
-	void Writer::Write()
+	const std::string &Writer::Write()
 	{
 		result.clear();
 		writeNode(root, 0);
+		return result;
 	}
 
 	const std::string &Writer::GetResult() const
@@ -940,10 +879,10 @@ namespace Jzon
 	}
 
 
-	Parser::Parser(Node &root) : root(root)
+	Parser::Parser() : jsonSize(0), cursor(0), root(NULL)
 	{
 	}
-	Parser::Parser(Node &root, const std::string &json) : root(root)
+	Parser::Parser(const std::string &json) : cursor(0), root(NULL)
 	{
 		SetJson(json);
 	}
@@ -953,15 +892,18 @@ namespace Jzon
 
 	void Parser::SetJson(const std::string &json)
 	{
-		RemoveWhitespace(json, this->json);
+		this->json = json;
+		jsonSize   = json.size();
 	}
-	bool Parser::Parse()
+	bool Parser::Parse(Node &root)
 	{
+		this->root = &root;
 		cursor = 0;
 
 		tokenize();
 		bool success = assemble();
 
+		this->root = NULL;
 		return success;
 	}
 
@@ -972,13 +914,17 @@ namespace Jzon
 
 	void Parser::tokenize()
 	{
-		Token token;
+		Token token = T_UNKNOWN;
 		std::string valueBuffer;
 		bool saveBuffer;
 
-		for (; cursor < json.size(); ++cursor)
+		char c = '\0';
+		for (; cursor < jsonSize; ++cursor)
 		{
-			char c = json.at(cursor);
+			c = json.at(cursor);
+
+			if (IsWhitespace(c))
+				continue;
 
 			saveBuffer = true;
 
@@ -1020,6 +966,23 @@ namespace Jzon
 					readString();
 					break;
 				}
+			case '/' :
+				{
+					char p = peek();
+					if (p == '*')
+					{
+						jumpToCommentEnd();
+						saveBuffer = false;
+						break;
+					}
+					else if (p == '/')
+					{
+						jumpToNext('\n');
+						saveBuffer = false;
+						break;
+					}
+					// Intentional fallthrough
+				}
 			default :
 				{
 					valueBuffer += c;
@@ -1028,7 +991,7 @@ namespace Jzon
 				}
 			}
 
-			if ((saveBuffer || cursor == json.size()-1) && (!valueBuffer.empty())) // Always save buffer on the last character
+			if ((saveBuffer || cursor == jsonSize-1) && (!valueBuffer.empty())) // Always save buffer on the last character
 			{
 				if (interpretValue(valueBuffer))
 				{
@@ -1037,7 +1000,7 @@ namespace Jzon
 				else
 				{
 					// Store the unknown token, so we can show it to the user
-					data.push(std::make_pair(Value::VT_STRING, valueBuffer));
+					data.push(MakePair(Value::VT_STRING, valueBuffer));
 					tokens.push(T_UNKNOWN);
 				}
 
@@ -1058,7 +1021,7 @@ namespace Jzon
 	}
 	bool Parser::assemble()
 	{
-		std::stack<std::pair<std::string, Node*> > nodeStack;
+		std::stack<Pair<std::string, Node*> > nodeStack;
 
 		std::string name = "";
 
@@ -1082,20 +1045,20 @@ namespace Jzon
 					Node *node = NULL;
 					if (nodeStack.empty())
 					{
-						if (!root.IsObject())
+						if (!root->IsObject())
 						{
 							error = "The given root node is not an object";
 							return false;
 						}
 
-						node = &root;
+						node = root;
 					}
 					else
 					{
 						node = new Object;
 					}
 
-					nodeStack.push(std::make_pair(name, node));
+					nodeStack.push(MakePair(name, node));
 					name.clear();
 					break;
 				}
@@ -1104,20 +1067,20 @@ namespace Jzon
 					Node *node = NULL;
 					if (nodeStack.empty())
 					{
-						if (!root.IsArray())
+						if (!root->IsArray())
 						{
 							error = "The given root node is not an array";
 							return false;
 						}
 
-						node = &root;
+						node = root;
 					}
 					else
 					{
 						node = new Array;
 					}
 
-					nodeStack.push(std::make_pair(name, node));
+					nodeStack.push(MakePair(name, node));
 					name.clear();
 					break;
 				}
@@ -1167,17 +1130,24 @@ namespace Jzon
 				}
 			case T_VALUE :
 				{
+					if (data.empty())
+					{
+						error = "Missing data for value";
+						return false;
+					}
+
+					const Pair<Value::ValueType, std::string> &dataPair = data.front();
 					if (!tokens.empty() && tokens.front() == T_SEPARATOR_NAME)
 					{
 						tokens.pop();
-						if (data.front().first != Value::VT_STRING)
+						if (dataPair.first != Value::VT_STRING)
 						{
 							error = "A name has to be a string";
 							return false;
 						}
 						else
 						{
-							name = data.front().second;
+							name = dataPair.second;
 							data.pop();
 						}
 					}
@@ -1186,26 +1156,26 @@ namespace Jzon
 						Node *node = NULL;
 						if (nodeStack.empty())
 						{
-							if (!root.IsValue())
+							if (!root->IsValue())
 							{
 								error = "The given root node is not a value";
 								return false;
 							}
 
-							node = &root;
+							node = root;
 						}
 						else
 						{
 							node = new Value;
 						}
 
-						if (data.front().first == Value::VT_STRING)
+						if (dataPair.first == Value::VT_STRING)
 						{
-							static_cast<Value*>(node)->Set(data.front().second); // This method calls UnescapeString()
+							node->AsValue().Set(dataPair.second); // This method calls UnescapeString()
 						}
 						else
 						{
-							static_cast<Value*>(node)->Set(data.front().first, data.front().second);
+							node->AsValue().Set(dataPair.first, dataPair.second);
 						}
 						data.pop();
 
@@ -1222,7 +1192,7 @@ namespace Jzon
 						}
 						else
 						{
-							nodeStack.push(std::make_pair(name, node));
+							nodeStack.push(MakePair(name, node));
 							name.clear();
 						}
 					}
@@ -1236,6 +1206,38 @@ namespace Jzon
 		return true;
 	}
 
+	char Parser::peek()
+	{
+		if (cursor < jsonSize-1)
+		{
+			return json.at(cursor+1);
+		}
+		else
+		{
+			return '\0';
+		}
+	}
+	void Parser::jumpToNext(char c)
+	{
+		++cursor;
+		while (cursor < jsonSize && json.at(cursor) != c)
+			++cursor;
+	}
+	void Parser::jumpToCommentEnd()
+	{
+		cursor += 2;
+		char c1 = '\0', c2 = '\0';
+		for (; cursor < jsonSize; ++cursor)
+		{
+			c2 = json.at(cursor);
+
+			if (c1 == '*' && c2 == '/')
+				break;
+
+			c1 = c2;
+		}
+	}
+
 	void Parser::readString()
 	{
 		if (json.at(cursor) != '"')
@@ -1245,10 +1247,10 @@ namespace Jzon
 
 		++cursor;
 
-		char c1 = '\0';
-		for (; cursor < json.size(); ++cursor)
+		char c1 = '\0', c2 = '\0';
+		for (; cursor < jsonSize; ++cursor)
 		{
-			char c2 = json.at(cursor);
+			c2 = json.at(cursor);
 
 			if (c1 != '\\' && c2 == '"')
 			{
@@ -1260,9 +1262,8 @@ namespace Jzon
 			c1 = c2;
 		}
 
-		data.push(std::make_pair(Value::VT_STRING, str));
+		data.push(MakePair(Value::VT_STRING, str));
 	}
-
 	bool Parser::interpretValue(const std::string &value)
 	{
 		std::string upperValue(value.size(), '\0');
@@ -1271,22 +1272,22 @@ namespace Jzon
 
 		if (upperValue == "NULL")
 		{
-			data.push(std::make_pair(Value::VT_NULL, ""));
+			data.push(MakePair(Value::VT_NULL, std::string("")));
 		}
 		else if (upperValue == "TRUE")
 		{
-			data.push(std::make_pair(Value::VT_BOOL, "true"));
+			data.push(MakePair(Value::VT_BOOL, std::string("true")));
 		}
 		else if (upperValue == "FALSE")
 		{
-			data.push(std::make_pair(Value::VT_BOOL, "false"));
+			data.push(MakePair(Value::VT_BOOL, std::string("false")));
 		}
 		else
 		{
 			bool number = true;
 			for (std::string::const_iterator it = value.begin(); it != value.end(); ++it)
 			{
-				if (!isNumber(*it))
+				if (!IsNumber(*it))
 				{
 					number = false;
 					break;
@@ -1295,7 +1296,7 @@ namespace Jzon
 
 			if (number)
 			{
-				data.push(std::make_pair(Value::VT_NUMBER, value));
+				data.push(MakePair(Value::VT_NUMBER, value));
 			}
 			else
 			{
@@ -1304,10 +1305,5 @@ namespace Jzon
 		}
 
 		return true;
-	}
-
-	bool Parser::isNumber(char c) const
-	{
-		return ((c >= '0' && c <= '9') || c == '.' || c == '-');
 	}
 }
