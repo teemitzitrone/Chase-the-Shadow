@@ -94,11 +94,11 @@ int main(int argc, char *argv[])
 		return 1;
 	} else {
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess.png", renderer));
-		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
+		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/sparks.png", renderer));
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/hero.png", renderer));
-		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
-		spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
+		spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
+		//spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
 		monster.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/monster.png", renderer));
 
 		Game::MapLoader loader =  Game::MapLoader();
