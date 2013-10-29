@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <SDL.h>
 #include "engine\GameLoop.h"
 #include <InputComponent.h>
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 	scale_monster.w = 64;
 	scale_monster.h = 64;
 
-	engine::GameObject player = engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale));
+	engine::GameObject player = engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale, engine::UnitSpeed::Fast));
 	player.RegisterComponent(new engine::InputComponent);
 	player.RegisterComponent(engine::StateComponent::Factory());
 	
@@ -91,6 +91,7 @@ int main(int argc, char *argv[])
 	} else {
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess.png", renderer));
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess_sparkle.png", renderer));
+		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/hero.png", renderer));
 		//player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
 		spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", renderer));
