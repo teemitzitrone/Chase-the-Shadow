@@ -6,9 +6,10 @@
 namespace engine
 {
 	enum UnitSpeed {
-		Slow = 1,
-		Normal = 2,
-		Fast = 3,
+		None,
+		Slow,
+		Normal,
+		Fast,
 	};
 
 

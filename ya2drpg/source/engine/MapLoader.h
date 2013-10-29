@@ -15,8 +15,11 @@ namespace Game
 	public:
 		MapLoader(void) {};
 		virtual ~MapLoader(void) {};
-		void LoadMap(const std::string, GameObjectManager&);
+		void LoadMap(const std::string, GameObjectManager&, SDL_Renderer*);
 	private:
 		std::map<int, Game::Grid> _grid;
+
+		void _loadGrid(Jzon::Object);
+		void _convertLayers(Jzon::Object, GameObjectManager&, SDL_Renderer*);
 	};
 }

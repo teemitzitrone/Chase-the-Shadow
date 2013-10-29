@@ -49,7 +49,7 @@
       <Filter>Headerdateien\vendor</Filter>
     </ClInclude>
     <ClInclude Include="source\engine\MapLoader.h">
-      <Filter>Headerdateien\world</Filter>
+      <Filter>Headerdateien\engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -16,28 +16,32 @@ namespace engine
 	void TransformComponent::Update(GameObject& gameObject, double)
 	{
 		std::vector<Component*> hits = gameObject.FilterComponent("Input");
-		InputComponent* input;
-		input = dynamic_cast<InputComponent*> (hits.front());
 
-		Direction direction = input->GetDirection();
-
-		switch (direction)
+		if (hits.size() > 0)
 		{
-		case Direction::up:
-			this->_position.y -= (int)this->_speed;
-			break;
-		case Direction::down:
-			this->_position.y += (int)this->_speed;
-			break;
-		case Direction::left:
-			this->_position.x -= (int)this->_speed;
-			break;
-		case Direction::right:
-			this->_position.x += (int)this->_speed;
-			break;
-		default:
-			break;
+			InputComponent* input = dynamic_cast<InputComponent*> (hits.front());
+
+			Direction direction = input->GetDirection();
+
+			switch (direction)
+			{
+			case Direction::up:
+				this->_position.y -= (int)this->_speed;
+				break;
+			case Direction::down:
+				this->_position.y += (int)this->_speed;
+				break;
+			case Direction::left:
+				this->_position.x -= (int)this->_speed;
+				break;
+			case Direction::right:
+				this->_position.x += (int)this->_speed;
+				break;
+			default:
+				break;
+			}
 		}
+
 	}
 
 	SDL_Rect TransformComponent::GetPosition()
