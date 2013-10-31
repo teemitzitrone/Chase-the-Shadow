@@ -6,6 +6,8 @@
 
 namespace engine
 {
+	TextureComponent::Textures TextureComponent::_loaded = TextureComponent::_initTextures(); 
+
 	void TextureComponent::Render(GameObject& gameObject, SDL_Renderer* renderer)
 	{
 		std::vector<Component*> hits = gameObject.FilterComponent("Transform");
@@ -36,12 +38,20 @@ namespace engine
 
 	TextureComponent* TextureComponent::Factory(const std::string image, SDL_Renderer* renderer)
 	{
-		SDL_Texture *texture = IMG_LoadTexture(renderer, image.c_str());
-		if (texture == nullptr) {	
-			std::cout << "ERROR " << image.c_str() << " " << IMG_GetError() << std::endl;
+		SDL_Texture* texture;
+		if (TextureComponent::_loaded[image] == nullptr)
+		{
+			texture = IMG_LoadTexture(renderer, image.c_str());
+			if (texture == nullptr) {	
+				std::cout << "ERROR " << image.c_str() << " " << IMG_GetError() << std::endl;
+			} else {
+				std::cout << "SUCCESS " << image.c_str() << std::endl;
+			}
+			TextureComponent::_loaded[image] = texture;
 		} else {
-			std::cout << "SUCCESS " << image.c_str() << std::endl;
+			texture = TextureComponent::_loaded[image];
 		}
+
 		return new TextureComponent(texture);
 	}
 }
