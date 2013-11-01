@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="source\AiBasicComponent.h" />
     <ClInclude Include="source\AnimationComponent.h" />
+    <ClInclude Include="source\Collider.h" />
     <ClInclude Include="source\Component.h" />
     <ClInclude Include="source\GameObject.h" />
     <ClInclude Include="source\InputComponent.h" />
@@ -44,7 +45,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -77,6 +78,12 @@
       <AdditionalLibraryDirectories>$(SolutionDir)vendors\SDL2\lib\x86;$(SolutionDir)vendors\SDL2_mixer\lib\x86;$(SolutionDir)vendors\SDL2_image\lib\x86;$(SolutionDir)vendors\SDL2_ttf\lib\x86</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy "$(SolutionDir)vendors\SDL2\lib\x86\*.dll" "$(TargetDir)" /i /e /s /y /f
+xcopy "$(SolutionDir)vendors\SDL2_image\lib\x86\*.dll" "$(TargetDir)" /i /e /s /y /f
+xcopy "$(SolutionDir)vendors\SDL2_ttf\lib\x86\*.dll" "$(TargetDir)" /i /e /s /y /f
+xcopy "$(SolutionDir)vendors\SDL2_mixer\lib\x86\*.dll" "$(TargetDir)" /i /e /s /y /f</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -85,12 +92,19 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendors\SDL2\include;$(SolutionDir)vendors\SDL2_image\include;$(SolutionDir)vendors\SDL2_mixer\include;$(SolutionDir)vendors\SDL2_ttf\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy "$(SolutionDir)vendors\SDL2\lib\x86\*.dll" "$(TargetDir)" /i /e /s /y /f
+xcopy "$(SolutionDir)vendors\SDL2_image\lib\x86\*.dll" "$(TargetDir)" /i /e /s /y /f
+xcopy "$(SolutionDir)vendors\SDL2_ttf\lib\x86\*.dll" "$(TargetDir)" /i /e /s /y /f
+xcopy "$(SolutionDir)vendors\SDL2_mixer\lib\x86\*.dll" "$(TargetDir)" /i /e /s /y /f</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
