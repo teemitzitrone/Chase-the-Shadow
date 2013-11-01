@@ -1,4 +1,5 @@
 #include "AiBasicComponent.h"
+#include <iostream>
 
 namespace engine {
 	AiBasicComponent::~AiBasicComponent(void)
@@ -8,7 +9,7 @@ namespace engine {
 	void AiBasicComponent::Input(GameObject& gameObject, SDL_Event*)
 	{
 		if (this->_aggressionTarget == nullptr) {
-			this->_direction = (Direction)(int)(abs(sin(rand())) * 4);
+			this->_direction = (Direction)AiBasicComponent::Roll(Direction::up, Direction::none);
 		} else {
 			TransformComponent* targetLocation = (TransformComponent*)this->_aggressionTarget->FilterComponent("Transform").front();
 			TransformComponent* currentLocation = (TransformComponent*)gameObject.FilterComponent("Transform").front();
@@ -33,5 +34,18 @@ namespace engine {
 
 	void AiBasicComponent::Render(GameObject&, SDL_Renderer*)
 	{
+	}
+
+	int AiBasicComponent::Roll(int min, int max, bool include)
+	{
+		if (include)
+		{
+			max++;
+		}
+
+		double seed = rand()/static_cast<double>(RAND_MAX);
+		int dice = min + static_cast<int>(seed * (max - min));
+
+		return dice;
 	}
 }

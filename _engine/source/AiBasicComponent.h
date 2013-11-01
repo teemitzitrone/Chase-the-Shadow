@@ -19,6 +19,7 @@ namespace engine {
 		void Input(GameObject&, SDL_Event*); 
 		void Update(GameObject&, double);
 		void Render(GameObject&, SDL_Renderer*);
+		static int Roll(int min = 0, int max = 4, bool include = true);
 	};
 }
 #endif
