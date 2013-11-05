@@ -85,6 +85,7 @@ xcopy "$(ProjectDir)resources" "$(TargetDir)resources" /e /y /i /r</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="source\engine\GameLoop.h" />
     <ClInclude Include="source\engine\GameObjectManager.h" />
     <ClInclude Include="source\engine\MapLoader.h" />
@@ -100,6 +101,9 @@ xcopy "$(ProjectDir)resources" "$(TargetDir)resources" /e /y /i /r</Command>
     <ClCompile Include="source\vendor\Jzon.cpp" />
     <ClCompile Include="source\world\Chunk.cpp" />
     <ClCompile Include="source\world\World.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ya2drpg.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

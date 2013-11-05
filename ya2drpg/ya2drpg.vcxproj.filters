@@ -51,6 +51,9 @@
     <ClInclude Include="source\engine\MapLoader.h">
       <Filter>Headerdateien\engine</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\GameObjectManager.cpp">
@@ -74,5 +77,10 @@
     <ClCompile Include="source\engine\MapLoader.cpp">
       <Filter>Quelldateien\engine</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ya2drpg.rc">
+      <Filter>Ressourcendateien</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
