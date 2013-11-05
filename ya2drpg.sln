@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Express 2012 for Windows Desktop
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ya2drpg", "ya2drpg\ya2drpg.vcxproj", "{B5FD533F-2249-427F-AE44-394214724C07}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A59BE208-3256-4791-AC37-0566E29B14AB} = {A59BE208-3256-4791-AC37-0566E29B14AB}
@@ -48,7 +48,6 @@ Global
 		{140E5913-5498-47E2-84D6-7CA4FF108250}.Release|Any CPU.ActiveCfg = Release|Win32
 		{140E5913-5498-47E2-84D6-7CA4FF108250}.Release|Mixed Platforms.ActiveCfg = Release|Win32
 		{140E5913-5498-47E2-84D6-7CA4FF108250}.Release|Win32.ActiveCfg = Release|Win32
-		{140E5913-5498-47E2-84D6-7CA4FF108250}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
