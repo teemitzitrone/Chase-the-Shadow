@@ -9,7 +9,9 @@ namespace engine {
 	void AiBasicComponent::Input(GameObject& gameObject, SDL_Event*)
 	{
 		if (this->_aggressionTarget == nullptr) {
-			this->_direction = (Direction)AiBasicComponent::Roll(Direction::up, Direction::none);
+			if (++this->_currentFrame % 64 == 0) {
+				this->_direction = (Direction)AiBasicComponent::Roll(Direction::up, Direction::none);
+			}
 		} else {
 			TransformComponent* targetLocation = (TransformComponent*)this->_aggressionTarget->FilterComponent("Transform").front();
 			TransformComponent* currentLocation = (TransformComponent*)gameObject.FilterComponent("Transform").front();

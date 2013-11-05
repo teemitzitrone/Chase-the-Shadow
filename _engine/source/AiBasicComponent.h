@@ -11,6 +11,7 @@ namespace engine {
 		public InputComponent
 	{
 	protected:
+		int _currentFrame;
 		GameObject* _aggressionTarget;
 
 	public:
