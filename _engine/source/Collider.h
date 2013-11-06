@@ -1,5 +1,5 @@
-#ifndef _COLLIDER_H__
-#define _COLLIDER_H__
+#ifndef _COLLIDER_H
+#define _COLLIDER_H
 #pragma once
 #include "Vector2D.h"
 
