@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="source\AiBasicComponent.h" />
     <ClInclude Include="source\AnimationComponent.h" />
+    <ClInclude Include="source\CircleCollider.h" />
     <ClInclude Include="source\Collider.h" />
     <ClInclude Include="source\Component.h" />
     <ClInclude Include="source\GameObject.h" />
@@ -25,6 +26,7 @@
   <ItemGroup>
     <ClCompile Include="source\AiBasicComponent.cpp" />
     <ClCompile Include="source\AnimationComponent.cpp" />
+    <ClCompile Include="source\CircleCollider.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\InputComponent.cpp" />
     <ClCompile Include="source\StateComponent.cpp" />
