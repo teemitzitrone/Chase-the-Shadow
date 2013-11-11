@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 {
 	SDL_Window *window = nullptr;
 	SDL_Renderer* renderer = nullptr;
+	SDL_Surface* surface = nullptr;
 
 	GameObjectManager* manager = new GameObjectManager();
 	std::map<std::string, engine::AnimationComponent> animations;
@@ -80,6 +81,8 @@ int main(int argc, char *argv[])
 			-1, 
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
 		);
+		surface = IMG_Load("resources/cts.ico");
+		SDL_SetWindowIcon(window, surface); 
 	}
 
 	if (renderer == nullptr) {
@@ -103,6 +106,7 @@ int main(int argc, char *argv[])
 		gameloop.Run();
 	}
 
+	SDL_FreeSurface(surface);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
