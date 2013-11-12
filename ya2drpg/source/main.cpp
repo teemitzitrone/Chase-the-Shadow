@@ -6,6 +6,7 @@
 #include "engine\MapLoader.h"
 #include <StateComponent.h>
 #include <AiBasicComponent.h>
+#include <CollisionComponent.h>
 #include <map>
 
 int main(int argc, char *argv[])
@@ -56,6 +57,7 @@ int main(int argc, char *argv[])
 	engine::GameObject player = engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale, engine::UnitSpeed::Fast));
 	player.RegisterComponent(new engine::InputComponent);
 	player.RegisterComponent(engine::StateComponent::Factory());
+	engine::CollisionComponent::Factory(player);
 	
 	engine::GameObject spider = engine::GameObject::Create(engine::TransformComponent::Factory(pos_spider, pos_spider, &scale_spider, engine::UnitSpeed::Slow));
 	spider.RegisterComponent(new engine::AiBasicComponent(&player));

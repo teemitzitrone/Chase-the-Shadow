@@ -12,7 +12,10 @@ namespace engine
 	public:
 		TextureComponent(void): _texture(nullptr), Component("Texture") {};
 		TextureComponent(SDL_Texture* texture): _texture(texture), Component("Texture") {};
-		virtual ~TextureComponent(void) {};
+		virtual ~TextureComponent(void)
+		{
+			delete this->_texture;
+		};
 		void Input(GameObject&, SDL_Event*); 
 		void Update(GameObject&, double);
 		void Render(GameObject&, SDL_Renderer*);

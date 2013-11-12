@@ -60,6 +60,9 @@
     <ClInclude Include="source\CircleCollider.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
+    <ClInclude Include="source\CollisionComponent.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\GameObject.cpp">
@@ -88,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="source\CircleCollider.cpp">
       <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CollisionComponent.cpp">
+      <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
