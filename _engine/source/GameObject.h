@@ -1,6 +1,5 @@
 #ifndef _GAMEOBJECT_H
 #define _GAMEOBJECT_H
-#pragma once
 #include <SDL.h>
 #include <vector>
 #include "Vector2D.h"

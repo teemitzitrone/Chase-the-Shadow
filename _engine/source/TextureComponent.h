@@ -1,6 +1,5 @@
 #ifndef _TEXTURECOMPONENT_H
 #define _TEXTURECOMPONENT_H
-#pragma once
 #include "Component.h"
 #include <SDL_image.h>
 #include <map>

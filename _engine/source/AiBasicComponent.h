@@ -1,6 +1,5 @@
 #ifndef _AIBASICCOMPONENT_H
 #define _AIBASICCOMPONENT_H
-#pragma once
 #include "Component.h"
 #include "InputComponent.h"
 #include "GameObject.h"

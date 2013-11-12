@@ -22,10 +22,15 @@ namespace engine
 	void
 	CircleCollider::SetRadius(double radius)
 	{
+		if (radius < 0.0)
+		{
+			radius = 0.0;
+		}
+
 		this->_radius = radius;
 	}
 
-	const float
+	const double
 	CircleCollider::GetRadius() const
 	{
 		return this->_radius;

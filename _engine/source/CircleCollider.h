@@ -8,15 +8,15 @@ namespace engine
 	{
 	public:
 		CircleCollider(void) {};
-		CircleCollider(const Vector2D position, float radius): Collider(position), _radius(radius) {};
+		CircleCollider(const Vector2D position, double radius): Collider(position), _radius(radius) {};
 		virtual ~CircleCollider(void) {};
 		virtual bool Collision(Collider&);
 
 		void SetRadius(double);
-		const float GetRadius() const;
+		const double GetRadius() const;
 
 	private:
-		float _radius;
+		double _radius;
 	};
 }
 #endif
