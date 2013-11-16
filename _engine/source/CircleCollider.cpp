@@ -2,10 +2,10 @@
 
 namespace engine
 {
-	bool
-	CircleCollider::Collision(Collider& collider)
+	const bool
+	CircleCollider::Collision(const Collider& collider) const
 	{
-		CircleCollider* circle = dynamic_cast<CircleCollider*>(&collider);
+		const CircleCollider* circle = dynamic_cast<const CircleCollider*>(&collider);
 
 		if (circle != nullptr)
 		{
@@ -34,5 +34,10 @@ namespace engine
 	CircleCollider::GetRadius() const
 	{
 		return this->_radius;
+	}
+
+	std::ostream&
+	operator<<(std::ostream &stream, const CircleCollider &cc) {
+		return stream << "CircleCollider(" << cc.GetPosition() << ", radius " << cc.GetPosition() << ")";
 	}
 }

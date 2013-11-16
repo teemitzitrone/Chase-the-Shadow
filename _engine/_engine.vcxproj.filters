@@ -63,6 +63,9 @@
     <ClInclude Include="source\CollisionComponent.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
+    <ClInclude Include="source\_engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\GameObject.cpp">

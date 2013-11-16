@@ -10,7 +10,7 @@ namespace engine
 		Collider(void) {};
 		Collider(const Vector2D position): _position(position) {};
 		virtual ~Collider(void) {};
-		virtual bool Collision(Collider&) = 0;
+		const virtual bool Collision(const Collider&) const = 0;
 
 		void SetPosition(const Vector2D position)
 		{
@@ -24,6 +24,10 @@ namespace engine
 
 	private:
 		Vector2D _position;
+		friend std::ostream& operator<<(std::ostream &stream, const Collider &c)
+		{
+			return stream << "Collider(" << c.GetPosition() << ")";
+		}
 	};
 }
 #endif

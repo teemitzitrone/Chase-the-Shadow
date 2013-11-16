@@ -10,13 +10,14 @@ namespace engine
 		CircleCollider(void) {};
 		CircleCollider(const Vector2D position, double radius): Collider(position), _radius(radius) {};
 		virtual ~CircleCollider(void) {};
-		virtual bool Collision(Collider&);
+		const virtual bool Collision(const Collider&) const;
 
 		void SetRadius(double);
 		const double GetRadius() const;
 
 	private:
 		double _radius;
+		friend std::ostream& operator<<(std::ostream&, const CircleCollider&);
 	};
 }
 #endif

@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "CircleCollider.h"
 #include <vector>
+#include <iostream>
 
 namespace engine
 {
@@ -12,8 +13,12 @@ namespace engine
 	}
 
 	void
-	CollisionComponent::Update(GameObject&, double)
+	CollisionComponent::Update(GameObject& gameObject, double)
 	{
+		TransformComponent *transform = static_cast<TransformComponent*>(gameObject.FilterComponent("Transform").front());
+		SDL_Rect pos = transform->GetPosition();
+
+		this->_collider->SetPosition(Vector2D((float)pos.x, (float)pos.y));
 	}
 
 	void
@@ -21,8 +26,8 @@ namespace engine
 	{
 	}
 
-	const Collider*
-	CollisionComponent::GetCollider() const
+	Collider*
+	CollisionComponent::GetCollider()
 	{
 		return this->_collider;
 	}
@@ -35,9 +40,9 @@ namespace engine
 			TransformComponent *transform = static_cast<TransformComponent*>(gameObject.FilterComponent("Transform").front());
 			SDL_Rect pos = transform->GetPosition();
 			SDL_Rect *scale = transform->GetScale();
-			Collider *collider = new CircleCollider(Vector2D(pos.x, pos.y), (scale->h/2));
+			collider = new CircleCollider(Vector2D((float)pos.x, (float)pos.y), (scale->h/2));
 		}
-		
+
 		CollisionComponent *collisionComponent = new CollisionComponent(collider);
 		gameObject.RegisterComponent(collisionComponent);
 

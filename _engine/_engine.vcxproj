@@ -23,6 +23,7 @@
     <ClInclude Include="source\TextureComponent.h" />
     <ClInclude Include="source\TransformComponent.h" />
     <ClInclude Include="source\Vector2D.h" />
+    <ClInclude Include="source\_engine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\AiBasicComponent.cpp" />
