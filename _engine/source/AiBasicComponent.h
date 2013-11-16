@@ -12,6 +12,10 @@ namespace engine {
 	protected:
 		int _currentFrame;
 		GameObject* _aggressionTarget;
+		bool _lockedOnTarget;
+
+		Vector2D _getCenter(GameObject*);
+		int _getDistance(const Vector2D&, const Vector2D&) const;
 
 	public:
 		AiBasicComponent(GameObject* agressionTarget): _aggressionTarget(agressionTarget) {};

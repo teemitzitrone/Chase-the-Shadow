@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 	engine::CollisionComponent::Factory(spider);
 
 	engine::GameObject monster = engine::GameObject::Create(engine::TransformComponent::Factory(pos_monster, pos_monster, &scale_monster, engine::UnitSpeed::Slow));
-	monster.RegisterComponent(new engine::AiBasicComponent(nullptr));
+	monster.RegisterComponent(new engine::AiBasicComponent(&player));
 	monster.RegisterComponent(engine::StateComponent::Factory());
 	monster.tag = "enemy";
 	engine::CollisionComponent::Factory(monster);
