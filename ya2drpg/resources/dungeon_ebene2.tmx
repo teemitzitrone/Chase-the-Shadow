@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="16" height="12" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="terrain" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/terrain.png" width="128" height="192"/>
+ </tileset>
+ <tileset firstgid="7" name="water" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/water.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="23" name="wall" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/wall.png" width="256" height="192"/>
+ </tileset>
+ <tileset firstgid="35" name="skeleton" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/skeleton.png" width="256" height="128"/>
+ </tileset>
+ <tileset firstgid="43" name="plants" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/plants.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="47" name="misc" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/misc.png" width="128" height="192"/>
+ </tileset>
+ <tileset firstgid="53" name="bridge" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/bridge.png" width="256" height="256"/>
+ </tileset>
+ <layer name="Terrain" width="16" height="12">
+  <data encoding="base64" compression="zlib">
+   eJytkjEOwCAMAzMQ8v8ft6N1ihVaMdwWcwSTEbFfUihDGrbgsoU5Oic3/S6fmO286p9cNcwuwHuq/29e9+U5Xb7bxXV0kr8FO576dv9H3+Orn/0/y8YEmA==
+  </data>
+ </layer>
+ <layer name="mauer" width="16" height="12">
+  <data encoding="base64" compression="zlib">
+   eJyTZmBgECcTywCxFAP5QGIY6JdmQA0PSuyXGGD9chTqJxVQQ78sEEuSiUH+BQBJ1AWg
+  </data>
+ </layer>
+ <layer name="Objekte" width="16" height="12">
+  <data encoding="base64" compression="zlib">
+   eJydUlsKgEAI9C5R9KAX0buv6v5nSskFEbetBgZ31VF2WACAGllAGNRTcSyN+oDcHth75uZifmg/MTXyDjHH9sW8L/DN6pANx1Av4YTbi0PlI6Unjnx3XpP3E59npc+MXavQaUj9aNSl3oLU+/p0nt6UGPoduRjUefd/yA/yQXr2FxfyQQ1M
+  </data>
+ </layer>
+</map>
