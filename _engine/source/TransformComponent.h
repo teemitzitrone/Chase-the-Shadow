@@ -1,6 +1,5 @@
 #ifndef _TRANSFORMCOMPONENT_H
 #define _TRANSFORMCOMPONENT_H
-#pragma once
 #include <SDL.h>
 #include "Component.h"
 namespace engine

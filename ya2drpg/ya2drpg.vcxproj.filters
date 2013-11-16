@@ -54,6 +54,9 @@
     <ClInclude Include="resource.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="source\engine\CollisionManager.h">
+      <Filter>Headerdateien\engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\GameObjectManager.cpp">
@@ -75,6 +78,9 @@
       <Filter>Quelldateien\vendor</Filter>
     </ClCompile>
     <ClCompile Include="source\engine\MapLoader.cpp">
+      <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\CollisionManager.cpp">
       <Filter>Quelldateien\engine</Filter>
     </ClCompile>
   </ItemGroup>

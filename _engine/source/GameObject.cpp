@@ -14,10 +14,6 @@ namespace engine
 		return g;
 	}
 
-	void GameObject::StartUp()
-	{
-	}
-
 	void GameObject::Input(SDL_Event* input)
 	{
 		std::vector<Component*>::iterator it;
@@ -52,10 +48,6 @@ namespace engine
 			(**it).Render(*this, renderer);
 			it++;
 		}
-	}
-
-	void GameObject::ShutDown()
-	{
 	}
 
 	void GameObject::RegisterComponent(Component* component)

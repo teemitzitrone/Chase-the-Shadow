@@ -1,20 +1,24 @@
 ﻿#include <iostream>
 #include <SDL.h>
+#include <_engine.h>
 #include "engine\GameLoop.h"
-#include <InputComponent.h>
-#include <AnimationComponent.h>
 #include "engine\MapLoader.h"
-#include <StateComponent.h>
-#include <AiBasicComponent.h>
 #include <map>
 
 int main(int argc, char *argv[])
 {
+	/// this could be our events triger
+	/// auto callback = [](engine::Component trigger, engine::GameObject gameObject) -> void { do some nasty stuff };
+	auto func = [](int i) -> double { return 2*i/1.15; };
+	double d = func(1);
+	std::cout << d << std::endl;
+
 	SDL_Window *window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	SDL_Surface* surface = nullptr;
 
 	GameObjectManager* manager = new GameObjectManager();
+	Game::CollisionManager *cm;
 	std::map<std::string, engine::AnimationComponent> animations;
 	
 	SDL_Rect pos;
@@ -56,14 +60,20 @@ int main(int argc, char *argv[])
 	engine::GameObject player = engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale, engine::UnitSpeed::Fast));
 	player.RegisterComponent(new engine::InputComponent);
 	player.RegisterComponent(engine::StateComponent::Factory());
+	player.tag = "player";
+	engine::CollisionComponent::Factory(player);
 	
 	engine::GameObject spider = engine::GameObject::Create(engine::TransformComponent::Factory(pos_spider, pos_spider, &scale_spider, engine::UnitSpeed::Slow));
 	spider.RegisterComponent(new engine::AiBasicComponent(&player));
 	spider.RegisterComponent(engine::StateComponent::Factory());
+	spider.tag = "enemy";
+	engine::CollisionComponent::Factory(spider);
 
 	engine::GameObject monster = engine::GameObject::Create(engine::TransformComponent::Factory(pos_monster, pos_monster, &scale_monster, engine::UnitSpeed::Slow));
-	monster.RegisterComponent(new engine::AiBasicComponent(nullptr));
+	monster.RegisterComponent(new engine::AiBasicComponent(&player));
 	monster.RegisterComponent(engine::StateComponent::Factory());
+	monster.tag = "enemy";
+	engine::CollisionComponent::Factory(monster);
 	
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
@@ -102,9 +112,16 @@ int main(int argc, char *argv[])
 		manager->RegisterGameobject(&spider);
 		manager->RegisterGameobject(&monster);
 
-		GameLoop gameloop = GameLoop(renderer, manager);
+		cm = new Game::CollisionManager();
+		cm->RegisterGameobject(&player);
+		cm->RegisterGameobject(&spider);
+		cm->RegisterGameobject(&monster);
+
+		GameLoop gameloop = GameLoop(renderer, manager, cm);
 		gameloop.Run();
 	}
+
+	delete cm, manager;
 
 	SDL_FreeSurface(surface);
 	SDL_DestroyRenderer(renderer);

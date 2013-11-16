@@ -1,6 +1,5 @@
 #ifndef _INPUTCOMPONENT_H
 #define _INPUTCOMPONENT_H
-#pragma once
 #include <SDL.h>
 #include "Component.h"
 

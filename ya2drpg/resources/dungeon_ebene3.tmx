@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="16" height="12" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="terrain" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/terrain.png" width="128" height="192"/>
+ </tileset>
+ <tileset firstgid="7" name="water" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/water.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="23" name="wall" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/wall.png" width="256" height="192"/>
+ </tileset>
+ <tileset firstgid="35" name="plants" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/plants.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="39" name="misc" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/misc.png" width="128" height="192"/>
+ </tileset>
+ <tileset firstgid="45" name="skeleton" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/skeleton.png" width="256" height="128"/>
+ </tileset>
+ <tileset firstgid="53" name="bridge" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/bridge.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="69" name="icecream" tilewidth="64" tileheight="64">
+  <image source="../assets/tilesets/icecream.png" width="256" height="64"/>
+ </tileset>
+ <layer name="Terrain" width="16" height="12">
+  <data encoding="base64" compression="zlib">
+   eJy1zT0KgDAMgNE6ZRAroleK7f1PZAMphJCfLg4PMeRLoZQCP3iVlaYx3U6dRa13oytZ34I261F8kfcx6ecNEJ0GQatZreUeNvYs9Hr/EP/eDasl1eirsee9RbvnsAuXMfPmNPsAes4Wig==
+  </data>
+ </layer>
+ <layer name="Mauer" width="16" height="12">
+  <data encoding="base64" compression="zlib">
+   eJyTZmBgECcTywCxFAP5QGJU/6h+CvXLArEkmVgOiAFskQUH
+  </data>
+ </layer>
+ <layer name="Objekte" width="16" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFIx1oArEyCepBatWxiKGbYQ7FhNTBgBkQ20CxKRHi1AAA07sDVw==
+  </data>
+ </layer>
+</map>

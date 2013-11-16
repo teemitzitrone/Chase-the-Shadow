@@ -1,6 +1,5 @@
 #ifndef _AIBASICCOMPONENT_H
 #define _AIBASICCOMPONENT_H
-#pragma once
 #include "Component.h"
 #include "InputComponent.h"
 #include "GameObject.h"
@@ -13,6 +12,10 @@ namespace engine {
 	protected:
 		int _currentFrame;
 		GameObject* _aggressionTarget;
+		bool _lockedOnTarget;
+
+		Vector2D _getCenter(GameObject*);
+		int _getDistance(const Vector2D&, const Vector2D&) const;
 
 	public:
 		AiBasicComponent(GameObject* agressionTarget): _aggressionTarget(agressionTarget) {};

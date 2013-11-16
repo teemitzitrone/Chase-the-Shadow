@@ -7,10 +7,11 @@
 #define FRAMES_PER_SECOND 60.0
 #define MILLISECONDS_PER_FRAME 1000.0 / FRAMES_PER_SECOND
 
-GameLoop::GameLoop(SDL_Renderer* renderer, GameObjectManager* gameObjectManager) :
+GameLoop::GameLoop(SDL_Renderer* renderer, GameObjectManager* gameObjectManager, Game::CollisionManager *collisionManager) :
 	_done(false),
 	_renderer(renderer),
-	_manager(gameObjectManager)
+	_manager(gameObjectManager),
+	_collisionManager(collisionManager)
 {
 }
 
@@ -79,12 +80,24 @@ void GameLoop::_HandleFrame(SDL_Event sdlEvent, double delay)
 	for (auto gameobject : this->_manager->GameObjects()) {
 		gameobject->Update(delay);
 	}
+
+	// time for collion check
+	this->_collisionManager->Handle();
 	
 	SDL_RenderClear(this->_renderer);
 	for (auto gameobject : this->_manager->GameObjects()) {
 		gameobject->Render(this->_renderer);
 	}
 	SDL_RenderPresent(this->_renderer);
+
+	for (auto gameobject : this->_manager->GameObjects()) {
+		if (false == gameobject->alive)
+		{
+			this->_manager->UnregisterGameobject(gameobject);
+			this->_collisionManager->UnregisterGameobject(gameobject);
+		}
+	}
+
 }
 
 

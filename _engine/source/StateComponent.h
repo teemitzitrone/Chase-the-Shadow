@@ -1,6 +1,5 @@
 #ifndef _STATECOMPONENT_H
 #define _STATECOMPONENT_H
-#pragma once
 #include "Component.h"
 #include "AnimationComponent.h"
 #include "GameObject.h"

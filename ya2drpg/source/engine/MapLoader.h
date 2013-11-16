@@ -1,3 +1,5 @@
+#ifndef _GAME_MAP_LOADER_H
+#define _GAME_MAP_LOADER_H
 #include "GameObjectManager.h"
 #include "..\vendor\Jzon.h"
 #include <map>
@@ -23,3 +25,4 @@ namespace Game
 		void _convertLayers(Jzon::Object, GameObjectManager&, SDL_Renderer*);
 	};
 }
+#endif
