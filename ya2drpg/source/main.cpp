@@ -7,11 +7,18 @@
 
 int main(int argc, char *argv[])
 {
+	/// this could be our events triger
+	/// auto callback = [](engine::Component trigger, engine::GameObject gameObject) -> void { do some nasty stuff };
+	auto func = [](int i) -> double { return 2*i/1.15; };
+	double d = func(1);
+	std::cout << d << std::endl;
+
 	SDL_Window *window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	SDL_Surface* surface = nullptr;
 
 	GameObjectManager* manager = new GameObjectManager();
+	Game::CollisionManager *cm;
 	std::map<std::string, engine::AnimationComponent> animations;
 	
 	SDL_Rect pos;
@@ -105,7 +112,7 @@ int main(int argc, char *argv[])
 		manager->RegisterGameobject(&spider);
 		manager->RegisterGameobject(&monster);
 
-		Game::CollisionManager *cm = new Game::CollisionManager();
+		cm = new Game::CollisionManager();
 		cm->RegisterGameobject(&player);
 		cm->RegisterGameobject(&spider);
 		cm->RegisterGameobject(&monster);
@@ -113,6 +120,8 @@ int main(int argc, char *argv[])
 		GameLoop gameloop = GameLoop(renderer, manager, cm);
 		gameloop.Run();
 	}
+
+	delete cm, manager;
 
 	SDL_FreeSurface(surface);
 	SDL_DestroyRenderer(renderer);

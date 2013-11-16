@@ -3,7 +3,6 @@
 #include "GameObject.h"
 #include "CircleCollider.h"
 #include <vector>
-#include <iostream>
 
 namespace engine
 {
