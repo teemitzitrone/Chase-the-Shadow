@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess.png", renderer));
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/sparks.png", renderer));
 		spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
-		monster.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/monster.png", renderer));
+		monster.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/palumpa.png", renderer, 5));
 		SDL_Color color = {255, 255, 255};
 		Ui.RegisterComponent(engine::TextComponent::Factory("resources/fonts/SourceSansPro-Regular.ttf", renderer, "Test", color));
 
