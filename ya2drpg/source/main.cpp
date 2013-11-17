@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 		Ui.RegisterComponent(engine::TextComponent::Factory("resources/fonts/SourceSansPro-Regular.ttf", renderer, "Test", color));
 
 		Game::MapLoader loader =  Game::MapLoader();
-		loader.LoadMap("resources/dorf_map.json", (*manager), renderer);
+		loader.LoadMap("resources/dungeon_ebene1.json", (*manager), renderer);
 
 		manager->RegisterGameobject(&player);
 		manager->RegisterGameobject(&spider);
