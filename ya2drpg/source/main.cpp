@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include <_engine.h>
 #include "engine\GameLoop.h"
 #include "engine\MapLoader.h"
@@ -19,7 +20,6 @@ int main(int argc, char *argv[])
 
 	GameObjectManager* manager = new GameObjectManager();
 	Game::CollisionManager *cm;
-	std::map<std::string, engine::AnimationComponent> animations;
 	
 	SDL_Rect pos;
 	pos.x = 34;
@@ -74,10 +74,17 @@ int main(int argc, char *argv[])
 	monster.RegisterComponent(engine::StateComponent::Factory());
 	monster.tag = "enemy";
 	engine::CollisionComponent::Factory(monster);
+
+	engine::GameObject Ui = engine::GameObject::Create(engine::TransformComponent::Factory(pos_monster, pos_monster, &scale_monster, engine::UnitSpeed::None));
 	
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		return 1;
+	}
+
+	if (TTF_Init() == -1){
+		std::cout << TTF_GetError() << std::endl;
+		return 2;
 	}
 
 	window = SDL_CreateWindow("Chase the Shadow!", 100, 100, 1024, 768, SDL_WINDOW_SHOWN);
@@ -104,6 +111,8 @@ int main(int argc, char *argv[])
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/sparks.png", renderer));
 		spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
 		monster.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/monster.png", renderer));
+		SDL_Color color = {255, 255, 255};
+		Ui.RegisterComponent(engine::TextComponent::Factory("resources/fonts/SourceSansPro-Regular.ttf", renderer, "Test", color));
 
 		Game::MapLoader loader =  Game::MapLoader();
 		loader.LoadMap("resources/dorf_map.json", (*manager), renderer);
@@ -111,6 +120,7 @@ int main(int argc, char *argv[])
 		manager->RegisterGameobject(&player);
 		manager->RegisterGameobject(&spider);
 		manager->RegisterGameobject(&monster);
+		manager->RegisterGameobject(&Ui);
 
 		cm = new Game::CollisionManager();
 		cm->RegisterGameobject(&player);
@@ -126,6 +136,7 @@ int main(int argc, char *argv[])
 	SDL_FreeSurface(surface);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+	TTF_Quit();
 	SDL_Quit();
 
 	return 0;

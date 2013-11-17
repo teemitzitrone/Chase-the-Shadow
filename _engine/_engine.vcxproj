@@ -20,6 +20,7 @@
     <ClInclude Include="source\GameObject.h" />
     <ClInclude Include="source\InputComponent.h" />
     <ClInclude Include="source\StateComponent.h" />
+    <ClInclude Include="source\TextComponent.h" />
     <ClInclude Include="source\TextureComponent.h" />
     <ClInclude Include="source\TransformComponent.h" />
     <ClInclude Include="source\Vector2D.h" />
@@ -33,6 +34,7 @@
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\InputComponent.cpp" />
     <ClCompile Include="source\StateComponent.cpp" />
+    <ClCompile Include="source\TextComponent.cpp" />
     <ClCompile Include="source\TextureComponent.cpp" />
     <ClCompile Include="source\TransformComponent.cpp" />
     <ClCompile Include="source\Vector2D.cpp" />

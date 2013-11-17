@@ -16,6 +16,7 @@
 #include "AnimationComponent.h"
 #include "AiBasicComponent.h"
 #include "CollisionComponent.h"
+#include "TextComponent.h"
 
 /* GameObject
  */

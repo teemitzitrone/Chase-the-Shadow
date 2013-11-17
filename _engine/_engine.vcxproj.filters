@@ -66,6 +66,9 @@
     <ClInclude Include="source\_engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\TextComponent.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\GameObject.cpp">
@@ -96,6 +99,9 @@
       <Filter>Source Files\math</Filter>
     </ClCompile>
     <ClCompile Include="source\CollisionComponent.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TextComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>
