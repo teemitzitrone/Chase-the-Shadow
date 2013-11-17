@@ -22,7 +22,7 @@ namespace engine
 			InputComponent* input = dynamic_cast<InputComponent*> (hits.front());
 
 			Direction direction = input->GetDirection();
-
+			
 			switch (direction)
 			{
 			case Direction::up:

@@ -22,7 +22,7 @@ namespace engine
 
 		position.h = scale->h;
 		position.w = scale->w;
-	
+		
 		SDL_RenderCopy(renderer, this->_texture, scale, &position);
 	}
 

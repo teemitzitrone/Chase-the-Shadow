@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="1" height="1" tilewidth="1024" tileheight="768">
+ <tileset firstgid="1" name="Prolog" tilewidth="1024" tileheight="768">
+  <image source="../../assets/screens/Prolog.png" width="1024" height="768"/>
+ </tileset>
+ <layer name="background" width="1" height="1">
+  <properties>
+   <property name="loadmap" value="dorf_map"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgAAAACAAC
+  </data>
+ </layer>
+ <objectgroup name="objects" width="1" height="1" visible="0">
+  <object name="Text" type="text" x="31" y="491" width="961" height="253">
+   <properties>
+    <property name="source" value="prolog"/>
+   </properties>
+  </object>
+  <object name="event" type="event" x="1012" y="758">
+   <properties>
+    <property name="input" value="enter"/>
+    <property name="target" value="prolog2"/>
+    <property name="trigger" value="mapchange"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

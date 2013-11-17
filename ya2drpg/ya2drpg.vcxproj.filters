@@ -39,12 +39,6 @@
     <ClInclude Include="source\engine\GameObjectManager.h">
       <Filter>Headerdateien\engine</Filter>
     </ClInclude>
-    <ClInclude Include="source\world\Chunk.h">
-      <Filter>Headerdateien\world</Filter>
-    </ClInclude>
-    <ClInclude Include="source\world\World.h">
-      <Filter>Headerdateien\world</Filter>
-    </ClInclude>
     <ClInclude Include="source\vendor\Jzon.h">
       <Filter>Headerdateien\vendor</Filter>
     </ClInclude>
@@ -57,16 +51,13 @@
     <ClInclude Include="source\engine\CollisionManager.h">
       <Filter>Headerdateien\engine</Filter>
     </ClInclude>
+    <ClInclude Include="source\world\ScreenManager.h">
+      <Filter>Headerdateien\world</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\GameObjectManager.cpp">
       <Filter>Quelldateien\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\world\Chunk.cpp">
-      <Filter>Quelldateien\world</Filter>
-    </ClCompile>
-    <ClCompile Include="source\world\World.cpp">
-      <Filter>Quelldateien\world</Filter>
     </ClCompile>
     <ClCompile Include="source\main.cpp">
       <Filter>Quelldateien</Filter>
@@ -82,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="source\engine\CollisionManager.cpp">
       <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\world\ScreenManager.cpp">
+      <Filter>Quelldateien\world</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

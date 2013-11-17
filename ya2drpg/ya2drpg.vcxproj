@@ -91,8 +91,7 @@ xcopy "$(ProjectDir)resources" "$(TargetDir)resources" /e /y /i /r</Command>
     <ClInclude Include="source\engine\GameObjectManager.h" />
     <ClInclude Include="source\engine\MapLoader.h" />
     <ClInclude Include="source\vendor\Jzon.h" />
-    <ClInclude Include="source\world\Chunk.h" />
-    <ClInclude Include="source\world\World.h" />
+    <ClInclude Include="source\world\ScreenManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\CollisionManager.cpp" />
@@ -101,8 +100,7 @@ xcopy "$(ProjectDir)resources" "$(TargetDir)resources" /e /y /i /r</Command>
     <ClCompile Include="source\engine\MapLoader.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\vendor\Jzon.cpp" />
-    <ClCompile Include="source\world\Chunk.cpp" />
-    <ClCompile Include="source\world\World.cpp" />
+    <ClCompile Include="source\world\ScreenManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ya2drpg.rc" />

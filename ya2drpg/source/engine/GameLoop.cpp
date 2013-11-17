@@ -86,6 +86,7 @@ void GameLoop::_HandleFrame(SDL_Event sdlEvent, double delay)
 	
 	SDL_RenderClear(this->_renderer);
 	for (auto gameobject : this->_manager->GameObjects()) {
+		//std::cout << gameobject->tag << std::endl;
 		gameobject->Render(this->_renderer);
 	}
 	SDL_RenderPresent(this->_renderer);
