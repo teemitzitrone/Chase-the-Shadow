@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 	spider.RegisterComponent(engine::StateComponent::Factory());
 
 	engine::GameObject monster = engine::GameObject::Create(engine::TransformComponent::Factory(pos_monster, pos_monster, &scale_monster, engine::UnitSpeed::Slow));
-	monster.RegisterComponent(new engine::AiBasicComponent(nullptr));
+	monster.RegisterComponent(new engine::AiBasicComponent(&player));
 	monster.RegisterComponent(engine::StateComponent::Factory());
 	
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
