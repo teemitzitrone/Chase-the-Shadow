@@ -4,6 +4,8 @@
 
 namespace Game
 {
+	class ScreenManager;
+
 	class CollisionManager
 	{
 	private:
@@ -15,7 +17,7 @@ namespace Game
 	
 		void RegisterGameobject(engine::GameObject*);
 		void UnregisterGameobject(engine::GameObject*);
-		void Handle();
+		void Handle(ScreenManager*);
 	};
 }
 #endif

@@ -1,4 +1,5 @@
 #include "CollisionManager.h"
+#include "../world/ScreenManager.h"
 #include <iostream>
 
 namespace Game
@@ -31,26 +32,37 @@ namespace Game
 	}
 
 	void
-	CollisionManager::Handle()
+	CollisionManager::Handle(ScreenManager* screen)
 	{
 		for (auto player = this->_gameobjects["player"].begin(); player != this->_gameobjects["player"].end(); player++)
 		{
 			engine::CollisionComponent *collider = static_cast<engine::CollisionComponent*> ((**player).FilterComponent("collider").front());
 			const engine::Collider *playerCollider = collider->GetCollider();
 
-			/* Check against enemies
-			 */
-			for (auto enemy = this->_gameobjects["enemy"].begin(); enemy != this->_gameobjects["enemy"].end(); enemy++)
+			if (!this->_gameobjects["enemy"].empty())
 			{
-				engine::CollisionComponent *enemyCollider = static_cast<engine::CollisionComponent*> ((**enemy).FilterComponent("collider").front());
-				const engine::Collider *circle = enemyCollider->GetCollider();
-
-				if (playerCollider->Collision(*circle))
+				/* Check against enemies
+				 */
+				for (auto enemy = this->_gameobjects["enemy"].begin(); enemy != this->_gameobjects["enemy"].end(); enemy++)
 				{
-					(**enemy).alive = false;
-				}
+					engine::CollisionComponent *enemyCollider = static_cast<engine::CollisionComponent*> ((**enemy).FilterComponent("collider").front());
+					const engine::Collider *circle = enemyCollider->GetCollider();
 
+					if (playerCollider->Collision(*circle))
+					{
+						(**enemy).alive = false;
+					}
+
+				}
 			}
+			else
+			{
+				// @todo remove tem hack
+				std::cout << "resources/maps/dungeon_level3.json" << std::endl;
+				screen->LoadMap("resources/maps/dungeon_level3.json");
+				
+			}
+			
 
 			/* Check against events
 			 */

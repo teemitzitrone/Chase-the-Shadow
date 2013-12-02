@@ -1,4 +1,5 @@
 #include "GameLoop.h"
+#include "../world/ScreenManager.h"
 #include <vector>
 #include <iostream>
 #include <Windows.h>
@@ -29,7 +30,8 @@ GameLoop::~GameLoop(void)
 /// no matter if the methods called are handled faster than a frame
 /// </remarks>
 ///
-void GameLoop::Run()
+void
+GameLoop::Run()
 {
 	unsigned __int64 freq;
 	unsigned __int64 startTime;
@@ -55,6 +57,8 @@ void GameLoop::Run()
 		}
 		this->_HandleFrame(loopEvent, timeToSleep);
 	}
+
+	exit(1);
 }
 
 /// <summary>
@@ -82,7 +86,7 @@ void GameLoop::_HandleFrame(SDL_Event sdlEvent, double delay)
 	}
 
 	// time for collion check
-	this->_collisionManager->Handle();
+	this->_collisionManager->Handle(Game::ScreenManager::GetInstance());
 	
 	SDL_RenderClear(this->_renderer);
 	for (auto gameobject : this->_manager->GameObjects()) {

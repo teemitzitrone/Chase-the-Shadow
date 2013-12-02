@@ -9,12 +9,12 @@ int main(int argc, char *argv[])
 	double d = func(1);
 	std::cout << d << std::endl;
 
-	Game::ScreenManager screenManager = Game::ScreenManager();
+	Game::ScreenManager *screenManager = Game::ScreenManager::GetInstance();
 
-	if (true == screenManager.Init())
+	if (true == screenManager->Init())
 	{
-		screenManager.LoadMap("resources/maps/prolog.json");
-		screenManager.Run();
+		screenManager->LoadMap("resources/maps/dungeon_level2.json");
+		screenManager->Run();
 	}
 
 	return 0;

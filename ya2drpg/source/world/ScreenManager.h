@@ -20,7 +20,8 @@ namespace Game
 	class ScreenManager
 	{
 	public:
-		ScreenManager(void) {};
+		static ScreenManager* GetInstance();
+		
 		virtual ~ScreenManager(void)
 		{
 			Mix_FreeMusic(this->_music);
@@ -36,7 +37,11 @@ namespace Game
 		bool LoadMap(const std::string);
 		void Run();
 
+	protected:
+		ScreenManager(void) {};
+
 	private:
+		static ScreenManager *instance;
 		Screen *_current;
 		std::map<std::string, Screen*> _loadedScreens;
 		SDL_Window *_window;

@@ -6,6 +6,19 @@
 
 namespace Game
 {
+	ScreenManager* ScreenManager::instance = nullptr;
+
+	ScreenManager*
+	ScreenManager::GetInstance()
+	{
+		if (nullptr == ScreenManager::instance)
+		{
+			ScreenManager::instance = new ScreenManager();
+		}
+		
+		return ScreenManager::instance;
+	}
+
 	bool
 	ScreenManager::Init()
 	{
@@ -121,23 +134,25 @@ namespace Game
 		player->RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/sparks.png", this->_renderer));
 		spider->RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", this->_renderer));
 		monster->RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/palumpa.png", this->_renderer, 5));
-
-		this->_current->objectManager->RegisterGameobject(player);
+		
 		this->_current->objectManager->RegisterGameobject(spider);
 		this->_current->objectManager->RegisterGameobject(monster);
+		this->_current->objectManager->RegisterGameobject(player);
 
 		this->_current->cm->RegisterGameobject(player);
 		this->_current->cm->RegisterGameobject(spider);
 		this->_current->cm->RegisterGameobject(monster);
-		
+
+		/// @todo move me to Run();
+		GameLoop loop = GameLoop(this->_renderer, this->_current->objectManager, this->_current->cm);
+
+		loop.Run();
 		return true;
 	}
 
 	void
 	ScreenManager::Run()
 	{
-		GameLoop loop = GameLoop(this->_renderer, this->_current->objectManager, this->_current->cm);
-
-		loop.Run();
+		
 	}
 }
