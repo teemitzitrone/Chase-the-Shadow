@@ -58,9 +58,17 @@ namespace Game
 			else
 			{
 				// @todo remove tem hack
-				std::cout << "resources/maps/dungeon_level3.json" << std::endl;
-				screen->LoadMap("resources/maps/dungeon_level3.json");
-				
+				if (!ScreenManager::maps.empty())
+				{
+					std::string map = ScreenManager::maps.back();
+					ScreenManager::maps.pop_back();
+
+					screen->LoadMap(map);
+				}
+				else
+				{
+					exit(1);
+				}
 			}
 			
 

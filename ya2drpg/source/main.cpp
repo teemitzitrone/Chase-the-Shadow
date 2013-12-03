@@ -13,7 +13,10 @@ int main(int argc, char *argv[])
 
 	if (true == screenManager->Init())
 	{
-		screenManager->LoadMap("resources/maps/dungeon_level2.json");
+		std::string map = Game::ScreenManager::maps.back();
+		Game::ScreenManager::maps.pop_back();
+
+		screenManager->LoadMap(map);
 		screenManager->Run();
 	}
 

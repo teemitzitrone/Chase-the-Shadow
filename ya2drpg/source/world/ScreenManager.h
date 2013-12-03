@@ -20,6 +20,8 @@ namespace Game
 	class ScreenManager
 	{
 	public:
+		static std::vector<std::string> maps;
+
 		static ScreenManager* GetInstance();
 		
 		virtual ~ScreenManager(void)
