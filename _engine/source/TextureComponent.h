@@ -7,13 +7,13 @@
 namespace engine
 {
 	class TextureComponent :
-		public Component
+		public ComponentInterface
 	{
 	public:
 		std::string textureName;
 
-		TextureComponent(void): _texture(nullptr), Component("Texture") {};
-		TextureComponent(SDL_Texture* texture): _texture(texture), Component("Texture") {};
+		TextureComponent(void) : _texture(nullptr), ComponentInterface("Texture") {};
+		TextureComponent(SDL_Texture* texture) : _texture(texture), ComponentInterface("Texture") {};
 		virtual ~TextureComponent(void)
 		{
 			SDL_DestroyTexture(this->_texture);

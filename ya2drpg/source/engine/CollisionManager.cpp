@@ -36,7 +36,7 @@ namespace Game
 	{
 		for (auto player = this->_gameobjects["player"].begin(); player != this->_gameobjects["player"].end(); player++)
 		{
-			engine::CollisionComponent *collider = static_cast<engine::CollisionComponent*> ((**player).FilterComponent("collider").front());
+			engine::CollisionComponent *collider = static_cast<engine::CollisionComponent*> ((**player).FilterComponent("collider").front().get());
 			const engine::Collider *playerCollider = collider->GetCollider();
 
 			if (!this->_gameobjects["enemy"].empty())
@@ -45,7 +45,7 @@ namespace Game
 				 */
 				for (auto enemy = this->_gameobjects["enemy"].begin(); enemy != this->_gameobjects["enemy"].end(); enemy++)
 				{
-					engine::CollisionComponent *enemyCollider = static_cast<engine::CollisionComponent*> ((**enemy).FilterComponent("collider").front());
+					engine::CollisionComponent *enemyCollider = static_cast<engine::CollisionComponent*> ((**enemy).FilterComponent("collider").front().get());
 					const engine::Collider *circle = enemyCollider->GetCollider();
 
 					if (playerCollider->Collision(*circle))
@@ -76,7 +76,7 @@ namespace Game
 			 */
 			for (auto event = this->_gameobjects["event"].begin(); event != this->_gameobjects["event"].end(); event++)
 			{
-				engine::CollisionComponent *eventCollider = static_cast<engine::CollisionComponent*> ((**event).FilterComponent("collider").front());
+				engine::CollisionComponent *eventCollider = static_cast<engine::CollisionComponent*> ((**event).FilterComponent("collider").front().get());
 				const engine::Collider *circle = eventCollider->GetCollider();
 
 				if (playerCollider->Collision(*circle))

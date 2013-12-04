@@ -1,5 +1,6 @@
 #include "ScreenManager.h"
 #include <iostream>
+#include <memory>
 #include <_engine.h>
 #include "..\engine\GameLoop.h"
 #include "..\engine\MapLoader.h"
@@ -94,11 +95,11 @@ namespace Game
 			pos.w = 0;
 			pos.h = 0;
 
-			SDL_Rect scale;
-			scale.x = 0;
-			scale.y = 0;
-			scale.w = 64;
-			scale.h = 64;
+			std::shared_ptr<SDL_Rect> scale(new SDL_Rect);
+			scale->x = 0;
+			scale->y = 0;
+			scale->w = 64;
+			scale->h = 64;
 	
 			SDL_Rect pos_spider;
 			pos_spider.x = 32;
@@ -106,11 +107,11 @@ namespace Game
 			pos_spider.w = 0;
 			pos_spider.h = 0;
 
-			SDL_Rect scale_spider;
-			scale_spider.x = 0;
-			scale_spider.y = 0;
-			scale_spider.w = 64;
-			scale_spider.h = 64;
+			std::shared_ptr<SDL_Rect> scale_spider(new SDL_Rect);
+			scale_spider->x = 0;
+			scale_spider->y = 0;
+			scale_spider->w = 64;
+			scale_spider->h = 64;
 
 		if (name != "resources/maps/epilog.json")
 		{
@@ -128,45 +129,45 @@ namespace Game
 			scale_monster.w = 64;
 			scale_monster.h = 64;
 
-			engine::GameObject *player = new engine::GameObject(engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale, engine::UnitSpeed::Fast)));
-			player->RegisterComponent(new engine::InputComponent);
-			player->RegisterComponent(engine::StateComponent::Factory());
+			engine::GameObject *player = new engine::GameObject(engine::GameObject::Create(engine::Component((engine::TransformComponent::Factory(pos, pos, scale.get(), engine::UnitSpeed::Fast)))));
+			player->RegisterComponent(engine::Component((new engine::InputComponent)));
+			player->RegisterComponent(engine::Component(engine::StateComponent::Factory()));
 			player->tag = "player";
 			engine::CollisionComponent::Factory((*player));
 	
-			engine::GameObject *spider = new engine::GameObject(engine::GameObject::Create(engine::TransformComponent::Factory(pos_spider, pos_spider, &scale_spider, engine::UnitSpeed::Slow)));
-			spider->RegisterComponent(new engine::AiBasicComponent(player));
-			spider->RegisterComponent(engine::StateComponent::Factory());
+			engine::GameObject *spider = new engine::GameObject(engine::GameObject::Create(engine::Component(engine::TransformComponent::Factory(pos_spider, pos_spider, scale_spider.get(), engine::UnitSpeed::Slow))));
+			spider->RegisterComponent(engine::Component(new engine::AiBasicComponent(player)));
+			spider->RegisterComponent(engine::Component(engine::StateComponent::Factory()));
 			spider->tag = "enemy";
 			engine::CollisionComponent::Factory((*spider));
 
-			engine::GameObject *monster = new engine::GameObject(engine::GameObject::Create(engine::TransformComponent::Factory(pos_spider, pos_spider, &scale_spider, engine::UnitSpeed::Slow)));
-			monster->RegisterComponent(new engine::AiBasicComponent(player));
-			monster->RegisterComponent(engine::StateComponent::Factory());
+			engine::GameObject *monster = new engine::GameObject(engine::GameObject::Create(engine::Component(engine::TransformComponent::Factory(pos_spider, pos_spider, scale_spider.get(), engine::UnitSpeed::Slow))));
+			monster->RegisterComponent(engine::Component(new engine::AiBasicComponent(player)));
+			monster->RegisterComponent(engine::Component(engine::StateComponent::Factory()));
 			monster->tag = "enemy";
 			engine::CollisionComponent::Factory((*monster));
 
-			engine::GameObject *palumpa = new engine::GameObject(engine::GameObject::Create(engine::TransformComponent::Factory(pos_monster, pos_monster, &scale_monster, engine::UnitSpeed::Slow)));
-			palumpa->RegisterComponent(new engine::AiBasicComponent(player));
-			palumpa->RegisterComponent(engine::StateComponent::Factory());
+			engine::GameObject *palumpa = new engine::GameObject(engine::GameObject::Create(engine::Component(engine::TransformComponent::Factory(pos_monster, pos_monster, &scale_monster, engine::UnitSpeed::Slow))));
+			palumpa->RegisterComponent(engine::Component(new engine::AiBasicComponent(player)));
+			palumpa->RegisterComponent(engine::Component(engine::StateComponent::Factory()));
 			palumpa->tag = "enemy";
 			engine::CollisionComponent::Factory((*palumpa));
 
-			engine::GameObject *hero = new engine::GameObject(engine::GameObject::Create(engine::TransformComponent::Factory(pos_monster, pos_monster, &scale_monster, engine::UnitSpeed::Slow)));
-			hero->RegisterComponent(new engine::AiBasicComponent(player));
-			hero->RegisterComponent(engine::StateComponent::Factory());
+			engine::GameObject *hero = new engine::GameObject(engine::GameObject::Create(engine::Component(engine::TransformComponent::Factory(pos_monster, pos_monster, &scale_monster, engine::UnitSpeed::Slow))));
+			hero->RegisterComponent(engine::Component(new engine::AiBasicComponent(player)));
+			hero->RegisterComponent(engine::Component(engine::StateComponent::Factory()));
 			hero->tag = "enemy";
 			engine::CollisionComponent::Factory((*hero));
 		
 			Game::MapLoader loader =  Game::MapLoader();
 			loader.LoadMap(name, (*this->_current->objectManager), this->_renderer);
 
-			player->RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess.png", this->_renderer));
-			player->RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/sparks.png", this->_renderer));
-			spider->RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", this->_renderer));
-			palumpa->RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/palumpa.png", this->_renderer, 5));
-			hero->RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/hero.png", this->_renderer));
-			monster->RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/monster.png", this->_renderer));
+			player->RegisterComponent(engine::Component(engine::AnimationComponent::Factory("assets/sprites/characters/princess.png", this->_renderer)));
+			player->RegisterComponent(engine::Component(engine::AnimationComponent::Factory("assets/sprites/sparks.png", this->_renderer)));
+			spider->RegisterComponent(engine::Component(engine::AnimationComponent::Factory("assets/sprites/characters/spider.png", this->_renderer)));
+			palumpa->RegisterComponent(engine::Component(engine::AnimationComponent::Factory("assets/sprites/characters/palumpa.png", this->_renderer, 5)));
+			hero->RegisterComponent(engine::Component(engine::AnimationComponent::Factory("assets/sprites/characters/hero.png", this->_renderer)));
+			monster->RegisterComponent(engine::Component(engine::AnimationComponent::Factory("assets/sprites/characters/monster.png", this->_renderer)));
 		
 			this->_current->objectManager->RegisterGameobject(spider);
 			this->_current->objectManager->RegisterGameobject(palumpa);
@@ -189,12 +190,11 @@ namespace Game
 		}
 		else
 		{
-			engine::GameObject *player = new engine::GameObject(engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, &scale, engine::UnitSpeed::Fast)));
+			engine::GameObject *player = new engine::GameObject(engine::GameObject::Create(engine::Component(engine::TransformComponent::Factory(pos, pos, scale.get(), engine::UnitSpeed::Fast))));
 			player->tag = "player";
 			engine::CollisionComponent::Factory((*player));
 
-			engine::GameObject *spider = new engine::GameObject(engine::GameObject::Create(engine::TransformComponent::Factory(pos_spider, pos_spider, &scale_spider, engine::UnitSpeed::Slow)));
-			spider->RegisterComponent(new engine::AiBasicComponent(player));
+			engine::GameObject *spider = new engine::GameObject(engine::GameObject::Create(engine::Component(engine::TransformComponent::Factory(pos_spider, pos_spider, scale_spider.get(), engine::UnitSpeed::Slow))));
 			spider->tag = "enemy";
 			engine::CollisionComponent::Factory((*spider));
 

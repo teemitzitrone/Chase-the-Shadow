@@ -9,8 +9,8 @@ namespace engine
 	void AnimationComponent::Update(GameObject& gameObject, double delay)
 	{
 		if (nullptr == this->_scale) {
-			std::vector<Component*> hits = gameObject.FilterComponent("Transform");
-			TransformComponent* transform = dynamic_cast<TransformComponent*> (hits.front());
+			Components hits = gameObject.FilterComponent("Transform");
+			TransformComponent *transform = dynamic_cast<TransformComponent*> (hits.front().get());
 			this->_scale = new SDL_Rect(*transform->GetScale());
 		}
 

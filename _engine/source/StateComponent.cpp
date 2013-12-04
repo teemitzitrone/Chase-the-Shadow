@@ -14,8 +14,8 @@ namespace engine
 
 	void StateComponent::Input(GameObject& gameobject, SDL_Event* event) 
 	{
-		TransformComponent* t = (TransformComponent*)gameobject.FilterComponent("Transform").front();
-		InputComponent* input = dynamic_cast<InputComponent*> (gameobject.FilterComponent("Input").front());
+		TransformComponent* t = (TransformComponent*)gameobject.FilterComponent("Transform").front().get();
+		InputComponent* input = dynamic_cast<InputComponent*> (gameobject.FilterComponent("Input").front().get());
 
 		Direction direction = input->GetDirection();
 		SDL_Rect* scale = t->GetScale();

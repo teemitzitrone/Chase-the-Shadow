@@ -2,13 +2,14 @@
 
 namespace engine
 {
-	GameObject GameObject::Create(TransformComponent* component)
+	GameObject GameObject::Create(Component component)
 	{
 		GameObject g = GameObject();
 		if (component == nullptr)
 		{
-			component = TransformComponent::Factory();
+			component = Component(TransformComponent::Factory());
 		}
+		
 		g.RegisterComponent(component);
 		
 		return g;
@@ -16,7 +17,7 @@ namespace engine
 
 	void GameObject::Input(SDL_Event* input)
 	{
-		std::vector<Component*>::iterator it;
+		Components::iterator it;
 		it = this->_components.begin();
 
 		while (it != this->_components.end())
@@ -28,7 +29,7 @@ namespace engine
 
 	void GameObject::Update(double delay)
 	{
-		std::vector<Component*>::iterator it;
+		Components::iterator it;
 		it = this->_components.begin();
 
 		while (it != this->_components.end())
@@ -40,7 +41,7 @@ namespace engine
 
 	void GameObject::Render(SDL_Renderer *renderer)
 	{
-		std::vector<Component*>::iterator it;
+		Components::iterator it;
 		it = this->_components.begin();
 
 		while (it != this->_components.end())
@@ -50,7 +51,7 @@ namespace engine
 		}
 	}
 
-	void GameObject::RegisterComponent(Component* component)
+	void GameObject::RegisterComponent(Component component)
 	{
 		this->_components.push_back(component);
 	}
@@ -62,11 +63,11 @@ namespace engine
 	///
 	/// <param name="tag_" type="std::string">The tag to be filtered for</param>
 	///
-	std::vector<Component*> GameObject::FilterComponent(std::string tag_)
+	Components GameObject::FilterComponent(std::string tag_)
 	{
-		std::vector<Component*> hits;
+		Components hits;
 
-		std::vector<Component*>::iterator it;
+		Components::iterator it;
 		it = this->_components.begin();
 		while (it != this->_components.end())
 		{

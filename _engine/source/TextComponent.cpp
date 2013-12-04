@@ -8,8 +8,8 @@ namespace engine
 {
 	void TextComponent::Render(GameObject& gameObject, SDL_Renderer* renderer)
 	{
-		std::vector<Component*> hits = gameObject.FilterComponent("Transform");
-		TransformComponent* transform = dynamic_cast<TransformComponent*> (hits.front());
+		Components hits = gameObject.FilterComponent("Transform");
+		TransformComponent* transform = dynamic_cast<TransformComponent*> (hits.front().get());
 
 		SDL_Rect pos = transform->GetPosition();
 	

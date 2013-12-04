@@ -90,8 +90,8 @@ namespace Game
 								scale->w = g.w;
 								scale->h = g.h;
 
-								engine::GameObject* _t = new engine::GameObject(engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, scale, engine::UnitSpeed::None)));
-								_t->RegisterComponent(engine::TextureComponent::Factory(g.texture, renderer));
+								engine::GameObject* _t = new engine::GameObject(engine::GameObject::Create(engine::Component(engine::TransformComponent::Factory(pos, pos, scale, engine::UnitSpeed::None))));
+								_t->RegisterComponent(engine::Component(engine::TextureComponent::Factory(g.texture, renderer)));
 
 								gameManager.RegisterGameobject(_t);
 							}
