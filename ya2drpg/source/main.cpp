@@ -20,5 +20,7 @@ int main(int argc, char *argv[])
 		screenManager->Run();
 	}
 
+	delete screenManager;
+
 	return 0;
 }

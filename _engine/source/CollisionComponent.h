@@ -13,7 +13,7 @@ namespace engine
 		CollisionComponent(Collider* collider): Component("collider"), _collider(collider) {};
 		virtual ~CollisionComponent(void)
 		{
-			delete &this->_collider;
+			delete this->_collider;
 		};
 		void Input(GameObject&, SDL_Event*); 
 		void Update(GameObject&, double);

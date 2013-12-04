@@ -7,6 +7,12 @@ GameObjectManager::GameObjectManager(void)
 
 GameObjectManager::~GameObjectManager(void)
 {
+	for (auto gameobject : this->_gameobjects)
+	{
+		delete gameobject;
+	}
+
+	this->_gameobjects.clear();
 }
 
 void GameObjectManager::RegisterGameobject(engine::GameObject* gameObject)

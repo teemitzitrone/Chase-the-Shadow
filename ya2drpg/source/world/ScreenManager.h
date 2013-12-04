@@ -26,6 +26,15 @@ namespace Game
 		
 		virtual ~ScreenManager(void)
 		{
+			delete this->_current->cm;
+			delete this->_current->objectManager;
+			delete this->_current;
+
+			for (auto texture : engine::TextureComponent::Loaded())
+			{
+				SDL_DestroyTexture(texture.second);
+			}
+
 			Mix_FreeMusic(this->_music);
 			Mix_CloseAudio();
 			SDL_FreeSurface(this->_surface);

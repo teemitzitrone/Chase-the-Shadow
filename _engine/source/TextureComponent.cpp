@@ -52,6 +52,9 @@ namespace engine
 			texture = TextureComponent::_loaded[image];
 		}
 
-		return new TextureComponent(texture);
+		TextureComponent *_t = new TextureComponent(texture);
+		_t->textureName = image;
+
+		return _t;
 	}
 }

@@ -67,7 +67,7 @@ namespace Game
 			{
 				std::cout << "Mix_LoadMUS Error: " << SDL_GetError() << std::endl;
 			}
-			// Mix_PlayMusic(this->_music, -1);
+			Mix_PlayMusic(this->_music, -1);
 
 			return true;
 		}
@@ -76,6 +76,13 @@ namespace Game
 	bool
 	ScreenManager::LoadMap(const std::string name)
 	{
+		if (nullptr != this->_current)
+		{
+			delete this->_current->cm;
+			delete this->_current->objectManager;
+			delete this->_current;
+		}
+
 		this->_current = new Screen();
 
 		this->_current->objectManager = new GameObjectManager();

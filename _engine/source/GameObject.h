@@ -13,7 +13,15 @@ namespace engine
 		bool alive;
 		std::string tag;
 
-		virtual ~GameObject(void) {};
+		virtual ~GameObject(void)
+		{
+			for (auto component : this->_components)
+			{
+				delete component;
+			}
+
+			this->_components.clear();
+		};
 		void Input(SDL_Event*);
 		void Update(double);
 		void Render(SDL_Renderer*);

@@ -100,6 +100,8 @@ void GameLoop::_HandleFrame(SDL_Event sdlEvent, double delay)
 		{
 			this->_manager->UnregisterGameobject(gameobject);
 			this->_collisionManager->UnregisterGameobject(gameobject);
+			delete gameobject;
+			gameobject = NULL;
 		}
 	}
 

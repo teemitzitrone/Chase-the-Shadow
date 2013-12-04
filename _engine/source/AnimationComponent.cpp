@@ -32,12 +32,26 @@ namespace engine
 
 	AnimationComponent* AnimationComponent::Factory(const std::string image, SDL_Renderer* renderer, int frames)
 	{
-		SDL_Texture *texture = IMG_LoadTexture(renderer, image.c_str());
-		if (texture == nullptr) {	
-			std::cout << "ERROR " << image.c_str() << " " << IMG_GetError() << std::endl;
-		} else {
-			std::cout << "SUCCESS " << image.c_str() << std::endl;
+		SDL_Texture *texture;
+		
+		if (TextureComponent::Loaded()[image] == nullptr)
+		{
+			texture = IMG_LoadTexture(renderer, image.c_str());
+			if (texture == nullptr) {
+				std::cout << "ERROR " << image.c_str() << " " << IMG_GetError() << std::endl;
+			}
+			else {
+				std::cout << "SUCCESS " << image.c_str() << std::endl;
+			}
 		}
-		return new AnimationComponent(texture, frames);
+		else
+		{
+			texture = TextureComponent::Loaded()[image];
+		}
+
+		AnimationComponent *_t = new AnimationComponent(texture, frames);
+		_t->textureName = image;
+
+		return _t;
 	}
 }

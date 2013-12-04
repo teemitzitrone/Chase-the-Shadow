@@ -13,7 +13,10 @@ namespace Game
 
 	public:
 		CollisionManager(void) {};
-		virtual ~CollisionManager(void) {};
+		virtual ~CollisionManager(void)
+		{
+			this->_gameobjects.clear();
+		};
 	
 		void RegisterGameobject(engine::GameObject*);
 		void UnregisterGameobject(engine::GameObject*);
