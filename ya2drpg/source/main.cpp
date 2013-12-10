@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include <_engine.h>
 #include "engine\GameLoop.h"
 #include "engine\MapLoader.h"
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
 	SDL_Window *window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	SDL_Surface* surface = nullptr;
+	Mix_Music *music = nullptr;
 
 	GameObjectManager* manager = new GameObjectManager();
 	Game::CollisionManager *cm;
@@ -101,21 +103,30 @@ int main(int argc, char *argv[])
 		surface = IMG_Load("resources/cts.ico");
 		SDL_SetWindowIcon(window, surface); 
 	}
+	
+	Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 1024);
 
 	if (renderer == nullptr) {
 		std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
 		return 1;
 	} else {
+		music = Mix_LoadMUS("resources/sound/jus/41618__jus__cellos-down-down.wav");
+		if (nullptr == music)
+		{
+			std::cout << "Mix_LoadMUS Error: " << SDL_GetError() << std::endl;
+		}
+		Mix_PlayMusic(music, -1);
+
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/princess.png", renderer));
 		player.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/sparks.png", renderer));
 		spider.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/villain.png", renderer));
-		monster.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/monster.png", renderer));
+		monster.RegisterComponent(engine::AnimationComponent::Factory("assets/sprites/characters/palumpa.png", renderer, 5));
 		SDL_Color color = {255, 255, 255};
 		Ui.RegisterComponent(engine::TextComponent::Factory("resources/fonts/SourceSansPro-Regular.ttf", renderer, "Test", color));
 
 		Game::MapLoader loader =  Game::MapLoader();
-		loader.LoadMap("resources/dorf_map.json", (*manager), renderer);
+		loader.LoadMap("resources/dungeon_ebene1.json", (*manager), renderer);
 
 		manager->RegisterGameobject(&player);
 		manager->RegisterGameobject(&spider);
@@ -129,10 +140,12 @@ int main(int argc, char *argv[])
 
 		GameLoop gameloop = GameLoop(renderer, manager, cm);
 		gameloop.Run();
+		
 	}
 
 	delete cm, manager;
-
+	Mix_FreeMusic(music);
+    Mix_CloseAudio();
 	SDL_FreeSurface(surface);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
