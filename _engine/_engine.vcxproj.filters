@@ -19,11 +19,14 @@
     <Filter Include="Source Files\components">
       <UniqueIdentifier>{225af2e7-cedf-4a69-aace-bfcb9b28e647}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{5da60218-fa62-4eb4-a28b-d81f31457293}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{4c2f0ce2-d0d9-409c-8804-913f27532cc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\Vector2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -48,14 +51,26 @@
     <ClInclude Include="source\AiBasicComponent.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
+    <ClInclude Include="source\Vector2D.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
     <ClInclude Include="source\Collider.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CircleCollider.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CollisionComponent.h">
+      <Filter>Header Files\components</Filter>
+    </ClInclude>
+    <ClInclude Include="source\_engine.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TextComponent.h">
+      <Filter>Header Files\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\Vector2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -75,6 +90,18 @@
       <Filter>Source Files\components</Filter>
     </ClCompile>
     <ClCompile Include="source\AiBasicComponent.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Vector2D.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CircleCollider.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CollisionComponent.cpp">
+      <Filter>Source Files\components</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TextComponent.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
   </ItemGroup>

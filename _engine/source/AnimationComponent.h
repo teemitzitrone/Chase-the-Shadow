@@ -1,6 +1,5 @@
 #ifndef _ANIMATIONCOMPONENT_H
 #define _ANIMATIONCOMPONENT_H
-#pragma once
 #include "TextureComponent.h"
 
 namespace engine

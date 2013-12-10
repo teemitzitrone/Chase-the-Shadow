@@ -2,11 +2,14 @@
 
 #include <SDL.h>
 #include "GameObjectManager.h"
+#include "CollisionManager.h"
+
 class GameLoop
 {
 	SDL_Renderer* _renderer;
 	GameObjectManager* _manager;
 	bool _done;
+	Game::CollisionManager *_collisionManager;
 
 private:
 	bool _HandleKeystrokes(SDL_Event);
@@ -15,7 +18,7 @@ private:
 	void _HandleFrame(SDL_Event, double);
 
 public:
-	GameLoop(SDL_Renderer*, GameObjectManager*);
+	GameLoop(SDL_Renderer*, GameObjectManager*, Game::CollisionManager*);
 	virtual ~GameLoop(void);
 
 	void RegisterController(engine::GameObject*);

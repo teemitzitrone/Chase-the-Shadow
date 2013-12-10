@@ -127,4 +127,8 @@ namespace engine
 	{
 		return !((this->_x == v2.GetX()) && (this->_y == v2.GetY()));
 	}
+
+	std::ostream& operator<<(std::ostream &stream, const Vector2D &vector) {
+		return stream << "Vector2D(" << vector.GetX() << "," << vector.GetX() <<")";
+	}
 }

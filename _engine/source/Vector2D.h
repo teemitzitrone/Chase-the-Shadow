@@ -1,7 +1,7 @@
 #ifndef _VECTOR2D_H
 #define _VECTOR2D_H
-#pragma once
 #include <math.h>
+#include <ostream>
 
 namespace engine
 {
@@ -37,6 +37,7 @@ namespace engine
 		bool operator!= ( const Vector2D& v2 ) const;
 
 	private:
+		friend std::ostream& operator<<(std::ostream&, const Vector2D&);
 		float _x, _y;
 	};
 }
