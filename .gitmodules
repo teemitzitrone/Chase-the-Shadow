@@ -1,0 +1,3 @@
+[submodule "wiki"]
+	path = wiki
+	url = git@bitbucket.org:x_mtd/ya2drpg.git/wiki
