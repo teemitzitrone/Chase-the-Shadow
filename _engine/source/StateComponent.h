@@ -20,10 +20,10 @@ namespace engine
 
 
 	class StateComponent :
-		public Component
+		public ComponentInterface
 	{
 	public:
-		StateComponent() : Component("State") {};
+		StateComponent() : ComponentInterface("State") {};
 		virtual ~StateComponent(void);
 		void Input(GameObject&, SDL_Event*); 
 		void Update(GameObject&, double);

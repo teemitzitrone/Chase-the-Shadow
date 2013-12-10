@@ -15,14 +15,14 @@ namespace engine
 
 	void TransformComponent::Update(GameObject& gameObject, double)
 	{
-		std::vector<Component*> hits = gameObject.FilterComponent("Input");
+		Components hits = gameObject.FilterComponent("Input");
 
 		if (hits.size() > 0)
 		{
-			InputComponent* input = dynamic_cast<InputComponent*> (hits.front());
+			InputComponent* input = dynamic_cast<InputComponent*> (hits.front().get());
 
 			Direction direction = input->GetDirection();
-
+			
 			switch (direction)
 			{
 			case Direction::up:

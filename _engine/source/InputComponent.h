@@ -15,10 +15,10 @@ namespace engine
 	};
 
 	class InputComponent :
-		public Component
+		public ComponentInterface
 	{
 	public:
-		InputComponent(void): _direction(Direction::none), Component("Input") { };
+		InputComponent(void) : _direction(Direction::none), ComponentInterface("Input") { };
 		virtual ~InputComponent(void) { };
 		void Input(GameObject&, SDL_Event*); 
 		void Update(GameObject&, double);

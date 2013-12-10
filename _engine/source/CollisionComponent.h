@@ -6,14 +6,14 @@
 namespace engine
 {
 	class CollisionComponent :
-		public Component
+		public ComponentInterface
 	{
 	public:
-		CollisionComponent(void): Component("collider") {};
-		CollisionComponent(Collider* collider): Component("collider"), _collider(collider) {};
+		CollisionComponent(void) : ComponentInterface("collider") {};
+		CollisionComponent(Collider* collider) : ComponentInterface("collider"), _collider(collider) {};
 		virtual ~CollisionComponent(void)
 		{
-			delete &this->_collider;
+			delete this->_collider;
 		};
 		void Input(GameObject&, SDL_Event*); 
 		void Update(GameObject&, double);

@@ -14,7 +14,7 @@ namespace engine
 	void
 	CollisionComponent::Update(GameObject& gameObject, double)
 	{
-		TransformComponent *transform = static_cast<TransformComponent*>(gameObject.FilterComponent("Transform").front());
+		TransformComponent *transform = static_cast<TransformComponent*>(gameObject.FilterComponent("Transform").front().get());
 		SDL_Rect pos = transform->GetPosition();
 
 		this->_collider->SetPosition(Vector2D((float)pos.x, (float)pos.y));
@@ -36,14 +36,14 @@ namespace engine
 	{
 		if (nullptr == collider)
 		{
-			TransformComponent *transform = static_cast<TransformComponent*>(gameObject.FilterComponent("Transform").front());
+			TransformComponent *transform = static_cast<TransformComponent*>(gameObject.FilterComponent("Transform").front().get());
 			SDL_Rect pos = transform->GetPosition();
 			SDL_Rect *scale = transform->GetScale();
 			collider = new CircleCollider(Vector2D((float)pos.x, (float)pos.y), (scale->h/2));
 		}
 
 		CollisionComponent *collisionComponent = new CollisionComponent(collider);
-		gameObject.RegisterComponent(collisionComponent);
+		gameObject.RegisterComponent(Component(new CollisionComponent(collider)));
 
 		return collisionComponent;
 	}

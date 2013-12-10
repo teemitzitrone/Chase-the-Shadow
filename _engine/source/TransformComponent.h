@@ -13,12 +13,15 @@ namespace engine
 
 
 	class TransformComponent :
-	public Component
+		public ComponentInterface
 	{
 	public:
-		TransformComponent(void): Component("Transform") {};
-		TransformComponent(SDL_Rect position, SDL_Rect rotation, SDL_Rect* scale, UnitSpeed speed): _speed(speed), _position(position), _rotation(rotation), _scale(scale), Component("Transform") {};
-		virtual ~TransformComponent(void) {};
+		TransformComponent(void) : ComponentInterface("Transform") {};
+		TransformComponent(SDL_Rect position, SDL_Rect rotation, SDL_Rect* scale, UnitSpeed speed) : _speed(speed), _position(position), _rotation(rotation), _scale(scale), ComponentInterface("Transform") {};
+		virtual ~TransformComponent(void)
+		{
+			/// delete this->_scale;
+		};
 		void Input(GameObject&, SDL_Event*); 
 		void Update(GameObject&, double);
 		void Render(GameObject&, SDL_Renderer*);

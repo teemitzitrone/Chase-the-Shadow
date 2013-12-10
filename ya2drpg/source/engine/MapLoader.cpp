@@ -15,7 +15,7 @@ namespace Game
 				this->_convertLayers(rootNode, gameManager, renderer);
 			}
 		} catch (Jzon::NotFoundException v) {
-			std::cout << "NotFoundException" << std::endl;
+			std::cout << "NotFoundException " << v.what() << std::endl;
 		} catch (Jzon::TypeException v) {
 			std::cout << "TypeException" << std::endl;
 		}
@@ -40,8 +40,8 @@ namespace Game
 				_g.texture = data.Get("image")
 					.ToString()
 					.replace(
-					data.Get("image").ToString().find("../"),
-					std::string("../").length(),
+					data.Get("image").ToString().find("../../"),
+					std::string("../../").length(),
 					""
 					);
 
@@ -66,36 +66,38 @@ namespace Game
 		for (Jzon::Array::const_iterator it = stuff.begin(); it != stuff.end(); ++it)
 		{
 			Jzon::Object data = (*it).AsObject();
-			Jzon::Array tiles = data.Get("data").AsArray();
+			if (data.Get("type").ToString() == "tilelayer") {
+				Jzon::Array tiles = data.Get("data").AsArray();
 
-			for (int y = 0; y < data.Get("height").ToInt(); y++)
-			{
-				for (int x = 0; x < data.Get("width").ToInt(); x++)
+				for (int y = 0; y < data.Get("height").ToInt(); y++)
 				{
-					try {
-						int tile = tiles.Get((y*data.Get("width").ToInt())+x).ToInt();
-						if (tile > 0)
-						{
-							Grid g = this->_grid[tile];
-							SDL_Rect pos;
-							pos.x = x * rootNode.Get("tilewidth").ToInt() + data.Get("x").ToInt();
-							pos.y = y * rootNode.Get("tileheight").ToInt() + data.Get("y").ToInt();
-							pos.w = 0;
-							pos.h = 0;
+					for (int x = 0; x < data.Get("width").ToInt(); x++)
+					{
+						try {
+							int tile = tiles.Get((y*data.Get("width").ToInt())+x).ToInt();
+							if (tile > 0)
+							{
+								Grid g = this->_grid[tile];
+								SDL_Rect pos;
+								pos.x = x * rootNode.Get("tilewidth").ToInt() + data.Get("x").ToInt();
+								pos.y = y * rootNode.Get("tileheight").ToInt() + data.Get("y").ToInt();
+								pos.w = 0;
+								pos.h = 0;
 
-							SDL_Rect* scale = new SDL_Rect();
-							scale->x = g.x;
-							scale->y = g.y;
-							scale->w = g.w;
-							scale->h = g.h;
+								SDL_Rect* scale = new SDL_Rect();
+								scale->x = g.x;
+								scale->y = g.y;
+								scale->w = g.w;
+								scale->h = g.h;
 
-							engine::GameObject* _t = new engine::GameObject(engine::GameObject::Create(engine::TransformComponent::Factory(pos, pos, scale, engine::UnitSpeed::None)));
-							_t->RegisterComponent(engine::TextureComponent::Factory(g.texture, renderer));
+								engine::GameObject* _t = new engine::GameObject(engine::GameObject::Create(engine::Component(engine::TransformComponent::Factory(pos, pos, scale, engine::UnitSpeed::None))));
+								_t->RegisterComponent(engine::Component(engine::TextureComponent::Factory(g.texture, renderer)));
 
-							gameManager.RegisterGameobject(_t);
+								gameManager.RegisterGameobject(_t);
+							}
+						} catch (Jzon::NotFoundException v) {
+							std::cout << data.Get("name").ToString() << " " <<  (y*data.Get("width").ToInt())+x << std::endl;
 						}
-					} catch (Jzon::NotFoundException v) {
-						std::cout << data.Get("name").ToString() << " " <<  (y*data.Get("width").ToInt())+x << std::endl;
 					}
 				}
 			}

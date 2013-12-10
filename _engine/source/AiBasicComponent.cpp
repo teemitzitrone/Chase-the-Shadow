@@ -21,8 +21,8 @@ namespace engine {
 			}
 		} else {
 			this->_lockedOnTarget = true;
-			TransformComponent* targetLocation = (TransformComponent*)this->_aggressionTarget->FilterComponent("Transform").front();
-			TransformComponent* currentLocation = (TransformComponent*)gameObject.FilterComponent("Transform").front();
+			TransformComponent* targetLocation = (TransformComponent*)this->_aggressionTarget->FilterComponent("Transform").front().get();
+			TransformComponent* currentLocation = (TransformComponent*)gameObject.FilterComponent("Transform").front().get();
 
 			if (targetLocation->GetPosition().x < currentLocation->GetPosition().x) {
 				this->_direction = Direction::left;
@@ -40,7 +40,7 @@ namespace engine {
 
 	Vector2D AiBasicComponent::_getCenter(GameObject* gameobject)
 	{
-		TransformComponent* transfrom = (TransformComponent*)gameobject->FilterComponent("Transform").front();
+		TransformComponent* transfrom = (TransformComponent*)gameobject->FilterComponent("Transform").front().get();
 
 		return Vector2D(
 			transfrom->GetPosition().x + (transfrom->GetScale()->w / 2),

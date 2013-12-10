@@ -13,16 +13,19 @@ namespace engine
 		bool alive;
 		std::string tag;
 
-		virtual ~GameObject(void) {};
+		virtual ~GameObject(void)
+		{
+			this->_components.clear();
+		};
 		void Input(SDL_Event*);
 		void Update(double);
 		void Render(SDL_Renderer*);
-		void RegisterComponent(Component*);
-		std::vector<Component*> FilterComponent(std::string);
-		static GameObject Create(TransformComponent* component = nullptr);
+		void RegisterComponent(Component);
+		Components FilterComponent(std::string);
+		static GameObject Create(Component component = nullptr);
 
 	private:
-		std::vector<Component*> _components;
+		Components _components;
 
 		GameObject(void): alive(true) {};
 	};

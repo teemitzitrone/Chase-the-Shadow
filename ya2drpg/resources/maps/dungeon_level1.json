@@ -42,7 +42,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/assets\/tilesets\/terrain.png",
+         "image":"..\/..\/assets\/tilesets\/terrain.png",
          "imageheight":192,
          "imagewidth":128,
          "margin":0,
@@ -57,7 +57,7 @@
         }, 
         {
          "firstgid":7,
-         "image":"..\/assets\/tilesets\/wall.png",
+         "image":"..\/..\/assets\/tilesets\/wall.png",
          "imageheight":192,
          "imagewidth":256,
          "margin":0,
@@ -72,7 +72,7 @@
         }, 
         {
          "firstgid":19,
-         "image":"..\/assets\/tilesets\/water.png",
+         "image":"..\/..\/assets\/tilesets\/water.png",
          "imageheight":256,
          "imagewidth":256,
          "margin":0,
@@ -87,7 +87,7 @@
         }, 
         {
          "firstgid":35,
-         "image":"..\/assets\/tilesets\/bridge.png",
+         "image":"..\/..\/assets\/tilesets\/bridge.png",
          "imageheight":256,
          "imagewidth":256,
          "margin":0,
@@ -102,7 +102,7 @@
         }, 
         {
          "firstgid":51,
-         "image":"..\/assets\/tilesets\/misc.png",
+         "image":"..\/..\/assets\/tilesets\/misc.png",
          "imageheight":192,
          "imagewidth":128,
          "margin":0,
@@ -117,7 +117,7 @@
         }, 
         {
          "firstgid":57,
-         "image":"..\/assets\/tilesets\/plants.png",
+         "image":"..\/..\/assets\/tilesets\/plants.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,
@@ -132,7 +132,7 @@
         }, 
         {
          "firstgid":61,
-         "image":"..\/assets\/tilesets\/skeleton.png",
+         "image":"..\/..\/assets\/tilesets\/skeleton.png",
          "imageheight":128,
          "imagewidth":256,
          "margin":0,

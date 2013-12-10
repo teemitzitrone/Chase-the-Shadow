@@ -7,12 +7,15 @@
 namespace engine
 {
 	class TextComponent :
-		public Component
+		public ComponentInterface
 	{
 	public:
-		TextComponent(void): _texture(nullptr), Component("Text") {};
-		TextComponent(SDL_Texture* texture): _texture(texture), Component("Text") {};
-		virtual ~TextComponent(void) {};
+		TextComponent(void) : _texture(nullptr), ComponentInterface("Text") {};
+		TextComponent(SDL_Texture* texture) : _texture(texture), ComponentInterface("Text") {};
+		virtual ~TextComponent(void)
+		{
+			SDL_DestroyTexture(this->_texture);
+		};
 		void Input(GameObject&, SDL_Event*); 
 		void Update(GameObject&, double);
 		void Render(GameObject&, SDL_Renderer*);

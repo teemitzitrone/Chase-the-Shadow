@@ -10,8 +10,8 @@ namespace engine
 
 	void TextureComponent::Render(GameObject& gameObject, SDL_Renderer* renderer)
 	{
-		std::vector<Component*> hits = gameObject.FilterComponent("Transform");
-		TransformComponent* transform = dynamic_cast<TransformComponent*> (hits.front());
+		Components hits = gameObject.FilterComponent("Transform");
+		TransformComponent* transform = dynamic_cast<TransformComponent*> (hits.front().get());
 
 		SDL_Rect position = transform->GetPosition();
 		SDL_Rect* scale = transform->GetScale();
@@ -22,7 +22,7 @@ namespace engine
 
 		position.h = scale->h;
 		position.w = scale->w;
-	
+		
 		SDL_RenderCopy(renderer, this->_texture, scale, &position);
 	}
 
@@ -52,6 +52,9 @@ namespace engine
 			texture = TextureComponent::_loaded[image];
 		}
 
-		return new TextureComponent(texture);
+		TextureComponent *_t = new TextureComponent(texture);
+		_t->textureName = image;
+
+		return _t;
 	}
 }
