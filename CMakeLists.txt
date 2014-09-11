@@ -1,7 +1,6 @@
 cmake_minimum_required (VERSION 2.8.4)
 ADD_DEFINITIONS(
-    -std=c++11 # Or -std=c++0x
-    # Other flags
+    -std=gnu++0x # Or -std=c++0x
 )
 project (ya2drpg)
 
@@ -14,6 +13,5 @@ endif()
 include_directories(".")
 
 add_subdirectory (_engine)
-add_subdirectory (vendors)
 add_subdirectory (tests)
 add_subdirectory (ya2drpg)

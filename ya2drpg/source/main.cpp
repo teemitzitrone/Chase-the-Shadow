@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include "world\ScreenManager.h"
+#include "ScreenManager.h"
 
 int main(int argc, char *argv[]) {
     /// this could be our events trigger
@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
 
     Game::ScreenManager *screenManager = Game::ScreenManager::GetInstance();
 
-    if (screenManager->Init() != Null) {
+    if (screenManager->Init() != _NULL) {
         std::string map = Game::ScreenManager::maps.back();
         Game::ScreenManager::maps.pop_back();
 

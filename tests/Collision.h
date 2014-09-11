@@ -1,4 +1,4 @@
-#include <vendors/catch/catch.hpp>
+#include <catch.hpp>
 #include <_engine/CircleCollider.h>
 
 TEST_CASE( "Circle Collision", "[collision]" ) {
@@ -13,7 +13,7 @@ TEST_CASE( "Circle Collision", "[collision]" ) {
 
     SECTION( "Circles with same position" ) {
         REQUIRE( circleA.GetPosition() == circleB.GetPosition() );
-        REQUIRE( circleA.Collision(circleB) == true );
+        REQUIRE( circleA.Collision(circleB) != 0 );
     }
 
     SECTION( "Circles with intersect" ) {
@@ -21,20 +21,20 @@ TEST_CASE( "Circle Collision", "[collision]" ) {
         circleB.SetRadius(1.5);
 
         REQUIRE( circleA.GetPosition() != circleB.GetPosition() );
-        REQUIRE( circleA.Collision(circleB) == true );
+        REQUIRE( circleA.Collision(circleB) != 0 );
     }
 
     SECTION( "Circles with collision" ) {
         circleB.SetPosition(engine::Vector2D(1, 1));
 
         REQUIRE( circleA.GetPosition() != circleB.GetPosition() );
-        REQUIRE( circleA.Collision(circleB) == true );
+        REQUIRE( circleA.Collision(circleB) != 0 );
     }
 
     SECTION( "Circles with different position and distance > r+r" ) {
         circleB.SetPosition(engine::Vector2D(4, 4));
 
         REQUIRE( circleA.GetPosition() != circleB.GetPosition() );
-        REQUIRE( circleA.Collision(circleB) == false );
+        REQUIRE( circleA.Collision(circleB) == 0 );
     }
 }

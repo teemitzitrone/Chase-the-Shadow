@@ -15,7 +15,7 @@ namespace engine {
         virtual ~Collider(void) {
         };
 
-        const virtual bool Collision(const Collider &) const = 0;
+        virtual bool Collision(const Collider &) const = 0;
 
         void SetPosition(const Vector2D position) {
             this->_position = position;

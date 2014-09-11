@@ -1,7 +1,7 @@
 #include "CircleCollider.h"
 
 namespace engine {
-    const bool
+    bool
     CircleCollider::Collision(const Collider &collider) const {
         const CircleCollider *circle = dynamic_cast<const CircleCollider *>(&collider);
 

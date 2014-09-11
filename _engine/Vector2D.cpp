@@ -32,7 +32,7 @@ namespace engine {
     }
 
     float Vector2D::Distance(const Vector2D &v2) const {
-        return sqrtf(pow((v2.GetX() - this->_x), 2) + pow((v2.GetY() - this->_y), 2));
+        return sqrtf( (float) pow(v2.GetX() - this->_x, 2) + (float) pow(v2.GetY() - this->_y, 2));
     }
 
     float Vector2D::GetX() const {

@@ -1,2 +1,0 @@
-add_library(catch catch.hpp)
-SET_TARGET_PROPERTIES(catch PROPERTIES LINKER_LANGUAGE CXX)

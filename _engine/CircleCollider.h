@@ -15,7 +15,7 @@ namespace engine {
         virtual ~CircleCollider(void) {
         };
 
-        const virtual bool Collision(const Collider &) const;
+        bool Collision(const Collider &) const;
 
         void SetRadius(double);
 
