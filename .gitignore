@@ -4,3 +4,4 @@ ya2drpg.sdf
 Debug
 *.swp
 Release/
+.idea/
